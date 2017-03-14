@@ -5,7 +5,7 @@ const Content = () => {
     const { viewStyle, textStyle } = styles
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>
+            <Text style={textStyle} numberOfLines={4}>
                 คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT 
             </Text>
         </View>
@@ -14,7 +14,8 @@ const Content = () => {
 
 const styles = {
     viewStyle: {
-        padding: 7
+        padding: 7,
+        height: 100
     },
     textStyle: {
         fontSize: 12
