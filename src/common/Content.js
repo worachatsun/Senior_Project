@@ -1,0 +1,24 @@
+import React, { Proptype } from 'react'
+import { View, Text } from 'react-native'
+
+const Content = () => {
+    const { viewStyle, textStyle } = styles
+    return (
+        <View style={viewStyle}>
+            <Text style={textStyle}>
+                คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT 
+            </Text>
+        </View>
+    )
+}
+
+const styles = {
+    viewStyle: {
+        padding: 7
+    },
+    textStyle: {
+        fontSize: 12
+    }
+}
+
+export { Content }
