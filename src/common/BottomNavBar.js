@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 
 const BottomNavBar = () => {
     const { footerNavStyle, insideNavStyle } = styles
 
     return (
         <View style={footerNavStyle}>
-            
+            <View>
+                <Image source={require('../env/images/home.svg')} />
+            </View>
         </View>
     )
 }
@@ -18,6 +20,11 @@ const styles = {
         flexDirection: 'row',
         position: 'relative',
         height: 55
+    },
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 }
 
