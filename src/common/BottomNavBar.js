@@ -13,13 +13,19 @@ const BottomNavBar = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={viewIconStyle}>
-                    <Image style={iconStyle} source={require('../env/images/search.png')} />
+                    <TouchableOpacity onPress={() => console.log('press')}>
+                        <Image style={iconStyle} source={require('../env/images/search.png')} />
+                    </TouchableOpacity>
                 </View>
                 <View style={viewIconStyle}>
-                    <Image style={iconStyle} source={require('../env/images/chat.png')} />
+                    <TouchableOpacity onPress={() => console.log('press')}>
+                        <Image style={iconStyle} source={require('../env/images/chat.png')} />
+                    </TouchableOpacity>
                 </View>
                 <View style={viewIconStyle}>
-                    <Image style={iconStyle} source={require('../env/images/user.png')} />
+                    <TouchableOpacity onPress={() => console.log('press')}>
+                        <Image style={iconStyle} source={require('../env/images/user.png')} />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -31,7 +37,7 @@ const styles = {
         justifyContent: 'flex-end',
         backgroundColor: '#FEFEFF',
         position: 'relative',
-        height: 55
+        height: 50
     },
     rowStyle: {
         flex: 1,
