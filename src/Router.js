@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigator } from 'react-native'
+import { Navigator, TouchableHighlight } from 'react-native'
 import NewsPage from './components/NewsPage'
 
 const RouterComponent = () => {

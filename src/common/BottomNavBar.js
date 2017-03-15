@@ -2,23 +2,27 @@ import React from 'react'
 import { View, Text } from 'react-native'
 
 const BottomNavBar = () => {
-    const { viewStyle } = styles
+    const { footerNavStyle, insideNavStyle } = styles
 
     return (
-        <View style={viewStyle}>
-            <Text>
-                ButtomNavBar
-            </Text>
+        <View style={insideNavStyle}>
+            
         </View>
     )
 }
 
 const styles = {
-    viewStyle: {
-        backgroundColor: 'white',
-        height: 30,
+    footerNavStyle: {
         flex: 1,
-        
+        justifyContent: 'flex-end',
+        position: 'relative',
+        backgroundColor: 'red'
+    },
+    insideNavStyle: {
+        flex: 0.27,
+        justifyContent: 'flex-end',
+        backgroundColor: '#FEFEFF',
+        flexDirection: 'row'
     }
 }
 
