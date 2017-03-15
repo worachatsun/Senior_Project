@@ -5,13 +5,18 @@ import NewsPage from './components/NewsPage'
 const RouterComponent = () => {
     return (
         <Navigator
-            initialRoute={{ title: 'Awesome Scene', index: 0 }}
+            initialRoute={routes[0]}
+            initialRouteStack={routes}
             renderScene={(route, navigator) =>
-                <NewsPage />
+                <NewsPage header={route.title}/>
             }
             
         />
     )
 }
+
+const routes = [
+    { title: 'News', index: 0 }
+]
 
 export default RouterComponent
