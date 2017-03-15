@@ -5,7 +5,7 @@ const BottomNavBar = () => {
     const { footerNavStyle, insideNavStyle } = styles
 
     return (
-        <View style={insideNavStyle}>
+        <View style={footerNavStyle}>
             
         </View>
     )
@@ -13,16 +13,11 @@ const BottomNavBar = () => {
 
 const styles = {
     footerNavStyle: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        position: 'relative',
-        backgroundColor: 'red'
-    },
-    insideNavStyle: {
-        flex: 0.27,
         justifyContent: 'flex-end',
         backgroundColor: '#FEFEFF',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        position: 'relative',
+        height: 55
     }
 }
 
