@@ -49,7 +49,7 @@ class NewsPage extends Component {
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: '#30332E'
+        backgroundColor: '#353535'
     }
 }
 
