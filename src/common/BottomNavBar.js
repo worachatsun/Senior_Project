@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 
 const BottomNavBar = () => {
     const { footerNavStyle, iconStyle, rowStyle, viewIconStyle } = styles
@@ -8,7 +8,9 @@ const BottomNavBar = () => {
         <View style={footerNavStyle}>
             <View style={rowStyle}>
                 <View style={viewIconStyle}>
-                    <Image style={iconStyle} source={require('../env/images/home.png')} />
+                    <TouchableOpacity onPress={() => console.log('press')}>
+                        <Image style={iconStyle} source={require('../env/images/home.png')} />
+                    </TouchableOpacity>
                 </View>
                 <View style={viewIconStyle}>
                     <Image style={iconStyle} source={require('../env/images/search.png')} />
