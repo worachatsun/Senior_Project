@@ -29,7 +29,9 @@ const styles = {
         marginLeft: 10,
         marginRight: 10,
         marginTop: 12,
-        height: 100
+        height: 90,
+        flexDirection: 'row',
+        backgroundColor: '#FEFEFF'
     },
     viewStyle: {
         padding: 15,

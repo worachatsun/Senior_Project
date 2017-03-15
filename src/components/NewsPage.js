@@ -24,12 +24,20 @@ class NewsPage extends Component {
                 <Header headerText={this.props.header}/>
                 <ScrollView>
                     <BigCard>
-                        <Image source={{uri: 'https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_5299.JPG#overlay-context=content/sit-%25E0%25B8%2588%25E0%25B8%25B1%25E0%25B8%259A%25E0%25B8%25A3%25E0%25B9%2588%25E0%25B8%25A7%25E0%25B8%25A1%25E0%25B8%25A1%25E0%25B8%25B7%25E0%25B8%25AD%25E0%25B8%2581%25E0%25B8%25B1%25E0%25B8%259A-interlink-%25E0%25B8%2588%25E0%25B8%25B1%25E0%25B8%2594-link-campus-cabling-2017'}}
+                        <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
         style={{resizeMode: 'stretch', width: null, height: 230}} />
                     </BigCard>
                     <Card>
-                        <Image source={{uri: 'https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_5299.JPG#overlay-context=content/sit-%25E0%25B8%2588%25E0%25B8%25B1%25E0%25B8%259A%25E0%25B8%25A3%25E0%25B9%2588%25E0%25B8%25A7%25E0%25B8%25A1%25E0%25B8%25A1%25E0%25B8%25B7%25E0%25B8%25AD%25E0%25B8%2581%25E0%25B8%25B1%25E0%25B8%259A-interlink-%25E0%25B8%2588%25E0%25B8%25B1%25E0%25B8%2594-link-campus-cabling-2017'}}
-        style={{resizeMode: 'stretch', width: null, height: 230}} />
+                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
+        style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                    </Card>
+                    <Card>
+                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
+        style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                    </Card>
+                    <Card>
+                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
+        style={{resizeMode: 'stretch', width: 130, height: 90}} />
                     </Card>
                 </ScrollView>
                 <BottomNavBar />    
