@@ -23,7 +23,8 @@ const styles = {
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
-        height: 300
+        height: 300,
+        backgroundColor: '#FEFEFF'
     }
 }
 
