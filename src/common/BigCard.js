@@ -9,10 +9,10 @@ const BigCard = (props) => {
                 {props.children}
             </View>
             <View style={viewStyle}>
-            <Text style={textStyle} numberOfLines={2}>
-                คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT 
-            </Text>
-        </View>
+                <Text style={textStyle} numberOfLines={2}>
+                    คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT 
+                </Text>
+            </View>
         </View>
     )
 }
@@ -28,6 +28,7 @@ const styles = {
         marginLeft: 10,
         marginRight: 10,
         marginTop: 12,
+        marginBottom: 12,
         height: 300,
         backgroundColor: '#FEFEFF'
     },

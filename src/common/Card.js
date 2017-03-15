@@ -28,7 +28,7 @@ const styles = {
         elevation: 1,
         marginLeft: 10,
         marginRight: 10,
-        marginTop: 12,
+        marginBottom: 12,
         height: 90,
         flexDirection: 'row',
         backgroundColor: '#FEFEFF'
