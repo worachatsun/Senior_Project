@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { 
     View, 
     Text, 
-    TouchableHighlight,
+    TouchableOpacity,
     StatusBar,
     Image,
     ScrollView
@@ -14,8 +14,10 @@ import {
     Content,
     SlideupContainer,
     BottomNavBar,
-    Card
+    Card,
+    ModalContent
 } from '../common'
+import Modal from 'react-native-modalbox'
 
 class NewsPage extends Component {
     render () {
@@ -27,10 +29,12 @@ class NewsPage extends Component {
                         <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
         style={{resizeMode: 'stretch', width: null, height: 230}} />
                     </BigCard>
-                    <Card>
-                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
-        style={{resizeMode: 'stretch', width: 130, height: 90}} />
-                    </Card>
+                    <TouchableOpacity onPress={() => this.refs.modal.open()}>
+                        <Card>
+                            <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
+            style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                        </Card>
+                    </TouchableOpacity>
                     <Card>
                         <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
         style={{resizeMode: 'stretch', width: 130, height: 90}} />
@@ -41,6 +45,9 @@ class NewsPage extends Component {
                     </Card>
                 </ScrollView>
                 <BottomNavBar />    
+                <Modal ref={'modal'}>
+                    <ModalContent />
+                </Modal>
             </View>
         )
     }
