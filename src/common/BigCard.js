@@ -27,7 +27,6 @@ const styles = {
         elevation: 1,
         marginLeft: 10,
         marginRight: 10,
-        marginTop: 12,
         marginBottom: 12,
         height: 300,
         backgroundColor: '#FEFEFF'

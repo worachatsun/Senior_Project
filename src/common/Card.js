@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
@@ -17,7 +17,7 @@ const Card = (props) => {
         </View>
     )
 }
-
+                
 const styles = {
     containerStyle: {
         borderBottomWidth: 0,

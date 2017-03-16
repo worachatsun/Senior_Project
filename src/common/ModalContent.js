@@ -1,11 +1,16 @@
 import React from 'react'
-import { View } from 'react-native'
-import { Header } from './Header'
+import { View, Text } from 'react-native'
+import { ModalHeader, Card } from './index'
 
 const ModalContent = () => {
     return (
         <View>
-            <Header headerText={'SIT NEWS'} />
+            <View>
+                <ModalHeader headerText={'SIT NEWS'} />
+            </View>
+           <View>
+               <Card />
+           </View>
         </View>
     )
 }
