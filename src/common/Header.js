@@ -3,11 +3,12 @@ import { Text, View, StatusBar, Platform } from 'react-native'
 
 const Header = (props) => {
     const { textStyle, viewStyle, statusBar } = styles
+    const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
 
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
-            <View style={viewStyle}>
+            <View style={[viewStyle, {backgroundColor: textBackgroundColor}]}>
                 <Text style={textStyle}>{props.headerText}</Text>
             </View>
         </View>
@@ -31,7 +32,6 @@ const styles = {
         fontSize: 20
     },
     viewStyle: {
-        backgroundColor: '#FEFEFF',
         alignItems: 'center',
         justifyContent: 'center',
         height: 40,

@@ -45,7 +45,7 @@ class NewsPage extends Component {
                     </Card>
                 </ScrollView>
                 <BottomNavBar />    
-                <Modal ref={'modal'}>
+                <Modal ref={'modal'} >
                     <ModalContent />
                 </Modal>
             </View>
