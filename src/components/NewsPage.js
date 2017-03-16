@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { 
     View, 
     Text, 
@@ -18,17 +19,11 @@ import {
     ModalContent
 } from '../common'
 import Modal from 'react-native-modalbox'
+import { closeModal } from '../actions'
 
 class NewsPage extends Component {
     constructor() {
         super()
-        this.state = {
-            isOpen: false,
-        }
-    }
-
-    onClose = () => {
-        this.setState({isOpen: false})
     }
 
     render () {
@@ -40,7 +35,7 @@ class NewsPage extends Component {
                         <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
         style={{resizeMode: 'stretch', width: null, height: 230}} />
                     </BigCard>
-                    <TouchableOpacity onPress={() => this.setState({isOpen: true})}>
+                    <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
                         <Card>
                             <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
             style={{resizeMode: 'stretch', width: 130, height: 90}} />
@@ -56,7 +51,7 @@ class NewsPage extends Component {
                     </Card>
                 </ScrollView>
                 <BottomNavBar />    
-                <Modal ref={'modal'} isOpen={this.state.isOpen}>
+                <Modal ref={'modal'} isOpen={this.props.isOpen}>
                     <ModalContent closeModal={this.onClose} />
                 </Modal>
             </View>
@@ -71,4 +66,10 @@ const styles = {
     }
 }
 
-export default NewsPage
+const mapStateToProps = state => {
+    const { isOpen } = state.closeModal
+
+    return { isOpen }
+}
+
+export default connect(mapStateToProps, { closeModal })(NewsPage)

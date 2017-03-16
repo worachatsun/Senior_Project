@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { ModalHeader, Card } from './index'
+import { Card } from './index'
+import ModalHeader from './ModalHeader'
 
 const ModalContent = (props) => {
     return (
         <View>
             <View>
-                <ModalHeader closeModal={props.closeModal} headerText={'SIT NEWS'} />
+                <ModalHeader headerText={'SIT NEWS'} />
             </View>
            <View>
                <Card />

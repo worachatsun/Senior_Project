@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-native'
+import { closeModal } from '../actions'
 
 const ModalHeader = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
-
+    console.log(props)
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <TouchableOpacity onPress={props.closeModal}>
+                <TouchableOpacity onPress={() => props.closeModal({prop: 'isOpen', value: false})}>
                     <View>
                         <Image style={headerIcon} source={require('../env/images/close.png')} />
                     </View>
@@ -64,4 +66,4 @@ const styles = {
     }
 }
 
-export { ModalHeader }
+export default connect(null, { closeModal })(ModalHeader)
