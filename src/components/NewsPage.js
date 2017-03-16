@@ -20,6 +20,17 @@ import {
 import Modal from 'react-native-modalbox'
 
 class NewsPage extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isOpen: false,
+        }
+    }
+
+    onClose = () => {
+        this.setState({isOpen: false})
+    }
+
     render () {
         return (
             <View style={styles.container}>
@@ -29,24 +40,24 @@ class NewsPage extends Component {
                         <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
         style={{resizeMode: 'stretch', width: null, height: 230}} />
                     </BigCard>
-                    <TouchableOpacity onPress={() => this.refs.modal.open()}>
+                    <TouchableOpacity onPress={() => this.setState({isOpen: true})}>
                         <Card>
                             <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
             style={{resizeMode: 'stretch', width: 130, height: 90}} />
                         </Card>
                     </TouchableOpacity>
-                    <Card>
-                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
-        style={{resizeMode: 'stretch', width: 130, height: 90}} />
-                    </Card>
+                        <Card>
+                            <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
+            style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                        </Card>
                     <Card>
                         <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
         style={{resizeMode: 'stretch', width: 130, height: 90}} />
                     </Card>
                 </ScrollView>
                 <BottomNavBar />    
-                <Modal ref={'modal'} >
-                    <ModalContent />
+                <Modal ref={'modal'} isOpen={this.state.isOpen}>
+                    <ModalContent closeModal={this.onClose} />
                 </Modal>
             </View>
         )

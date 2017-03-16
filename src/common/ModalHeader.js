@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Text, View, StatusBar, Platform, Image } from 'react-native'
-import Icon from 'react-native-vector-icons/Octicons'
+import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-native'
 
 const ModalHeader = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
@@ -10,9 +9,11 @@ const ModalHeader = (props) => {
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <View>
-                    <Image style={headerIcon} source={require('../env/images/left-arrow.png')} />
-                </View>
+                <TouchableOpacity onPress={props.closeModal}>
+                    <View>
+                        <Image style={headerIcon} source={require('../env/images/close.png')} />
+                    </View>
+                </TouchableOpacity>
                 <View>
                     <Text style={textStyle}>{props.headerText}</Text>
                 </View>
@@ -57,8 +58,8 @@ const styles = {
         justifyContent: 'space-between',
     },
     headerIcon: {
-        width: 18,
-        height: 18,
+        width: 16,
+        height: 16,
         margin: 10
     }
 }
