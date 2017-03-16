@@ -9,8 +9,7 @@ const RouterComponent = () => {
             initialRouteStack={routes}
             renderScene={(route, navigator) =>
                 <NewsPage header={route.title}/>
-            }
-            
+            }            
         />
     )
 }
