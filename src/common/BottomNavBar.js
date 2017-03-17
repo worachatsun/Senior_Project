@@ -47,8 +47,8 @@ const styles = {
         marginRight: 30
     },
     iconStyle: {
-        width: 30, 
-        height: 30 
+        width: 25, 
+        height: 25 
     },
     viewIconStyle: {
         alignItems: 'center',

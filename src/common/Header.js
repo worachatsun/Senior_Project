@@ -1,17 +1,23 @@
 import React, { PropTypes } from 'react'
-import { Text, View, StatusBar, Platform } from 'react-native'
+import { Text, View, StatusBar, Platform, Image } from 'react-native'
 
 const Header = (props) => {
-    const { textStyle, viewStyle, statusBar, rowStyle } = styles
+    const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
 
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <Text style={textStyle}>{props.headerText}</Text>
-                <Text style={textStyle}>{props.headerText}</Text>
-                <Text style={textStyle}>{props.headerText}</Text>
+                <View>
+                    <Image style={headerIcon} source={require('../env/images/menu-button.png')} />
+                </View>
+                <View>
+                    <Text style={textStyle}>{props.headerText}</Text>
+                </View>
+                <View style={headerIcon}>
+
+                </View>
             </View>
         </View>
     )
@@ -50,7 +56,12 @@ const styles = {
     rowStyle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-    } 
+    },
+    headerIcon: {
+        width: 20,
+        height: 20,
+        margin: 11
+    }
 }
 
 export { Header }

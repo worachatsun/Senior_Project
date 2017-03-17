@@ -5,12 +5,13 @@ import { Card, ImageModal } from './index'
 import ModalHeader from './ModalHeader'
 
 class ModalContent extends Component {
-    componentWillMount() {
+    constructor(props){
+        super()
         const ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
-        });
+        })
     
-        this.dataSource = ds.cloneWithRows(this.props.newsList);
+        this.dataSource = ds.cloneWithRows(props.newsList)
     }
     
     renderRow(news) {

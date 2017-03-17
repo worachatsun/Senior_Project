@@ -49,8 +49,7 @@ const styles = {
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         elevation: 2,
-        position: 'relative',
-        marginBottom: 12
+        position: 'relative'
     },
     statusBar: {
         height: STATUSBAR_HEIGHT,
@@ -60,8 +59,8 @@ const styles = {
         justifyContent: 'space-between',
     },
     headerIcon: {
-        width: 16,
-        height: 16,
+        width: 13,
+        height: 13,
         margin: 10
     }
 }
