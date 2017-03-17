@@ -37,7 +37,9 @@ class NewsPage extends Component {
 
     renderRow(news) {
         return (
-            <Card news={news} />
+            <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
+                <Card news={news} />
+            </TouchableOpacity>
         )
     }
 
@@ -54,7 +56,7 @@ class NewsPage extends Component {
                     </TouchableOpacity>
                     <ListView
                         dataSource={this.dataSource}
-                        renderRow={this.renderRow}
+                        renderRow={this.renderRow.bind(this)}
                     />
                 </ScrollView>
                 <BottomNavBar />    
