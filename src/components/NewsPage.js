@@ -15,11 +15,11 @@ import {
     Content,
     SlideupContainer,
     BottomNavBar,
-    Card,
-    ModalContent
+    Card
 } from '../common'
 import Modal from 'react-native-modalbox'
 import { closeModal } from '../actions'
+import ModalContent from '../common/ModalContent'
 
 class NewsPage extends Component {
     constructor() {

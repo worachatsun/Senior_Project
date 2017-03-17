@@ -9,6 +9,5 @@ const ImageModal = () => {
         </View>
     )
 }
-//2ตัว300
 
 export { ImageModal }
