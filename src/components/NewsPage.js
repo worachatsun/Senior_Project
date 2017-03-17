@@ -21,6 +21,7 @@ import {
 import Modal from 'react-native-modalbox'
 import * as actions from '../actions'
 import ModalContent from '../common/ModalContent'
+import NewsItem from './NewsItem'
 
 class NewsPage extends Component {
     constructor() {
@@ -36,25 +37,7 @@ class NewsPage extends Component {
     }
 
     renderRow(news) {
-        return (
-            <TouchableOpacity onPress={() => {
-                    this.props.selectNews(news.id)
-                    return this.props.closeModal({prop: 'isOpen', value: true})}
-                }>
-                <Card news={news} />
-            </TouchableOpacity>
-        )
-    }
-
-    renderDescription() {
-        const { newsList, selectNewsId } = this.props
-        
-        if (newsList.id === selectNewsId) {
-            console.log(newsList)
-            return (
-                <Text>{newsList.title}</Text>
-            )
-        }
+        return <NewsItem news={news}/>
     }
 
     render () {
@@ -72,7 +55,6 @@ class NewsPage extends Component {
                         dataSource={this.dataSource}
                         renderRow={this.renderRow.bind(this)}
                     />
-                    {this.renderDescription()}
                 </ScrollView>
                 <BottomNavBar />    
                 <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >

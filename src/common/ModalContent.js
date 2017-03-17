@@ -24,17 +24,18 @@ class ModalContent extends Component {
 
 
     render () {
+        const { modalContent } = this.props
+
         return (
             <View style={{flex: 1}}>
                 <View>
                     <ModalHeader headerText={'SIT NEWS'} />
                 </View>
                 <ScrollView>
-                    <ImageModal />
-                    <ListView
-                        dataSource={this.dataSource}
-                        renderRow={this.renderRow}
-                    />
+                    <ImageModal img={modalContent.picture} />
+                    <Text>{modalContent.id}</Text>
+                    <Text>{modalContent.title}</Text>
+                    <Text>{modalContent.description}</Text>
                 </ScrollView>
             </View>
         )
@@ -42,7 +43,7 @@ class ModalContent extends Component {
 }
 
 const mapStateToProps = state => {
-    return { newsList: state.newsList }
+    return { newsList: state.newsList, modalContent: state.modalContent }
 }
 
 export default connect(mapStateToProps)( ModalContent )

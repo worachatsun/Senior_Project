@@ -6,5 +6,6 @@ import SelectionReducer from './SelectionReducer'
 export default combineReducers({
     closeModal: ModalReducer,
     newsList: NewsReducer,
-    selectedNewsId: SelectionReducer
+    selectedNewsId: SelectionReducer,
+    modalContent: ModalReducer
 })
