@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     StatusBar,
     Image,
-    ScrollView
+    ScrollView,
+    ListView
 } from 'react-native'
 import { 
     Header, 
@@ -26,6 +27,21 @@ class NewsPage extends Component {
         super()
     }
 
+    componentWillMount() {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        })
+        this.dataSource = ds.cloneWithRows(this.props.newsList)
+    }
+
+    renderRow(news) {
+        return (
+            <Card news={news}>
+                <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
+            </Card>
+        )
+    }
+
     render () {
         return (
             <View style={styles.container}>
@@ -37,22 +53,10 @@ class NewsPage extends Component {
             style={{resizeMode: 'stretch', width: null, height: 230}} />
                         </BigCard>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
-                        <Card>
-                            <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
-            style={{resizeMode: 'stretch', width: 130, height: 90}} />
-                        </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
-                        <Card>
-                            <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
-            style={{resizeMode: 'stretch', width: 130, height: 90}} />
-                        </Card>
-                    </TouchableOpacity>
-                    <Card>
-                        <Image source={{uri: 'https://www.w3schools.com/css/img_fjords.jpg'}}
-        style={{resizeMode: 'stretch', width: 130, height: 90}} />
-                    </Card>
+                    <ListView
+                        dataSource={this.dataSource}
+                        renderRow={this.renderRow}
+                    />
                 </ScrollView>
                 <BottomNavBar />    
                 <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >
@@ -72,8 +76,7 @@ const styles = {
 
 const mapStateToProps = state => {
     const { isOpen } = state.closeModal
-
-    return { isOpen }
+    return { isOpen, newsList: state.newsList }
 }
 
 export default connect(mapStateToProps, { closeModal })(NewsPage)

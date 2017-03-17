@@ -15,7 +15,8 @@ const RouterComponent = () => {
 }
 
 const routes = [
-    { title: 'News', index: 0 }
+    { title: 'News', index: 0 },
+    { title: 'Search', index: 1}
 ]
 
 export default RouterComponent
