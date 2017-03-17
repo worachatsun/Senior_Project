@@ -6,7 +6,6 @@ import { closeModal } from '../actions'
 const ModalHeader = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
-    console.log(props)
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
