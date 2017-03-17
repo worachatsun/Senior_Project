@@ -38,7 +38,7 @@ const styles = {
         justifyContent: 'center',
     },
     textStyle: {
-        fontSize: 12
+        fontSize: 15
     }
 }
 

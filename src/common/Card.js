@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
-    console.log(props)
+    
     return (
         <View style={styles.containerStyle}>
             <View>
-                {props.children}
+                <Image source={{uri: props.news.picture}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
@@ -40,7 +40,7 @@ const styles = {
         justifyContent: 'center',
     },
     textStyle: {
-        fontSize: 12
+        fontSize: 15
     }
 }
 
