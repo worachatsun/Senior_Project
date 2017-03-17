@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 const Card = (props) => {
@@ -20,7 +21,6 @@ const Card = (props) => {
 
 const BigCard = (props) => {
     const { containerStyle, viewStyle, textStyle, rowContainerStyle } = styles
-    console.log(props)
     return (
         <View style={rowContainerStyle}>
             <View>

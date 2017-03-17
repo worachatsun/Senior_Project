@@ -19,7 +19,7 @@ import {
     Card
 } from '../common'
 import Modal from 'react-native-modalbox'
-import { closeModal } from '../actions'
+import * as actions from '../actions'
 import ModalContent from '../common/ModalContent'
 
 class NewsPage extends Component {
@@ -37,10 +37,24 @@ class NewsPage extends Component {
 
     renderRow(news) {
         return (
-            <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
+            <TouchableOpacity onPress={() => {
+                    this.props.selectNews(news.id)
+                    return this.props.closeModal({prop: 'isOpen', value: true})}
+                }>
                 <Card news={news} />
             </TouchableOpacity>
         )
+    }
+
+    renderDescription() {
+        const { newsList, selectNewsId } = this.props
+        
+        if (newsList.id === selectNewsId) {
+            console.log(newsList)
+            return (
+                <Text>{newsList.title}</Text>
+            )
+        }
     }
 
     render () {
@@ -58,6 +72,7 @@ class NewsPage extends Component {
                         dataSource={this.dataSource}
                         renderRow={this.renderRow.bind(this)}
                     />
+                    {this.renderDescription()}
                 </ScrollView>
                 <BottomNavBar />    
                 <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >
@@ -77,7 +92,7 @@ const styles = {
 
 const mapStateToProps = state => {
     const { isOpen } = state.closeModal
-    return { isOpen, newsList: state.newsList }
+    return { isOpen, newsList: state.newsList, selectNewsId: state.selectedNewsId }
 }
 
-export default connect(mapStateToProps, { closeModal })(NewsPage)
+export default connect(mapStateToProps, actions)(NewsPage)
