@@ -11,7 +11,7 @@ class Router extends Component {
             case 0:
                 return (<NewsPage header={route.title} navigator={navigator} />)
             case 1:
-                return (<SearchPage />)
+                return (<SearchPage navigator={navigator} />)
         }
     }
 
