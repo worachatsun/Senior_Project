@@ -1,22 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Navigator, TouchableHighlight } from 'react-native'
 import NewsPage from './components/NewsPage'
+import SearchPage from './components/SearchPage'
 
-const RouterComponent = () => {
-    return (
-        <Navigator
-            initialRoute={routes[0]}
-            initialRouteStack={routes}
-            renderScene={(route, navigator) =>
-                <NewsPage header={route.title}/>
-            }            
-        />
-    )
+
+class Router extends Component {
+    navigatorRenderScene(route, navigator) {
+        _navigator = navigator
+        switch (route.index) {
+            case 0:
+                return (<NewsPage header={route.title}/>)
+            case 1:
+                return (<SearchPage />)
+        }
+    }
+
+    routes = [
+        { title: 'News', index: 0 },
+        { title: 'Search', index: 1}
+    ]
+
+    render () {
+        return (
+            <Navigator
+                initialRoute={this.routes[0]}
+                initialRouteStack={this.routes}
+                renderScene={this.navigatorRenderScene}/>
+        )
+    }
 }
 
-const routes = [
-    { title: 'News', index: 0 },
-    { title: 'Search', index: 1}
-]
-
-export default RouterComponent
+export default Router
