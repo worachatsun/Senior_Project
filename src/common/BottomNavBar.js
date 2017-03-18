@@ -1,42 +1,44 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 
-const BottomNavBar = (props) => {
-    const { footerNavStyle, iconStyle, rowStyle, viewIconStyle } = styles
+class BottomNavBar extends Component {
 
-    return (
-        <View style={footerNavStyle}>
-            <View style={rowStyle}>
-                <View style={viewIconStyle}>
-                    <TouchableOpacity onPress={() => console.log('press')}>
-                        <Image style={iconStyle} source={require('../env/images/home.png')} />
-                    </TouchableOpacity>
-                </View>
-                <View style={viewIconStyle}>
-                    <TouchableOpacity onPress={this.navSearch}>
-                        <Image style={iconStyle} source={require('../env/images/search.png')} />
-                    </TouchableOpacity>
-                </View>
-                <View style={viewIconStyle}>
-                    <TouchableOpacity onPress={() => console.log('press')}>
-                        <Image style={iconStyle} source={require('../env/images/chat.png')} />
-                    </TouchableOpacity>
-                </View>
-                <View style={viewIconStyle}>
-                    <TouchableOpacity onPress={() => console.log('press')}>
-                        <Image style={iconStyle} source={require('../env/images/user.png')} />
-                    </TouchableOpacity>
+    navSearch(){
+        this.props.navigator.push({
+            index: 1
+        })
+    }
+
+    render () {
+        const { footerNavStyle, iconStyle, rowStyle, viewIconStyle } = styles
+
+        return (
+            <View style={footerNavStyle}>
+                <View style={rowStyle}>
+                    <View style={viewIconStyle}>
+                        <TouchableOpacity onPress={() => console.log('press')}>
+                            <Image style={iconStyle} source={require('../env/images/home.png')} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={viewIconStyle}>
+                        <TouchableOpacity onPress={this.navSearch.bind(this)}>
+                            <Image style={iconStyle} source={require('../env/images/search.png')} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={viewIconStyle}>
+                        <TouchableOpacity onPress={() => console.log('press')}>
+                            <Image style={iconStyle} source={require('../env/images/chat.png')} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={viewIconStyle}>
+                        <TouchableOpacity onPress={() => console.log('press')}>
+                            <Image style={iconStyle} source={require('../env/images/user.png')} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
-    )
-}
-
-const navSearch = () => {
-    console.log(this.props)
-    this.props.navigator.push({
-        index: 1
-    })
+        )
+    }
 }
 
 const styles = {
