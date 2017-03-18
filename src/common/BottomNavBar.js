@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 
-const BottomNavBar = () => {
+const BottomNavBar = (props) => {
     const { footerNavStyle, iconStyle, rowStyle, viewIconStyle } = styles
 
     return (
@@ -13,7 +13,7 @@ const BottomNavBar = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={viewIconStyle}>
-                    <TouchableOpacity onPress={() => console.log('press')}>
+                    <TouchableOpacity onPress={this.navSearch}>
                         <Image style={iconStyle} source={require('../env/images/search.png')} />
                     </TouchableOpacity>
                 </View>
@@ -30,6 +30,13 @@ const BottomNavBar = () => {
             </View>
         </View>
     )
+}
+
+const navSearch = () => {
+    console.log(this.props)
+    this.props.navigator.push({
+        index: 1
+    })
 }
 
 const styles = {

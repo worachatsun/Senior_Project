@@ -9,7 +9,7 @@ class Router extends Component {
         _navigator = navigator
         switch (route.index) {
             case 0:
-                return (<NewsPage header={route.title}/>)
+                return (<NewsPage header={route.title} navigator={navigator} />)
             case 1:
                 return (<SearchPage />)
         }
