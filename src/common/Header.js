@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
-import { Text, View, StatusBar, Platform, Image } from 'react-native'
+import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
 const Header = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
@@ -9,9 +10,11 @@ const Header = (props) => {
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <View>
-                    <Image style={headerIcon} source={require('../env/images/menu-button.png')} />
-                </View>
+                <TouchableOpacity onPress={() => Actions.refresh({key: 'drawer', open: true})}>
+                    <View>
+                        <Image style={headerIcon} source={require('../env/images/menu-button.png')} />
+                    </View>
+                </TouchableOpacity>
                 <View>
                     <Text style={textStyle}>{props.headerText}</Text>
                 </View>

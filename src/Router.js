@@ -4,6 +4,7 @@ import { Scene, Router, TabBar, Modal } from 'react-native-router-flux'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
+import DrawerComponent from './components/DrawerComponent'
 
 class TabIcon extends React.Component {
     iconByName = (iconName) => {
@@ -28,12 +29,14 @@ class RouterComponent extends Component {
     render () {
         return (
             <Router hideNavBar={true}>
-                <Scene key="News">
-                    <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                        <Scene key="Home" component={NewsPage} title="home" icon={TabIcon} initial />
-                        <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
+                <Scene key="drawer" component={DrawerComponent} open={false} >
+                    <Scene key="News">
+                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
+                            <Scene key="Home" component={NewsPage} title="home" icon={TabIcon} initial />
+                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
+                        </Scene>
+                        <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                    
                     </Scene>
-                    <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />
                 </Scene>
             </Router>
         )

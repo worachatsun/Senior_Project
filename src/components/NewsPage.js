@@ -14,19 +14,11 @@ import {
     BigCard, 
     CardSection, 
     Content,
-    SlideupContainer,
-    BottomNavBar,
-    Card
 } from '../common'
-import Modal from 'react-native-modalbox'
 import * as actions from '../actions'
-import ModalContent from '../common/ModalContent'
 import NewsItem from './NewsItem'
 
 class NewsPage extends Component {
-    constructor() {
-        super()
-    }
 
     componentWillMount() {
         const ds = new ListView.DataSource({
@@ -56,10 +48,6 @@ class NewsPage extends Component {
                         renderRow={this.renderRow.bind(this)}
                     />
                 </ScrollView>
-                {/*<BottomNavBar />    
-                <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >
-                    <ModalContent closeModal={this.onClose} />
-                </Modal>*/}
             </View>
         )
     }
