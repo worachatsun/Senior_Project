@@ -43,7 +43,7 @@ class NewsPage extends Component {
     render () {
         return (
             <View style={styles.container}>
-                <Header headerText={this.props.header}/>
+                <Header headerText={'News'}/>
                 <ScrollView>
                     <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
                         <BigCard>
@@ -56,7 +56,7 @@ class NewsPage extends Component {
                         renderRow={this.renderRow.bind(this)}
                     />
                 </ScrollView>
-                <BottomNavBar navigator={this.props.navigator} />    
+                <BottomNavBar />    
                 <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >
                     <ModalContent closeModal={this.onClose} />
                 </Modal>

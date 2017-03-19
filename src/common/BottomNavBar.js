@@ -2,33 +2,19 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 
 class BottomNavBar extends Component {
-
-    navSearch(){
-        this.props.navigator.push({
-            index: 1
-        })
-    }
-
-    navHome(){
-        console.log(this.props.navigator.state.presentedIndex)
-        this.props.navigator.push({
-            index: 0
-        })
-    }
-
     render () {
         const { footerNavStyle, iconStyle, rowStyle, viewIconStyle } = styles
 
-        return (
+    return (
             <View style={footerNavStyle}>
                 <View style={rowStyle}>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={this.navHome.bind(this)}>
+                        <TouchableOpacity onPress={() => console.log('press')}>
                             <Image style={iconStyle} source={require('../env/images/home.png')} />
                         </TouchableOpacity>
                     </View>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={this.navSearch.bind(this)}>
+                        <TouchableOpacity onPress={() => console.log('press')}>
                             <Image style={iconStyle} source={require('../env/images/search.png')} />
                         </TouchableOpacity>
                     </View>

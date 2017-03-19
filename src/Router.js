@@ -1,33 +1,18 @@
 import React, { Component } from 'react'
-import { Navigator, TouchableHighlight } from 'react-native'
+import { Scene, Router } from 'react-native-router-flux'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 
 
-class Router extends Component {
-    navigatorRenderScene(route, navigator) {
-        _navigator = navigator
-        switch (route.index) {
-            case 0:
-                return (<NewsPage header={route.title} navigator={navigator} />)
-            case 1:
-                return (<SearchPage navigator={navigator} />)
-        }
-    }
-
-    routes = [
-        { title: 'News', index: 0 },
-        { title: 'Search', index: 1}
-    ]
+class RouterComponent extends Component {
 
     render () {
         return (
-            <Navigator
-                initialRoute={this.routes[0]}
-                initialRouteStack={this.routes}
-                renderScene={this.navigatorRenderScene}/>
+            <Router hideNavBar={true}>
+                <Scene key="NewsPage" component={NewsPage} />
+            </Router>
         )
     }
 }
 
-export default Router
+export default RouterComponent
