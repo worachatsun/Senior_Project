@@ -1,17 +1,21 @@
 import React, { Proptype } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import { CardSection } from '../common'
 
 const DrawerContent = () => {
-    const { viewStyle, profileStyle, menuStyle, textStyle } = styles
+    const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle } = styles
     return (
         <View style={viewStyle}>
             <View style={profileStyle}>
                 
             </View>
-            <View style={menuStyle}>
-                <Text style={textStyle}>News</Text>
-            </View>
+            <TouchableOpacity onPress={() => Actions.News() }>
+                <View style={menuStyle}>
+                    <Image style={iconStyle} source={require(`../env/images/news.png`)} />
+                    <Text style={textStyle}>News</Text>
+                </View>
+            </TouchableOpacity>
             <View style={menuStyle}>
                 
             </View>
@@ -33,14 +37,21 @@ const styles = {
     },
     menuStyle: {
         height: 45,
-        justifyContent: 'center',
+        flexDirection: 'row',
         backgroundColor: 'white',
         borderBottomWidth: 1,
         borderColor: '#ddd',
-        paddingLeft: 10
+        paddingLeft: 30,
+        alignItems: 'center',
     },
     textStyle: {
-        color: '#FF7F11'
+        color: '#FF7F11',
+        margin: 5
+    },
+    iconStyle: {
+        width: 20,
+        height: 20,
+        marginRight: 10
     }
 }
 
