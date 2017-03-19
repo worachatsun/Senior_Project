@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 class BottomNavBar extends Component {
     render () {
@@ -9,12 +10,12 @@ class BottomNavBar extends Component {
             <View style={footerNavStyle}>
                 <View style={rowStyle}>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={() => console.log('press')}>
+                        <TouchableOpacity onPress={() => Actions.NewsPage({type: ActionConst.REPLACE})}>
                             <Image style={iconStyle} source={require('../env/images/home.png')} />
                         </TouchableOpacity>
                     </View>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={() => console.log('press')}>
+                        <TouchableOpacity onPress={() => Actions.SearchPage({type: ActionConst.REPLACE})}>
                             <Image style={iconStyle} source={require('../env/images/search.png')} />
                         </TouchableOpacity>
                     </View>

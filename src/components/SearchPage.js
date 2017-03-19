@@ -7,7 +7,7 @@ class SearchPage extends Component {
         return (
             <View>
                 <Text> Search Page </Text>
-                <BottomNavBar navigator={this.props.navigator} />   
+                <BottomNavBar />   
             </View>
         )
     }
