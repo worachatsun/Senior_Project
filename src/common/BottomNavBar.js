@@ -10,12 +10,12 @@ class BottomNavBar extends Component {
             <View style={footerNavStyle}>
                 <View style={rowStyle}>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={() => Actions.NewsPage({type: ActionConst.REPLACE})}>
+                        <TouchableOpacity onPress={() => Actions.NewsPage({type: ActionConst.RESET})}>
                             <Image style={iconStyle} source={require('../env/images/home.png')} />
                         </TouchableOpacity>
                     </View>
                     <View style={viewIconStyle}>
-                        <TouchableOpacity onPress={() => Actions.SearchPage({type: ActionConst.REPLACE})}>
+                        <TouchableOpacity onPress={() => Actions.SearchPage({type: ActionConst.RESET})}>
                             <Image style={iconStyle} source={require('../env/images/search.png')} />
                         </TouchableOpacity>
                     </View>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import * as actions from '../actions'
 import { Card } from '../common'
 
@@ -16,7 +17,7 @@ class NewsItem extends Component {
              <TouchableOpacity onPress={() => {
                     this.props.selectNews(this.props.news.id)
                     this.updateContentModal()                 
-                    return this.props.closeModal({prop: 'isOpen', value: true})}
+                    return Actions.modal()}
                 }>
                 <Card news={this.props.news} />
             </TouchableOpacity>

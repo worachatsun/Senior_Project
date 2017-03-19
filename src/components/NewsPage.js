@@ -56,10 +56,10 @@ class NewsPage extends Component {
                         renderRow={this.renderRow.bind(this)}
                     />
                 </ScrollView>
-                <BottomNavBar />    
+                {/*<BottomNavBar />    
                 <Modal ref={'modal'} isOpen={this.props.isOpen} swipeToClose={false} >
                     <ModalContent closeModal={this.onClose} />
-                </Modal>
+                </Modal>*/}
             </View>
         )
     }
