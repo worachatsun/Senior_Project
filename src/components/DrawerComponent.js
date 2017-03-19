@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text } from 'react-native'
 import Drawer from 'react-native-drawer'
 import {Actions, DefaultRenderer} from 'react-native-router-flux'
+import { DrawerContent } from '../common/DrawerContent'
 
 export default class NavigationDrawer extends Component {
     render(){
@@ -13,10 +14,10 @@ export default class NavigationDrawer extends Component {
                 open={state.open}
                 onOpen={()=>Actions.refresh({key:state.key, open: true})}
                 onClose={()=>Actions.refresh({key:state.key, open: false})}
-                content={<Text>Side manu</Text>}
+                content={<DrawerContent />}
                 type="displace"
                 tapToClose={true}
-                openDrawerOffset={0.4}
+                openDrawerOffset={0.3}
                 panCloseMask={0.2}
                 negotiatePan={true}
                 style={{shadowColor: '#000000'}}
