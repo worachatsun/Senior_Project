@@ -23,7 +23,7 @@ class RouterComponent extends Component {
                         <Scene key="Home" component={NewsPage} title="Home" icon={TabIcon} initial />
                         <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="Shake" />
                     </Scene>
-                    <Scene key="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />
+                    <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />
                 </Scene>
             </Router>
         )
