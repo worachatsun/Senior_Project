@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, Image } from 'react-native'
 import { Scene, Router, TabBar, Modal } from 'react-native-router-flux'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
 
 class TabIcon extends React.Component {
+    iconByName = (iconName) => {
+        switch (iconName) {
+            case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`);
+            case "search": return this.props.selected ? require(`./env/images/search.png`) : require(`./env/images/search_black.png`);
+        }
+    }
+
     render(){
         return (
-            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
-        );
+            <Image 
+                style={styles.iconStyle}
+                source={this.iconByName(this.props.title)} 
+            />
+        )
     }
 }
 
@@ -20,13 +30,20 @@ class RouterComponent extends Component {
             <Router hideNavBar={true}>
                 <Scene key="News">
                     <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                        <Scene key="Home" component={NewsPage} title="Home" icon={TabIcon} initial />
-                        <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="Shake" />
+                        <Scene key="Home" component={NewsPage} title="home" icon={TabIcon} initial />
+                        <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                     </Scene>
                     <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />
                 </Scene>
             </Router>
         )
+    }
+}
+
+const styles = {
+    iconStyle: {
+        width: 25, 
+        height: 25 
     }
 }
 
