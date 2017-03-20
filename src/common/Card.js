@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import { ImageModal } from './'
 import { Col, Row, Grid } from "react-native-easy-grid"
 
@@ -42,12 +43,14 @@ const HalfScreenCard = (props) => {
 
     return (
         <Grid>
-            <Col style={halfCardContainer}>
-                <View>
-                    <ImageModal height={130} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
-                    <Text style={{padding: 10, fontSize: 13}} numberOfLines={2}>คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT </Text>
-                </View>
-            </Col>
+            <TouchableOpacity onPress={() => Actions.modalEvent()}>
+                <Col style={halfCardContainer}>
+                    <View>
+                        <ImageModal height={130} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
+                        <Text style={{padding: 10, fontSize: 13}} numberOfLines={2}>คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT </Text>
+                    </View>
+                </Col>
+            </TouchableOpacity>
         </Grid>
     )
 }

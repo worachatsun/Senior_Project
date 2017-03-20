@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, ScrollView } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import { Header, ImageModal, HalfScreenCard } from '../common'
 
 class EventPage extends Component {

@@ -4,6 +4,7 @@ import { Scene, Router, TabBar, Modal } from 'react-native-router-flux'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
+import ModalContentEvent from './components/ModalContentEvent'
 import DrawerComponent from './components/DrawerComponent'
 import ProfilePage from './components/ProfilePage'
 import EventPage from './components/EventPage'
@@ -42,7 +43,8 @@ class RouterComponent extends Component {
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                         </Scene>
-                        <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                    
+                        <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
+                        <Scene key="modalEvent" schema="modal" component={ModalContentEvent} title="Modal" direction="vertical" hideNavBar />                  
                     </Scene>
                 </Scene>
             </Router>
