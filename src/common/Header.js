@@ -51,7 +51,6 @@ const styles = {
         shadowOpacity: 0.2,
         elevation: 2,
         position: 'relative',
-        marginBottom: 12
     },
     statusBar: {
         height: STATUSBAR_HEIGHT,

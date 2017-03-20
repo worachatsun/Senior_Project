@@ -5,7 +5,7 @@ const ImageModal = (props) => {
     return (
         <View>
             <Image source={{uri: props.img}}
-            style={{resizeMode: 'stretch', width: null, height: 230}} />
+            style={{resizeMode: 'stretch', width: null, height: props.height||230}} />
         </View>
     )
 }

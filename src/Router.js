@@ -33,12 +33,11 @@ class RouterComponent extends Component {
         return (
             <Router hideNavBar={true}>
                 <Scene key="drawer" component={DrawerComponent} open={false} >
-                    <Scene key="root">
-                        
+                    <Scene key="root" >
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            <Scene key="Home" icon={TabIcon} title="home">
-                                <Scene key="News" component={NewsPage} />
+                            <Scene key="Home" title="home" icon={TabIcon}>
                                 <Scene key="Event" component={EventPage} />
+                                <Scene key="News" component={NewsPage} />
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
@@ -59,12 +58,3 @@ const styles = {
 }
 
 export default RouterComponent
-
-{/*<Router hideNavBar={true}>
-                <Scene key="main">
-                    <Scene key="News">
-                        <Scene key="NewsPage" component={NewsPage} />
-                        <Scene key="SearchPage" component={SearchPage} />
-                    </Scene>
-                </Scene>
-            </Router>*/}
