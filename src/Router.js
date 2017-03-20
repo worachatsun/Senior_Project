@@ -6,6 +6,7 @@ import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
 import DrawerComponent from './components/DrawerComponent'
 import ProfilePage from './components/ProfilePage'
+import EventPage from './components/EventPage'
 
 class TabIcon extends React.Component {
     iconByName = (iconName) => {
@@ -32,9 +33,13 @@ class RouterComponent extends Component {
         return (
             <Router hideNavBar={true}>
                 <Scene key="drawer" component={DrawerComponent} open={false} >
-                    <Scene key="News">
+                    <Scene key="root">
+                        
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            <Scene key="Home" component={NewsPage} title="home" icon={TabIcon} initial />
+                            <Scene key="Home" icon={TabIcon} title="home">
+                                <Scene key="News" component={NewsPage} />
+                                <Scene key="Event" component={EventPage} />
+                            </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                         </Scene>

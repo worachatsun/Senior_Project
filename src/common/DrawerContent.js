@@ -16,7 +16,7 @@ const DrawerContent = () => {
                     <Text style={textStyle}>News</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.News() }>
+            <TouchableOpacity onPress={() => Actions.Event() }>
                 <View style={menuStyle}>
                     <Image style={iconStyle} source={require(`../env/images/news.png`)} />
                     <Text style={textStyle}>Event</Text>
