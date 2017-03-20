@@ -25,20 +25,40 @@ class ModalContent extends Component {
 
     render () {
         const { modalContent } = this.props
+        const { headerTextStyle, contentTextStyle, viewStyle } = styles
 
         return (
             <View style={{flex: 1}}>
                 <View>
-                    <ModalHeader headerText={'SIT NEWS'} />
+                    <ModalHeader headerText={modalContent.title} />
                 </View>
                 <ScrollView>
                     <ImageModal img={modalContent.picture} />
-                    <Text>{modalContent.id}</Text>
-                    <Text>{modalContent.title}</Text>
-                    <Text>{modalContent.description}</Text>
+                    <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
+                        <Text style={headerTextStyle}>{modalContent.title}</Text>
+                    </View>
+                    <View style={viewStyle}>
+                        <Text style={contentTextStyle}>      {modalContent.description}</Text>
+                    </View>
                 </ScrollView>
             </View>
         )
+    }
+}
+
+const styles = {
+    headerTextStyle: {
+        margin: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 25
+    },
+    contentTextStyle: {
+        margin: 20,
+        textAlign: 'center'
+    },
+    viewStyle: {
+        alignItems: 'center'
     }
 }
 
