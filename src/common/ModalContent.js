@@ -38,7 +38,7 @@ class ModalContent extends Component {
                         <Text style={headerTextStyle}>{modalContent.title}</Text>
                     </View>
                     <View style={viewStyle}>
-                        <Text style={contentTextStyle}>      {modalContent.description}</Text>
+                        <Text style={contentTextStyle}>     {modalContent.description}</Text>
                     </View>
                 </ScrollView>
             </View>

@@ -26,7 +26,7 @@ class BottomNavBar extends Component {
                     </View>
                     <View style={viewIconStyle}>
                         <TouchableOpacity onPress={() => console.log('press')}>
-                            <Image style={iconStyle} source={require('../env/images/user.png')} />
+                            <Image style={iconStyle} source={require('../env/images/profile.png')} />
                         </TouchableOpacity>
                     </View>
                 </View>

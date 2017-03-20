@@ -5,12 +5,14 @@ import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
 import DrawerComponent from './components/DrawerComponent'
+import ProfilePage from './components/ProfilePage'
 
 class TabIcon extends React.Component {
     iconByName = (iconName) => {
         switch (iconName) {
             case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`);
             case "search": return this.props.selected ? require(`./env/images/search.png`) : require(`./env/images/search_black.png`);
+            case "profile": return this.props.selected ? require(`./env/images/profile.png`) : require(`./env/images/profile_black.png`);
         }
     }
 
@@ -34,6 +36,7 @@ class RouterComponent extends Component {
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
                             <Scene key="Home" component={NewsPage} title="home" icon={TabIcon} initial />
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
+                            <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                    
                     </Scene>
