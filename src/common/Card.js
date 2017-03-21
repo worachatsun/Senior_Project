@@ -55,6 +55,20 @@ const HalfScreenCard = (props) => {
     )
 }
 
+const EmptyCard = (props) => {
+    const { containerStyle, viewStyle, textStyle, EmptyCardStyle } = styles
+
+    return (
+        <View style={EmptyCardStyle}>
+            <View style={viewStyle}>
+                <Text style={textStyle} numberOfLines={2}>
+                    {props.children}
+                </Text>
+            </View>
+        </View>
+    )
+}
+
 var {height, width} = Dimensions.get('window');
                 
 const styles = {
@@ -106,7 +120,21 @@ const styles = {
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 1,
+    },
+    EmptyCardStyle: {
+        marginTop: 10,
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 12,
+        height: 90,
+        backgroundColor: '#FEFEFF'
     }
 }
 
-export { Card, BigCard, HalfScreenCard }
+export { Card, BigCard, HalfScreenCard, EmptyCard }
