@@ -60,10 +60,8 @@ const EmptyCard = (props) => {
 
     return (
         <View style={EmptyCardStyle}>
-            <View style={viewStyle}>
-                <Text style={textStyle} numberOfLines={2}>
-                    {props.children}
-                </Text>
+            <View style={{ alignItems: 'center', marginTop: 5 }}>
+                {props.children}
             </View>
         </View>
     )
