@@ -20,14 +20,14 @@ import NewsItem from './NewsItem'
 
 class NewsPage extends Component {
 
+    componentdidMount() {
+        console.log('did')
+    }
+
     componentWillMount() {
         this.props.fetchNews()
 
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2
-        })
-        
-        this.dataSource = ds.cloneWithRows(this.props.newsList)
+        this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
     }
 
     renderRow(news) {
@@ -46,7 +46,7 @@ class NewsPage extends Component {
                         </BigCard>
                     </TouchableOpacity>
                     <ListView
-                        dataSource={this.dataSource}
+                        dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
                         renderRow={this.renderRow.bind(this)}
                     />
                 </ScrollView>
@@ -64,7 +64,6 @@ const styles = {
 
 const mapStateToProps = state => {
     const { isOpen } = state.closeModal
-    console.log(state.newsList)
     return { isOpen, newsList: state.newsList, selectNewsId: state.selectedNewsId }
 }
 

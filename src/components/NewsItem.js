@@ -9,13 +9,14 @@ class NewsItem extends Component {
 
     updateContentModal() {
         const { news } = this.props
+  
         this.props.modalContent(news)
     }
 
     render () {
         return (
              <TouchableOpacity onPress={() => {
-                    this.props.selectNews(this.props.news.id)
+                    this.props.selectNews(this.props.news._id)
                     this.updateContentModal()                 
                     return Actions.modal()}
                 }>

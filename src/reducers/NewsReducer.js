@@ -1,8 +1,11 @@
+// import data from './NewsList.json'
+
+// export default () => data
+
 import { FETCH_NEWS } from '../actions/types'
 
 const INITIAL_STATE = {
-    isOpen: false,
-    content: ''
+    news: ''
 }
 
 export default (state = INITIAL_STATE, action) => {

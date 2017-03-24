@@ -7,7 +7,8 @@ import { Col, Row, Grid } from "react-native-easy-grid"
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
-
+    const { picture } = props.news.assets
+    console.log(picture)
     return (
         <View style={styles.containerStyle}>
             <View>
@@ -15,7 +16,7 @@ const Card = (props) => {
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
-                    {props.news.title}
+                    {props.news.news_title}
                 </Text>
             </View>
         </View>
