@@ -6,7 +6,7 @@ import { ImageModal, EmptyCard, CardSection, Map } from '../common'
 class ModalContentEvent extends Component {
     render () {
         return (
-            <View>
+            <View style={styles.container}>
                 <View>
                     <ModalHeader headerText={'TEXT'} />
                 </View>
@@ -30,7 +30,10 @@ class ModalContentEvent extends Component {
 }
 
 const styles = {
-    
+    container: {
+        flex: 1,
+        backgroundColor: '#353535'
+    }
 }
 
 export default ModalContentEvent

@@ -5,7 +5,7 @@ import { Card, ImageModal, CardSection } from './index'
 import ModalHeader from './ModalHeader'
 
 class ModalContent extends Component {
-    componentWillMount(){
+    componentDidMount(){
         const ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
         })

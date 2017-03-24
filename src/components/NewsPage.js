@@ -21,6 +21,8 @@ import NewsItem from './NewsItem'
 class NewsPage extends Component {
 
     componentWillMount() {
+        this.props.fetchNews()
+
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         })
@@ -62,6 +64,7 @@ const styles = {
 
 const mapStateToProps = state => {
     const { isOpen } = state.closeModal
+    console.log(state.newsList)
     return { isOpen, newsList: state.newsList, selectNewsId: state.selectedNewsId }
 }
 
