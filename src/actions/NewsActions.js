@@ -11,7 +11,7 @@ export const selectNews = (newsId) => {
 
 export const fetchNews = () => {
     const promise = axios.get(GETNEWS_URL)
-
+    
     return (dispatch) => {
         promise.then(({data}) => {
             dispatch({

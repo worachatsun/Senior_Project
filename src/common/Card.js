@@ -7,12 +7,18 @@ import { Col, Row, Grid } from "react-native-easy-grid"
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
-    const { picture } = props.news.assets
-    console.log(picture)
+    function getImage () {
+        try {
+            return props.news.assets.picture
+        } catch (err) {
+            return undefined;
+        }   
+    }
+    
     return (
         <View style={styles.containerStyle}>
             <View>
-                <Image source={{uri: props.news.picture}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                <Image source={{uri: getImage()}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>

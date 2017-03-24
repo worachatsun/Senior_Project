@@ -14,6 +14,7 @@ class NewsItem extends Component {
     }
 
     render () {
+        console.log(this.props.news)
         return (
              <TouchableOpacity onPress={() => {
                     this.props.selectNews(this.props.news._id)
