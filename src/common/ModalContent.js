@@ -26,7 +26,6 @@ class ModalContent extends Component {
     render () {
         const { modalContent } = this.props
         const { headerTextStyle, contentTextStyle, viewStyle } = styles
-
         return (
             <View style={{flex: 1}}>
                 <View>
@@ -40,6 +39,8 @@ class ModalContent extends Component {
                     <View style={viewStyle}>
                         <Text style={contentTextStyle}>     {modalContent.news_text}</Text>
                     </View>
+                    <CardSection />
+                    <Text style={{ color: '#ddd', marginTop: 10}}>Category: {modalContent.category}</Text>
                 </ScrollView>
             </View>
         )

@@ -37,8 +37,8 @@ class RouterComponent extends Component {
                     <Scene key="root" >
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
                             <Scene key="Home" title="home" icon={TabIcon}>
-                                <Scene key="Event" component={EventPage} />
                                 <Scene key="News" component={NewsPage} />
+                                <Scene key="Event" component={EventPage} />
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />

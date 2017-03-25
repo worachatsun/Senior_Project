@@ -9,7 +9,6 @@ class NewsItem extends Component {
 
     updateContentModal() {
         const { news } = this.props
-        console.log(news)
         this.props.modalContent(news)
     }
 

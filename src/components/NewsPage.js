@@ -17,17 +17,15 @@ import {
 } from '../common'
 import * as actions from '../actions'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
+import { Actions } from 'react-native-router-flux'
 import NewsItem from './NewsItem'
 
 class NewsPage extends Component {
 
-    componentdidMount() {
-        console.log('did')
-    }
-
     componentWillMount() {
         this.props.fetchNews()
-
+        this.props.fetchNewsFaculty('SIT')
+        Actions.refresh({key: 'drawer', open: false})
         this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
     }
 
@@ -51,10 +49,19 @@ class NewsPage extends Component {
                             <ListView
                             dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
                             renderRow={this.renderRow.bind(this)}
+                            enableEmptySections={true}
                             />
                         </ScrollView>
                     </View>
-                    <View tabLabel="Faculty"></View>
+                    <View tabLabel="Faculty" style={{flex: 1}}>
+                        <ScrollView style={{marginBottom:50, marginTop: 12}}>
+                            <ListView
+                                dataSource={this.dataSource.cloneWithRows(this.props.newsFaculty)}
+                                renderRow={this.renderRow.bind(this)}
+                                enableEmptySections={true}
+                            />
+                        </ScrollView>
+                    </View>
                 </ScrollableTabView>   
             </View>
         )
@@ -70,7 +77,12 @@ const styles = {
 
 const mapStateToProps = state => {
     const { isOpen } = state.closeModal
-    return { isOpen, newsList: state.newsList, selectNewsId: state.selectedNewsId }
+    return { 
+        isOpen, 
+        newsList: state.newsList.news,
+        newsFaculty: state.newsList.news_faculty,
+        selectNewsId: state.selectedNewsId 
+    }
 }
 
 export default connect(mapStateToProps, actions)(NewsPage)

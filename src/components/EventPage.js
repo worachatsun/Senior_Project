@@ -4,6 +4,12 @@ import { Actions } from 'react-native-router-flux'
 import { Header, ImageModal, HalfScreenCard } from '../common'
 
 class EventPage extends Component {
+
+    componentWillMount() {
+        Actions.refresh({key: 'drawer', open: false})
+        //this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
+    }
+
     render () {
         return (
             <View style={styles.containerStyle}>
