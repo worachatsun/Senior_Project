@@ -30,15 +30,15 @@ class ModalContent extends Component {
         return (
             <View style={{flex: 1}}>
                 <View>
-                    <ModalHeader headerText={modalContent.title} />
+                    <ModalHeader headerText={modalContent.news_title} />
                 </View>
                 <ScrollView>
-                    <ImageModal img={modalContent.picture} />
+                    <ImageModal img={modalContent.assets.picture} />
                     <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
-                        <Text style={headerTextStyle}>{modalContent.title}</Text>
+                        <Text style={headerTextStyle}>{modalContent.news_title}</Text>
                     </View>
                     <View style={viewStyle}>
-                        <Text style={contentTextStyle}>     {modalContent.description}</Text>
+                        <Text style={contentTextStyle}>     {modalContent.news_text}</Text>
                     </View>
                 </ScrollView>
             </View>
