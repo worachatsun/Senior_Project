@@ -16,6 +16,7 @@ import {
     Content,
 } from '../common'
 import * as actions from '../actions'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
 import NewsItem from './NewsItem'
 
 class NewsPage extends Component {
@@ -38,18 +39,23 @@ class NewsPage extends Component {
         return (
             <View style={styles.container}>
                 <Header headerText={'News'}/>
-                <ScrollView>
-                    <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
-                        <BigCard>
-                            <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
-            style={{resizeMode: 'stretch', width: null, height: 230}} />
-                        </BigCard>
-                    </TouchableOpacity>
-                    <ListView
-                        dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
-                        renderRow={this.renderRow.bind(this)}
-                    />
-                </ScrollView>
+                <ScrollableTabView tabBarBackgroundColor="white" tabBarUnderlineStyle={{backgroundColor:"#FF7F11"}} tabBarActiveTextColor="#FF7F11">
+                    <View tabLabel="All">
+                        <ScrollView style={{marginBottom:50}}>
+                            <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
+                                <BigCard>
+                                    <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
+                    style={{resizeMode: 'stretch', width: null, height: 230}} />
+                                </BigCard>
+                            </TouchableOpacity>
+                            <ListView
+                            dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
+                            renderRow={this.renderRow.bind(this)}
+                            />
+                        </ScrollView>
+                    </View>
+                    <View tabLabel="Faculty"></View>
+                </ScrollableTabView>   
             </View>
         )
     }
