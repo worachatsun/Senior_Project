@@ -29,7 +29,7 @@ class ModalContent extends Component {
         return (
             <View style={{flex: 1}}>
                 <View>
-                    <ModalHeader headerText={modalContent.news_title} />
+                    <ModalHeader headerText={modalContent.news_title} favorite_Id={modalContent._id} />
                 </View>
                 <ScrollView>
                     <ImageModal img={modalContent.assets.picture} />
