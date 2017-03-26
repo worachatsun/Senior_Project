@@ -14,7 +14,10 @@ const ModalHeader = (props) => {
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <TouchableOpacity onPress={() => Actions.pop()}>
+                <TouchableOpacity onPress={() => {
+                    Actions.pop()
+                    props.fetchFavoriteNews()
+                    }}>
                     <View>
                         <Image style={headerIcon} source={require('../env/images/close.png')} />
                     </View>
@@ -23,6 +26,7 @@ const ModalHeader = (props) => {
                     <Text style={textStyle}>{props.headerText}</Text>
                 </View>
                 <TouchableOpacity onPress={() => {
+                    //props.fetchFavoriteNews()
                     props.FavoriteNews(props.favorite_Id, favorite_status)
                     props.checkFavoriteNews(props.favorite_Id)  }}>
                     <View>

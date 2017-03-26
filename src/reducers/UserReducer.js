@@ -1,8 +1,13 @@
-import { ADD_FAVORITE_NEWS, CHECK_FAVORITE_NEWS } from '../actions/types'
+import { 
+    ADD_FAVORITE_NEWS, 
+    CHECK_FAVORITE_NEWS,
+    FETCH_FAVORITE_NEWS
+} from '../actions/types'
 
 const INITIAL_STATE = {
     favorite_news: '',
-    check_favorite_news: false
+    check_favorite_news: false,
+    fetch_favorite_news: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,6 +21,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 check_favorite_news: action.payload
+            }
+        case FETCH_FAVORITE_NEWS:
+            return {
+                ...state,
+                fetch_favorite_news: action.payload
             }
         default:
             return state

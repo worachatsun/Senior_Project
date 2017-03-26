@@ -5,3 +5,4 @@ exports.GETNEWS_FACULTY_URL = `${API_URL}/getNewsByFaculty`
 exports.POST_ADD_FAVORITE_NEWS = `${API_URL}/addFavoriteNews`
 exports.POST_DELETE_FAVORITE_NEWS = `${API_URL}/deleteFavoriteNews`
 exports.POST_CHECK_FAVORITE_NEWS = `${API_URL}/checkFavoriteNews`
+exports.GET_ALL_FAVORITE_NEWS = `${API_URL}/getAllFavoriteNews`
