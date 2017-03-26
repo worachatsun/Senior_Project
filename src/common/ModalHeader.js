@@ -7,7 +7,9 @@ import * as actions from '../actions'
 const ModalHeader = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon, starIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
-    
+    const imageStar = props.user.check_favorite_news ? require('../env/images/star.png') : require('../env/images/star_blank.png')
+    const favorite_status = props.user.check_favorite_news ? 'delete' : 'add'
+    console.log("favorite_status: "+favorite_status)
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
@@ -20,9 +22,11 @@ const ModalHeader = (props) => {
                 <View>
                     <Text style={textStyle}>{props.headerText}</Text>
                 </View>
-                <TouchableOpacity onPress={() => props.addFavoriteNews(props.favorite_Id)}>
+                <TouchableOpacity onPress={() => {
+                    props.FavoriteNews(props.favorite_Id, favorite_status)
+                    props.checkFavoriteNews(props.favorite_Id)  }}>
                     <View>
-                        <Image style={starIcon} source={require('../env/images/star_blank.png')} />
+                        <Image style={starIcon} source={imageStar} />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -75,4 +79,8 @@ const styles = {
     }
 }
 
-export default connect(null, actions)(ModalHeader)
+const mapStateToProps = state => {
+    return { user: state.user }
+}
+
+export default connect(mapStateToProps, actions)(ModalHeader)

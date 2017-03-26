@@ -16,7 +16,8 @@ class NewsItem extends Component {
         return (
              <TouchableOpacity onPress={() => {
                     this.props.selectNews(this.props.news._id)
-                    this.updateContentModal()                 
+                    this.updateContentModal()
+                    this.props.checkFavoriteNews(this.props.news._id)              
                     return Actions.modal()}
                 }>
                 <Card news={this.props.news} />
