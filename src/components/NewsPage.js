@@ -16,7 +16,7 @@ import {
     Content,
 } from '../common'
 import * as actions from '../actions'
-import ScrollableTabView from 'react-native-scrollable-tab-view'
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 import { Actions } from 'react-native-router-flux'
 import NewsItem from './NewsItem'
 
@@ -37,7 +37,12 @@ class NewsPage extends Component {
         return (
             <View style={styles.container}>
                 <Header headerText={'News'}/>
-                <ScrollableTabView tabBarBackgroundColor="white" tabBarUnderlineStyle={{backgroundColor:"#FF7F11"}} tabBarActiveTextColor="#FF7F11">
+                <ScrollableTabView
+                 renderTabBar={() => <DefaultTabBar 
+                                        style={styles.tabbar} 
+                                        underlineStyle={{backgroundColor:"#FF7F11"}}
+                                        activeTextColor="#FF7F11"
+                                        inactiveTextColor="black"/>}>
                     <View tabLabel="All">
                         <ScrollView style={{marginBottom:50}}>
                             <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
@@ -72,6 +77,17 @@ const styles = {
     container: {
         flex: 1,
         backgroundColor: '#353535'
+    },
+    tabbar: {
+        height: 40, 
+        alignItems: 'center', 
+        paddingTop: 10,
+        backgroundColor: "white",
+        borderColor: '#353535',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        elevation: 2,
     }
 }
 

@@ -36,11 +36,11 @@ class RouterComponent extends Component {
                 <Scene key="drawer" component={DrawerComponent} open={false} >
                     <Scene key="root" >
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            <Scene key="Home" title="home" icon={TabIcon}>
+                            <Scene key="Home" title="home" icon={TabIcon} initial>
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
                             </Scene>
-                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
+                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search"/>
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
