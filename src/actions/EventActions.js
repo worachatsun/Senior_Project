@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GET_EVENT_URL } from '../api'
-import { SELECT_NEWS, FETCH_NEWS, FETCH_NEWS_FACULTY } from './types'
+import { SELECT_NEWS, FETCH_NEWS } from './types'
 
 export const selectEvent = (newsId) => {
     return {
