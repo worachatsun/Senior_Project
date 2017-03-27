@@ -53,7 +53,7 @@ const HalfScreenCard = (props) => {
             <TouchableOpacity onPress={() => Actions.modalEvent()}>
                 <Col style={halfCardContainer}>
                     <View>
-                        <ImageModal height={130} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
+                        <ImageModal style={{marginBottom: 12,}} height={130} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
                         <Text style={{padding: 10, fontSize: 13}} numberOfLines={2}>คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT </Text>
                     </View>
                 </Col>
@@ -116,9 +116,9 @@ const styles = {
     },
     halfCardContainer: {
         height: 200,
-        marginTop: 12,
         marginLeft: 10,
         marginRight: 5,
+        marginBottom: 12,
         borderColor: 'white',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
