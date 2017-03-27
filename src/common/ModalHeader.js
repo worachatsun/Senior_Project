@@ -9,14 +9,43 @@ const ModalHeader = (props) => {
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
     const imageStar = props.user.check_favorite_news ? require('../env/images/star.png') : require('../env/images/star_blank.png')
     const favorite_status = props.user.check_favorite_news ? 'delete' : 'add'
-    console.log("favorite_status: "+favorite_status)
+    
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 <TouchableOpacity onPress={() => {
                     Actions.pop()
-                    props.fetchFavoriteNews()
+                    }}>
+                    <View>
+                        <Image style={headerIcon} source={require('../env/images/close.png')} />
+                    </View>
+                </TouchableOpacity>
+                <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
+                </View>
+                <TouchableOpacity onPress={() => {
+                    props.FavoriteNews(props.favorite_Id, favorite_status)
+                    props.checkFavoriteNews(props.favorite_Id)  }}>
+                    <View>
+                        <Image style={starIcon} source={imageStar} />
+                    </View>
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
+}
+
+export const ModalHeaderPlain = (props) => {
+    const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
+    const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
+
+    return (
+        <View>
+            <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+            <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
+                <TouchableOpacity onPress={() => {
+                    Actions.pop()
                     }}>
                     <View>
                         <Image style={headerIcon} source={require('../env/images/close.png')} />
@@ -25,14 +54,8 @@ const ModalHeader = (props) => {
                 <View>
                     <Text style={textStyle}>{props.headerText}</Text>
                 </View>
-                <TouchableOpacity onPress={() => {
-                    //props.fetchFavoriteNews()
-                    props.FavoriteNews(props.favorite_Id, favorite_status)
-                    props.checkFavoriteNews(props.favorite_Id)  }}>
-                    <View>
-                        <Image style={starIcon} source={imageStar} />
-                    </View>
-                </TouchableOpacity>
+                <View style={headerIcon}>
+                </View>
             </View>
         </View>
     )

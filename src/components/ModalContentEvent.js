@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import ModalHeader from '../common/ModalHeader'
+import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
 
 class ModalContentEvent extends Component {
@@ -8,7 +8,7 @@ class ModalContentEvent extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <ModalHeader headerText={'TEXT'} />
+                    <ModalHeaderPlain headerText={'TEXT'} />
                 </View>
                 <ImageModal img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
                 <EmptyCard>

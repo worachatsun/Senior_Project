@@ -5,7 +5,6 @@ import {
 } from '../actions/types'
 
 const INITIAL_STATE = {
-    favorite_news: '',
     check_favorite_news: false,
     fetch_favorite_news: []
 }
@@ -15,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
         case ADD_FAVORITE_NEWS:
             return {
                 ...state,
-                favorite_news: action.payload
+                fetch_favorite_news: action.payload
             }
         case CHECK_FAVORITE_NEWS:
             return {
