@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
 
@@ -8,22 +10,35 @@ class ModalContentEvent extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <ModalHeaderPlain headerText={'TEXT'} />
+                    <ModalHeaderPlain headerText={this.props.modalContent.event_name} />
                 </View>
-                <ImageModal img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
-                <EmptyCard>
-                    <View>
-                        <Text>sun</Text>
+                <ScrollView>
+                    <ImageModal img={this.props.modalContent.assets.picture[0]} />
+                    <EmptyCard>
+                        <View style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>
+                            <View>
+                                <Text style={{textAlign: 'center'}}>{this.props.modalContent.event_name}</Text>
+                            </View>
+                            <CardSection />
+                            <View style={{flexDirection: 'row',}}>
+                                <Text>{this.props.modalContent.event_date_begin}</Text>
+                            </View>
+                            <View style={{flexDirection: 'row',}}>
+                                <Text numberOfLines={2}>{this.props.modalContent.location}</Text>
+                            </View>
+                        </View>
+                    </EmptyCard>
+                    <Map />
+                    <EmptyCard>
+                        <Text style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>{this.props.modalContent.event_description}</Text>
+                    </EmptyCard>
+                </ScrollView>
+                <TouchableOpacity onPress={() => Actions.modalTicket()}>
+                    <View style={styles.footerBar}>
+                        <Text style={{ color: 'white' }}>FREE</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold' }}>GET TICKETS</Text>
                     </View>
-                    <CardSection />
-                    <View style={{flexDirection: 'row',}}>
-                        <Text>1 กุมภาพันธ์ 2558 | 6:00 PM</Text>
-                    </View>
-                    <View style={{flexDirection: 'row',}}>
-                        <Text numberOfLines={2}>ณ สนามฟุตบอล มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</Text>
-                    </View>
-                </EmptyCard>
-                <Map />
+                </TouchableOpacity>
             </View>
         )
     }
@@ -33,7 +48,19 @@ const styles = {
     container: {
         flex: 1,
         backgroundColor: '#353535'
+    },
+    footerBar: {
+        justifyContent: 'flex-end', 
+        backgroundColor: '#FF7F11', 
+        position: 'relative', 
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }
 
-export default ModalContentEvent
+const mapStateToProps = state => {
+    return { modalContent: state.modalContent }
+}
+
+export default connect(mapStateToProps)( ModalContentEvent )

@@ -47,18 +47,19 @@ const BigCard = (props) => {
 
 const HalfScreenCard = (props) => {
     const { halfCardContainer, textStyle } = styles
-
+    const {height, width} = Dimensions.get('window')
+    
     return (
-        <Grid>
-            <TouchableOpacity onPress={() => Actions.modalEvent()}>
-                <Col style={halfCardContainer}>
-                    <View>
-                        <ImageModal style={{marginBottom: 12,}} height={130} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
-                        <Text style={{padding: 10, fontSize: 13}} numberOfLines={2}>คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT </Text>
-                    </View>
-                </Col>
-            </TouchableOpacity>
-        </Grid>
+        <View style={halfCardContainer}>
+            <View>
+                <ImageModal style={{marginBottom: 12,}} height={140} img={props.content.assets.picture[0]} />
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{padding: 13, fontSize: 15}} numberOfLines={2}>
+                    {props.content.event_name}
+                </Text>
+            </View>
+        </View>
     )
 }
 
@@ -66,7 +67,7 @@ const EmptyCard = (props) => {
     const { containerStyle, viewStyle, textStyle, EmptyCardStyle } = styles
 
     return (
-        <View style={EmptyCardStyle}>
+        <View style={[EmptyCardStyle, props.style]}>
             <View style={{ alignItems: 'center', marginTop: 5 }}>
                 {props.children}
             </View>
@@ -74,7 +75,7 @@ const EmptyCard = (props) => {
     )
 }
 
-var {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
                 
 const styles = {
     containerStyle: {
@@ -115,9 +116,10 @@ const styles = {
         fontSize: 15
     },
     halfCardContainer: {
-        height: 200,
-        marginLeft: 10,
-        marginRight: 5,
+        height: 220,
+        width: width/2-20,
+        marginLeft: 12,
+        marginRight: 4,
         marginBottom: 12,
         borderColor: 'white',
         shadowColor: '#000',
@@ -137,7 +139,6 @@ const styles = {
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 12,
-        height: 90,
         backgroundColor: '#FEFEFF'
     }
 }

@@ -51,8 +51,8 @@ export const ModalHeaderPlain = (props) => {
                         <Image style={headerIcon} source={require('../env/images/close.png')} />
                     </View>
                 </TouchableOpacity>
-                <View>
-                    <Text style={textStyle}>{props.headerText}</Text>
+                <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
                 <View style={headerIcon}>
                 </View>

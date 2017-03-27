@@ -1,16 +1,16 @@
 import axios from 'axios'
 import { GET_EVENT_URL } from '../api'
-import { SELECT_NEWS, FETCH_NEWS } from './types'
+import { SELECT_EVENT, FETCH_EVENT } from './types'
 
-export const selectEvent = (newsId) => {
+export const selectEvent = (eventId) => {
     return {
         type: SELECT_EVENT,
-        payload: newsId
+        payload: eventId
     }
 }
 
 export const fetchEvent = () => {
-    const promise = axios.get(GETNEWS_URL)
+    const promise = axios.get(GET_EVENT_URL)
     
     return (dispatch) => {
         promise.then(({data}) => {

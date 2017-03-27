@@ -1,7 +1,7 @@
 import { FETCH_EVENT, SELECT_EVENT } from '../actions/types'
 
 const INITIAL_STATE = {
-    event: {}
+    fetchEvent: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
         case FETCH_EVENT:
             return {
                 ...state,
-                event: action.payload
+                fetchEvent: action.payload
             }
         default:
             return state
