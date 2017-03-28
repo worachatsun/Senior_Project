@@ -21,11 +21,11 @@ class ModalGetTicket extends Component {
                 <View>
                     <EmptyCard>
                         <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-                            <Text>Tickets</Text>
+                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Tickets</Text>
                             <CardSection />
                             <Text>Do you have promotion code for this event ?</Text>
                         </View>
-                        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10}}/>                        
+                        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, borderRadius: 4}}/>                        
                         <View style={{ borderColor: '#FF7F11', borderWidth: 1, borderRadius: 3, margin: 10 }}>
                             <Button color="#FF7F11" title={'Use Code'} />
                         </View>
