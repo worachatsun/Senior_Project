@@ -6,7 +6,7 @@ import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
 
 class ModalContentEvent extends Component {
-    render () {
+    render() {
         return (
             <View style={styles.container}>
                 <View>
