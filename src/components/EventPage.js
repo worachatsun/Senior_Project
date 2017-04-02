@@ -25,7 +25,7 @@ class EventPage extends Component {
                 <View style={{flex: 1}}>
                     <ScrollView style={{ marginBottom: 50}}>
                         <View>
-                            <ImageModal style={{marginBottom: 12}} img={'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F29734669%2F204978080456%2F1%2Foriginal.jpg?w=800&rect=0%2C120%2C1920%2C960&s=9f972542e614803cf2f41667c44f543e'} />
+                            <ImageModal style={{marginBottom: 12}} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
                             <View style={styles.halfCardContainer}>
                                 <ListView contentContainerStyle={styles.halfCardContainer}
                                     dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}

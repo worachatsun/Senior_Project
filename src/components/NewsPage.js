@@ -94,6 +94,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
+    console.log(state)
     const { isOpen } = state.closeModal
     return { 
         isOpen, 

@@ -18,7 +18,15 @@ class ModalGetTicket extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {dropdownSelection: 1}
+        this.state = {
+            dropdownSelection: 1,
+            coupon: '',
+            ticket: 1,
+        }
+    }
+
+    onButtonPress() {
+        return console.log(this.state.coupon+' '+this.state.ticket)
     }
 
     render() {
@@ -33,10 +41,10 @@ class ModalGetTicket extends Component {
                             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Tickets</Text>
                             <CardSection />
                             <Text>Do you have promotion code for this event ?</Text>
-                            <TextInput placeholder={'Type in promotional code'} keyboardType='default' style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, padding: 3, borderRadius: 4, width: width-70}}/>                        
+                            <TextInput placeholder={'Type in promotional code'} value={this.state.coupon} onChangeText={coupon => {this.setState({coupon})}} keyboardType='default' style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, padding: 3, borderRadius: 4, width: width-70}}/>                        
                         </View>
                         <View style={{ borderColor: '#FF7F11', borderWidth: 1, width: width-70, borderRadius: 3, margin: 5 }}>
-                            <Button color="#FF7F11" title={'Use Code'} onPress={() => console.log('use code')} />
+                            <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress()} />
                         </View>
                         <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
                         <View style={{ margin: 10 }}>
@@ -114,7 +122,6 @@ const styles = {
         padding: 5,
         backgroundColor: '#FF7F11',
         borderRadius: 5,
-        color: 'white'
     },
     dropdownOptions: {
         marginTop: 30,

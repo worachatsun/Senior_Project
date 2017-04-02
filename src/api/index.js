@@ -9,3 +9,4 @@ exports.GET_ALL_FAVORITE_NEWS = `${API_URL}/getAllFavoriteNews`
 
 
 exports.GET_EVENT_URL = `${API_URL}/getEvent`
+exports.POST_EVENT_JOINER = `${API_URL}/joinEvent`
