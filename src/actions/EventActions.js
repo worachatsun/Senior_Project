@@ -26,7 +26,7 @@ export const getTicketByCoupon = () => {
     let url = POST_EVENT_JOINER
     const promise = axios.post(url, {
         "user_id" : "58d7b1b31200407006609a79",
-        "event_joiner": "58d954b950752b7bd954ed40"
+        "join_event": "58d954b950752b7bd954ed40"
     })
 
     return (dispatch) => {

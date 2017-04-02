@@ -10,6 +10,7 @@ import {
     Image
 } from 'react-native'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
@@ -26,7 +27,7 @@ class ModalGetTicket extends Component {
     }
 
     onButtonPress() {
-        return console.log(this.state.coupon+' '+this.state.ticket)
+        this.props.getTicketByCoupon()
     }
 
     render() {
@@ -138,4 +139,4 @@ const mapStateToProps = state => {
     return { modalContent: state.modalContent }
 }
 
-export default connect(mapStateToProps)( ModalGetTicket )
+export default connect(mapStateToProps, actions)( ModalGetTicket )
