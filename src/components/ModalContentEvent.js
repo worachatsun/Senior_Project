@@ -33,7 +33,7 @@ class ModalContentEvent extends Component {
                         <Text style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>{this.props.modalContent.event_description}</Text>
                     </EmptyCard>
                 </ScrollView>
-                <TouchableOpacity onPress={() => Actions.modalTicket()}>
+                <TouchableOpacity onPress={() => Actions.modalTicket({modalEvent: this.props.modalContent})}>
                     <View style={styles.footerBar}>
                         <Text style={{ color: 'white' }}>FREE</Text>
                         <Text style={{ color: 'white', fontWeight: 'bold' }}>GET TICKETS</Text>

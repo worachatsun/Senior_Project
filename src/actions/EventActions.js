@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GET_EVENT_URL, POST_EVENT_JOINER } from '../api'
-import { SELECT_EVENT, FETCH_EVENT } from './types'
+import { SELECT_EVENT, FETCH_EVENT, ADD_USER_EVENT } from './types'
 
 export const selectEvent = (eventId) => {
     return {
@@ -22,11 +22,17 @@ export const fetchEvent = () => {
     }
 }
 
-export const getTicketByCoupon = () => {
+export const getTicketByCoupon = (user_id, event_id, coupon = null) => {
     let url = POST_EVENT_JOINER
+
+    if(coupon){
+        console.log('use coupon')
+    }
+
+
     const promise = axios.post(url, {
         "user_id" : "58d7b1b31200407006609a79",
-        "join_event": "58d954b950752b7bd954ed40"
+        "join_event": event_id
     })
 
     return (dispatch) => {

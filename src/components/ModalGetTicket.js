@@ -26,15 +26,19 @@ class ModalGetTicket extends Component {
         }
     }
 
-    onButtonPress() {
-        this.props.getTicketByCoupon()
+    onButtonPress(coupon = null) {
+        if(coupon){
+            console.log('me coupon')
+        }else{
+            this.props.getTicketByCoupon(null, this.props.modalEvent._id)
+        }
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View>
-                    <ModalHeaderPlain headerText={this.props.modalContent.event_name}/>
+                    <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
                 </View>
                 <View>
                     <EmptyCard>
@@ -92,7 +96,7 @@ class ModalGetTicket extends Component {
                         </View>
                         <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
                         <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                            <Button color="white" title={'Get Tickets'} onPress={() => console.log('Get Tickets')} />
+                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPress()} />
                         </View>
                     </EmptyCard>
                 </View>

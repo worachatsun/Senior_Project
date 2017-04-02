@@ -1,7 +1,8 @@
 import { FETCH_EVENT, SELECT_EVENT, ADD_USER_EVENT } from '../actions/types'
 
 const INITIAL_STATE = {
-    fetchEvent: {}
+    fetchEvent: {},
+    fetchEventJoined: {}
 }
 
 export default (state = INITIAL_STATE, action) => {
