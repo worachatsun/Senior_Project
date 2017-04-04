@@ -27,6 +27,10 @@ class ModalGetTicket extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.checkEventAvailable(this.props.modalEvent._id)
+    }
+
     onButtonPress(coupon = null) {
         if(coupon){
             if(this.state.coupon){
@@ -38,11 +42,6 @@ class ModalGetTicket extends Component {
                 )
             }
         }
-        if(!this.props.eventStatus)
-            Alert.alert(
-                'Coupon not found',
-                'Coupon out of stock'
-            )
     }
 
     onButtonPressWithoutCoupon() {
@@ -111,7 +110,7 @@ class ModalGetTicket extends Component {
                         </View>
                         <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
                         <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} />
+                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
                         </View>
                     </EmptyCard>
                 </View>
@@ -155,7 +154,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    return { modalContent: state.modalContent, eventStatus: state.event.fetchEventJoined }
+    return { modalContent: state.modalContent, event: state.event }
 }
 
 export default connect(mapStateToProps, actions)( ModalGetTicket )

@@ -1,8 +1,9 @@
-import { FETCH_EVENT, SELECT_EVENT, ADD_USER_EVENT } from '../actions/types'
+import { FETCH_EVENT, SELECT_EVENT, ADD_USER_EVENT, CHECK_EVENT_AVAILABLE } from '../actions/types'
 
 const INITIAL_STATE = {
     fetchEvent: {},
-    fetchEventJoined: {}
+    fetchEventJoined: {},
+    eventAvailable: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 fetchEventJoined: action.payload
+            }
+        case CHECK_EVENT_AVAILABLE:
+            return {
+                ...state,
+                eventAvailable: action.payload
             }
         default:
             return state

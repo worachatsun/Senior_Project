@@ -1,6 +1,12 @@
 import axios from 'axios'
-import { GET_EVENT_URL, POST_EVENT_JOINER, POST_EVENT_BY_COUPON } from '../api'
-import { SELECT_EVENT, FETCH_EVENT, ADD_USER_EVENT } from './types'
+import { 
+    GET_EVENT_URL, 
+    POST_EVENT_JOINER, 
+    POST_EVENT_BY_COUPON,
+    POST_CHECK_EVENT_AVAILABLE
+    
+} from '../api'
+import { SELECT_EVENT, FETCH_EVENT, ADD_USER_EVENT, CHECK_EVENT_AVAILABLE } from './types'
 import { Actions } from 'react-native-router-flux'
 
 export const selectEvent = (eventId) => {
@@ -49,5 +55,20 @@ export const getTicket = (user_id, event_id, coupon = null) => {
             })
         })
         Actions.pop()
+    }
+}
+
+export const checkEventAvailable = event_id => {
+    const promise = axios.post(POST_CHECK_EVENT_AVAILABLE, {
+        "event_id": event_id
+    })
+
+    return dispatch => {
+        promise.then(({data}) => {
+            dispatch({
+                type: CHECK_EVENT_AVAILABLE,
+                payload: data
+            })
+        })
     }
 }
