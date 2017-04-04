@@ -10,3 +10,5 @@ exports.GET_ALL_FAVORITE_NEWS = `${API_URL}/getAllFavoriteNews`
 
 exports.GET_EVENT_URL = `${API_URL}/getEvent`
 exports.POST_EVENT_JOINER = `${API_URL}/joinEvent`
+exports.POST_EVENT_BY_COUPON = `${API_URL}/joinEventByCoupon`
+exports.POST_CREATE_EVENT_COUPON = `${API_URL}/addEventCoupon`

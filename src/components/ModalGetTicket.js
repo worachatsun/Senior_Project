@@ -7,7 +7,8 @@ import {
     TextInput,
     Dimensions,
     Picker,
-    Image
+    Image,
+    Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -21,17 +22,31 @@ class ModalGetTicket extends Component {
         super(props)
         this.state = {
             dropdownSelection: 1,
-            coupon: '',
+            coupon: null,
             ticket: 1,
         }
     }
 
     onButtonPress(coupon = null) {
         if(coupon){
-            console.log('me coupon')
-        }else{
-            this.props.getTicketByCoupon(null, this.props.modalEvent._id)
+            if(this.state.coupon){
+                this.props.getTicket(null, this.props.modalEvent._id, this.state.coupon)
+            }else{
+                Alert.alert(
+                    'Coupon not found',
+                    'Press insert coupon',
+                )
+            }
         }
+        if(!this.props.eventStatus)
+            Alert.alert(
+                'Coupon not found',
+                'Coupon out of stock'
+            )
+    }
+
+    onButtonPressWithoutCoupon() {
+        this.props.getTicket(null, this.props.modalEvent._id)
     }
 
     render() {
@@ -49,7 +64,7 @@ class ModalGetTicket extends Component {
                             <TextInput placeholder={'Type in promotional code'} value={this.state.coupon} onChangeText={coupon => {this.setState({coupon})}} keyboardType='default' style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, padding: 3, borderRadius: 4, width: width-70}}/>                        
                         </View>
                         <View style={{ borderColor: '#FF7F11', borderWidth: 1, width: width-70, borderRadius: 3, margin: 5 }}>
-                            <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress()} />
+                            <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress('coupon')} />
                         </View>
                         <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
                         <View style={{ margin: 10 }}>
@@ -96,7 +111,7 @@ class ModalGetTicket extends Component {
                         </View>
                         <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
                         <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPress()} />
+                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} />
                         </View>
                     </EmptyCard>
                 </View>
@@ -140,7 +155,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    return { modalContent: state.modalContent }
+    return { modalContent: state.modalContent, eventStatus: state.event.fetchEventJoined }
 }
 
 export default connect(mapStateToProps, actions)( ModalGetTicket )
