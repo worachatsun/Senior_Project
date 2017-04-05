@@ -90,17 +90,8 @@ class ModalGetTicket extends Component {
                                             <MenuOption value={1}>
                                                 <Text style={{ color: '#FF7F11' }}>1</Text>
                                             </MenuOption>
-                                            <MenuOption value={2}>
-                                                <Text style={{ color: '#FF7F11' }}>2</Text>
-                                            </MenuOption>
-                                            <MenuOption value={3}>
-                                                <Text style={{ color: '#FF7F11' }}>3</Text>
-                                            </MenuOption>
-                                            <MenuOption value={4}>
-                                                <Text style={{ color: '#FF7F11' }}>4</Text>
-                                            </MenuOption>
-                                            <MenuOption value={5}>
-                                                <Text style={{ color: '#FF7F11' }}>5</Text>
+                                            <MenuOption value={0}>
+                                                <Text style={{ color: '#FF7F11' }}>0</Text>
                                             </MenuOption>
                                             </MenuOptions>
                                         </Menu>

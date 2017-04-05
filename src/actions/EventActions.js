@@ -4,8 +4,8 @@ import {
     POST_EVENT_JOINER, 
     POST_EVENT_BY_COUPON,
     POST_CHECK_EVENT_AVAILABLE
-    
 } from '../api'
+import { Alert } from 'react-native'
 import { SELECT_EVENT, FETCH_EVENT, ADD_USER_EVENT, CHECK_EVENT_AVAILABLE } from './types'
 import { Actions } from 'react-native-router-flux'
 
@@ -25,11 +25,11 @@ export const fetchEvent = () => {
                 type: FETCH_EVENT,
                 payload: data
             })
-        })
+        })  
     }
 }
 
-export const getTicket = (user_id, event_id, coupon = null) => {
+export const getTicket = (user_id, event_id, coupon = null) => (dispatch) => {
     let url = null
     let promise = null
     if(coupon){
@@ -54,7 +54,6 @@ export const getTicket = (user_id, event_id, coupon = null) => {
                 payload: data
             })
         })
-        Actions.pop()
     }
 }
 

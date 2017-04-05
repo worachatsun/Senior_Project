@@ -9,6 +9,7 @@ import DrawerComponent from './components/DrawerComponent'
 import ProfilePage from './components/ProfilePage'
 import EventPage from './components/EventPage'
 import ModalGetTicket from './components/ModalGetTicket'
+import DonationPage from './components/DonationPage'
 
 class TabIcon extends React.Component {
     iconByName = (iconName) => {
@@ -39,7 +40,8 @@ class RouterComponent extends Component {
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
                             <Scene key="Home" title="home" icon={TabIcon}>
                                 <Scene key="News" component={NewsPage} />
-                                <Scene key="Event" component={EventPage} initial/>
+                                <Scene key="Event" component={EventPage} />
+                                <Scene key="Donation" component={DonationPage} initial/>
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search"/>
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
