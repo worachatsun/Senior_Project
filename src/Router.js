@@ -8,6 +8,7 @@ import ModalContentEvent from './components/ModalContentEvent'
 import DrawerComponent from './components/DrawerComponent'
 import ProfilePage from './components/ProfilePage'
 import EventPage from './components/EventPage'
+import DonationDescription from './components/DonationDescription'
 import ModalGetTicket from './components/ModalGetTicket'
 import DonationPage from './components/DonationPage'
 
@@ -49,6 +50,7 @@ class RouterComponent extends Component {
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} hideNavBar />                  
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
+                        <Scene key="donation_des" component={DonationDescription} hideNavBar />
                     </Scene>
                 </Scene>
             </Router>
