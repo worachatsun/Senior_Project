@@ -42,15 +42,15 @@ class RouterComponent extends Component {
                             <Scene key="Home" title="home" icon={TabIcon}>
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
-                                <Scene key="Donation" component={DonationPage} initial/>
+                                <Scene key="Donation"  component={DonationPage} initial/>
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search"/>
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
+                            <Scene key="donationDes" component={DonationDescription} hideNavBar />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} hideNavBar />                  
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
-                        <Scene key="donation_des" component={DonationDescription} hideNavBar />
                     </Scene>
                 </Scene>
             </Router>

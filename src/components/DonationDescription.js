@@ -12,14 +12,16 @@ class DonationDescription extends Component {
 `
 
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <Header headerText={'Donation Description'} />
-                <ScrollView>
-                    <HTMLView
-                        value={htmlContent}
-                        renderNode={renderNode}
-                    />
-                </ScrollView>
+                <View style={styles.HTML_view_style}>
+                    <ScrollView>
+                        <HTMLView
+                            value={htmlContent}
+                            renderNode={renderNode}
+                        />
+                    </ScrollView>
+                </View>
             </View>
         )
     }
@@ -30,7 +32,7 @@ function renderNode(node, index, siblings, parent, defaultRenderer) {
     const a = node.attribs
     const iframeHtml = `<iframe frameborder="0" scrolling="no" src="${a.src}"></iframe>`
     return (
-      <View key={index} style={{width: Number(a.width), height: 170}}>
+      <View key={index} style={{width: Number(a.width), height: 160}}>
         <WebView source={{html: iframeHtml}} />
       </View>
     )
