@@ -44,10 +44,13 @@ class ModalContent extends Component {
                     <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
                         <Text style={headerTextStyle}>{modalContent.news_title}</Text>
                     </View>
-                    <HTMLView
-                        value={modalContent.news_text}
-                        renderNode={renderNode}
-                    />
+                    <View style={styles.webView}>
+                        <HTMLView
+                            value={modalContent.news_text}
+                            renderNode={renderNode}
+                            stylesheet={styles.webViewText}
+                        />
+                    </View>
                     <CardSection />
                     <Text style={{ color: '#ddd', marginTop: 10}}>Category: {modalContent.category}</Text>
                 </ScrollView>
@@ -59,10 +62,10 @@ class ModalContent extends Component {
 function renderNode(node, index, siblings, parent, defaultRenderer) {
   if (node.name == 'iframe') {
     const a = node.attribs
-    const iframeHtml = `<iframe frameborder="0" scrolling="no" src="${a.src}"></iframe>`
+    const iframeHtml = `<iframe frameborder="0" style="overflow:hidden;" seamless="seamless" scrolling="no" src="${a.src}"></iframe>`
     return (
       <View key={index} style={{width: Number(a.width), height: 160}}>
-        <WebView source={{html: iframeHtml}} />
+        <WebView scrollEnabled={false} source={{html: iframeHtml}} />
       </View>
     )
   }
@@ -81,6 +84,12 @@ const styles = {
     },
     viewStyle: {
         alignItems: 'center'
+    },
+    webView: {
+        margin: 12,
+    },
+    webViewText: {
+        textAlign: 'center',
     }
 }
 
