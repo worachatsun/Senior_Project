@@ -29,8 +29,8 @@ class NewsPage extends Component {
         this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
     }
 
-    renderRow(news) {
-        return <NewsItem news={news}/>
+    renderRow(news, sectionID, rowID) {
+        return <NewsItem news={news} rowID={rowID}/>
     }
 
     render () {
@@ -45,12 +45,6 @@ class NewsPage extends Component {
                                         inactiveTextColor="black"/>}>
                     <View tabLabel="All">
                         <ScrollView style={{marginBottom:50}}>
-                            <TouchableOpacity onPress={() => this.props.closeModal({prop: 'isOpen', value: true})}>
-                                <BigCard>
-                                    <Image source={{uri: 'https://www.w3schools.com/css/img_forest.jpg'}}
-                    style={{resizeMode: 'stretch', width: null, height: 230}} />
-                                </BigCard>
-                            </TouchableOpacity>
                             <ListView
                             dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
                             renderRow={this.renderRow.bind(this)}

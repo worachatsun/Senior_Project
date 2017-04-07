@@ -6,7 +6,7 @@ class SearchPage extends Component {
     render () {
         return (
             <View style={styles.container}>
-                <Header headerText={'Search'} />
+                <Header headerText={'Search'} style={{marginBottom: 10}} />
                 <Text> Search Page </Text>
             </View>
         )

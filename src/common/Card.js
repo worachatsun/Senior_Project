@@ -7,22 +7,15 @@ import { Col, Row, Grid } from "react-native-easy-grid"
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
-    function getImage () {
-        try {
-            return props.news.assets.picture
-        } catch (err) {
-            return undefined;
-        }   
-    }
     
     return (
         <View style={styles.containerStyle}>
             <View>
-                <Image source={{uri: getImage()}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                <Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
-                    {props.news.news_title}
+                    {props.description}
                 </Text>
             </View>
         </View>
@@ -31,14 +24,15 @@ const Card = (props) => {
 
 const BigCard = (props) => {
     const { containerStyle, viewStyle, textStyle, rowContainerStyle } = styles
+
     return (
         <View style={rowContainerStyle}>
             <View>
-                {props.children}
+                <Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: null, height: 230}} />
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
-                    คณะเทคโนโลยีสารสนเทศ (SIT) ร่วมกับบริษัทอินเตอรฺ์ลิ้งค์ คอมมิวนิเคชั่น จำกัด (มหาชน) ผู้นำธุรกิจสายสัญญาณคอมพิวเตอร์และสื่อสารโทรคมนาคม  ได้จัดกิจกรรม Link Campus Cabling 2017 ในหัวข้อ "Open Cabling System for the Future" ให้กับนักศึกษา SIT 
+                    {props.description}
                 </Text>
             </View>
         </View>
