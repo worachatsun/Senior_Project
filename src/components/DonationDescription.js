@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { View, WebView, ScrollView } from 'react-native'
 import HTMLView from 'react-native-htmlview'
-import { Header } from '../common'
-
+import { Header, WebViewRichText } from '../common'
 
 class DonationDescription extends Component {
     render() {
@@ -16,27 +15,12 @@ class DonationDescription extends Component {
                 <Header headerText={'Donation Description'} />
                 <View style={styles.HTML_view_style}>
                     <ScrollView>
-                        <HTMLView
-                            value={htmlContent}
-                            renderNode={renderNode}
-                        />
+                        <WebViewRichText webText={htmlContent} />
                     </ScrollView>
                 </View>
             </View>
         )
     }
-}
-
-function renderNode(node, index, siblings, parent, defaultRenderer) {
-  if (node.name == 'iframe') {
-    const a = node.attribs
-    const iframeHtml = `<iframe frameborder="0" scrolling="no" src="${a.src}"></iframe>`
-    return (
-      <View key={index} style={{width: Number(a.width), height: 160}}>
-        <WebView source={{html: iframeHtml}} />
-      </View>
-    )
-  }
 }
 
 const styles = {

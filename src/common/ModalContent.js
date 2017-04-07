@@ -4,13 +4,12 @@ import {
     Text, 
     TouchableOpacity, 
     ListView, 
-    ScrollView,
-    WebView
+    ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
-import HTMLView from 'react-native-htmlview'
 import { Card, ImageModal, CardSection } from './index'
 import ModalHeader from './ModalHeader'
+import { WebViewRichText } from './WebViewRichText'
 
 class ModalContent extends Component {
     componentDidMount(){
@@ -44,31 +43,13 @@ class ModalContent extends Component {
                     <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
                         <Text style={headerTextStyle}>{modalContent.news_title}</Text>
                     </View>
-                    <View style={styles.webView}>
-                        <HTMLView
-                            value={modalContent.news_text}
-                            renderNode={renderNode}
-                            stylesheet={styles.webViewText}
-                        />
-                    </View>
+                    <WebViewRichText webText={modalContent.news_text} />
                     <CardSection />
                     <Text style={{ color: '#ddd', marginTop: 10}}>Category: {modalContent.category}</Text>
                 </ScrollView>
             </View>
         )
     }
-}
-
-function renderNode(node, index, siblings, parent, defaultRenderer) {
-  if (node.name == 'iframe') {
-    const a = node.attribs
-    const iframeHtml = `<iframe frameborder="0" style="overflow:hidden;" seamless="seamless" scrolling="no" src="${a.src}"></iframe>`
-    return (
-      <View key={index} style={{width: Number(a.width), height: 160}}>
-        <WebView scrollEnabled={false} source={{html: iframeHtml}} />
-      </View>
-    )
-  }
 }
 
 const styles = {

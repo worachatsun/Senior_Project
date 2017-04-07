@@ -3,7 +3,13 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
-import { ImageModal, EmptyCard, CardSection, Map } from '../common'
+import { 
+    ImageModal, 
+    EmptyCard, 
+    CardSection, 
+    Map, 
+    WebViewRichText 
+} from '../common'
 
 class ModalContentEvent extends Component {
     render() {
@@ -30,7 +36,7 @@ class ModalContentEvent extends Component {
                     </EmptyCard>
                     <Map />
                     <EmptyCard>
-                        <Text style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>{this.props.modalContent.event_description}</Text>
+                        <WebViewRichText webText={this.props.modalContent.event_description} />
                     </EmptyCard>
                 </ScrollView>
                 <TouchableOpacity onPress={() => Actions.modalTicket({modalEvent: this.props.modalContent})}>
