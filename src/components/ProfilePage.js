@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Header } from '../common'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+import { Header, EmptyCard } from '../common'
 import NewsFavorite from './NewsFavorite'
 
 class ProfilePage extends Component {
     render () {
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <Header headerText={'Profile'}/>
-                <NewsFavorite />
+                <TouchableOpacity onPress={() => Actions.NewsFavorite()}>
+                    <EmptyCard>
+                        <Text>Favorite News</Text>
+                    </EmptyCard>
+                </TouchableOpacity>
             </View>
         )
     }

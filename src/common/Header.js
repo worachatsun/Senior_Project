@@ -7,7 +7,7 @@ const Header = (props) => {
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
 
     return (
-        <View>
+        <View style={props.style}>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 <TouchableOpacity onPress={() => Actions.refresh({key: 'drawer', open: true})}>
