@@ -3,12 +3,14 @@ import {
     POST_ADD_FAVORITE_NEWS, 
     POST_DELETE_FAVORITE_NEWS, 
     POST_CHECK_FAVORITE_NEWS,
-    GET_ALL_FAVORITE_NEWS
+    GET_ALL_FAVORITE_NEWS,
+    GET_JOINED_EVENT
 } from '../api'
 import { 
     ADD_FAVORITE_NEWS, 
     CHECK_FAVORITE_NEWS, 
-    FETCH_FAVORITE_NEWS
+    FETCH_FAVORITE_NEWS,
+    FETCH_JOINED_EVENT
 } from './types'
 
 export const FavoriteNews = (favorite_news, status) => {
@@ -54,6 +56,19 @@ export const fetchFavoriteNews = () => {
         promise.then(({data}) => {
             dispatch({
                 type: FETCH_FAVORITE_NEWS,
+                payload: data
+            })
+        })
+    }
+}
+
+export const fetchJoinedEvent = () => {
+    const promise = axios.get(GET_JOINED_EVENT+"/"+'58d7b1b31200407006609a79')
+    
+    return (dispatch) => {
+        promise.then(({data}) => {
+            dispatch({
+                type: FETCH_JOINED_EVENT,
                 payload: data
             })
         })

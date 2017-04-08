@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import * as actions from '../actions'
-import { HalfScreenCard } from '../common'
+import { HalfScreenCard, Card } from '../common'
 
 class EventItem extends Component {
 
@@ -13,6 +13,8 @@ class EventItem extends Component {
     }
 
     render () {
+        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <HalfScreenCard content={this.props.event}/>
+    
         return (
             <View style={{height: 235}}>
                 <TouchableOpacity onPress={() => { 
@@ -20,7 +22,7 @@ class EventItem extends Component {
                     this.updateContentModal()           
                     return Actions.modalEvent()
                 }}>
-                    <HalfScreenCard content={this.props.event}/>
+                    {selectCard}
                 </TouchableOpacity>
             </View>
         )

@@ -13,3 +13,4 @@ exports.POST_EVENT_JOINER = `${API_URL}/joinEvent`
 exports.POST_EVENT_BY_COUPON = `${API_URL}/joinEventByCoupon`
 exports.POST_CREATE_EVENT_COUPON = `${API_URL}/addEventCoupon`
 exports.POST_CHECK_EVENT_AVAILABLE = `${API_URL}/eventAvailable`
+exports.GET_JOINED_EVENT = `${API_URL}/getJoinedEvent`

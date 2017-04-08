@@ -43,8 +43,8 @@ class NewsPage extends Component {
                                         underlineStyle={{backgroundColor:"#FF7F11"}}
                                         activeTextColor="#FF7F11"
                                         inactiveTextColor="black"/>}>
-                    <View tabLabel="All">
-                        <ScrollView style={{marginBottom:50}}>
+                    <View tabLabel="All" style={{flex: 1}}>
+                        <ScrollView style={{marginBottom: 50}}>
                             <ListView
                             dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
                             renderRow={this.renderRow.bind(this)}

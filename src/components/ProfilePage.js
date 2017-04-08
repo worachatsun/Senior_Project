@@ -14,6 +14,11 @@ class ProfilePage extends Component {
                         <Text>Favorite News</Text>
                     </EmptyCard>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => Actions.EventJoined()}>
+                    <EmptyCard>
+                        <Text>Joined Event</Text>
+                    </EmptyCard>
+                </TouchableOpacity>
             </View>
         )
     }
