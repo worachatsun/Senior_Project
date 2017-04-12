@@ -28,6 +28,12 @@ const DrawerContent = () => {
                     <Text style={textStyle}>Donation</Text>
                 </View>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.Career() }>
+                <View style={menuStyle}>
+                    <Image style={iconStyle} source={require(`../env/images/career.png`)} />
+                    <Text style={textStyle}>Career</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }

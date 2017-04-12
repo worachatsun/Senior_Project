@@ -4,18 +4,16 @@ import HTMLView from 'react-native-htmlview'
 import { Header, WebViewRichText } from '../common'
 
 class DonationDescription extends Component {
-    render() {
-        const htmlContent = `<p style="text-align: center;"><span class="fr-video fr-fvc fr-dvb fr-draggable" contenteditable="false" draggable="true"><iframe width="640" height="360" src="https://www.youtube.com/embed/kNxnwgzpCwE?wmode=opaque" frameborder="0" allowfullscreen=""></iframe></span></p>
-<p>Froala Editor is a lightweight WYSIWYG HTML Editor written in Javascript that enables rich text editing capabilities for your applications.</p>
-<p>Its complete <a href="/wysiwyg-editor/docs" title="Documentation">documentation</a>, specially designed <a href="#frameworks" title="Frameworks">framework plugins</a> and <a href="/wysiwyg-editor/examples" title="Examples">tons of examples</a> make it easy to integrate. We&#39;re continuously working to add in new features and take the Javascript web WYSIWYG editing capabilities beyond its current limits.</p>
-`
 
+    
+    render() {
+        console.log(this.props)
         return (
             <View style={{flex: 1}}>
                 <Header headerText={'Donation Description'} />
                 <View style={styles.HTML_view_style}>
                     <ScrollView>
-                        <WebViewRichText webText={htmlContent} />
+                        <WebViewRichText webText={this.props.project_description} />
                     </ScrollView>
                 </View>
             </View>

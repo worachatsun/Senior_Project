@@ -13,6 +13,7 @@ import ModalGetTicket from './components/ModalGetTicket'
 import DonationPage from './components/DonationPage'
 import NewsFavorite from './components/NewsFavorite'
 import EventJoined from './components/JoinedEvent'
+import CareerPage from './components/CareerPage'
 
 class TabIcon extends React.Component {
     iconByName = (iconName) => {
@@ -45,17 +46,17 @@ class RouterComponent extends Component {
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
                                 <Scene key="Donation"  component={DonationPage} initial/>
+                                <Scene key="Career" component={CareerPage}  />
                             </Scene>
-                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search"/>
-                            <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile">
-                            </Scene>
-                            <Scene key="donationDes" component={DonationDescription} hideNavBar />
+                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
+                            <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                             <Scene key="NewsFavorite" component={NewsFavorite} hideNavBar />
                             <Scene key="EventJoined" component={EventJoined} hideNavBar />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} hideNavBar />                  
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
+                        <Scene key="donationDes" component={DonationDescription} direction="horizontal" hideNavBar />
                     </Scene>
                 </Scene>
             </Router>

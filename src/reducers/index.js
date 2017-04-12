@@ -4,6 +4,7 @@ import NewsReducer from './NewsReducer'
 import SelectionReducer from './SelectionReducer'
 import UserReducer from './UserReducer'
 import EventReducer from './EventReducer'
+import DonationReducer from './DonationReducer'
 
 export default combineReducers({
     closeModal: ModalReducer,
@@ -11,5 +12,6 @@ export default combineReducers({
     selectedNewsId: SelectionReducer,
     modalContent: ModalReducer,
     user: UserReducer,
-    event: EventReducer
+    event: EventReducer,
+    donation: DonationReducer
 })
