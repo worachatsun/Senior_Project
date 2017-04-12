@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, ListView } from 'react-native'
 import * as actions from '../actions'
 import NewsItem from './NewsItem'
-import { Header } from '../common'
+import { ModalHeaderPlain } from '../common'
 
 class NewsFavorite extends Component {
 
@@ -19,7 +19,7 @@ class NewsFavorite extends Component {
     render () {
         return (
             <View style={{ flex: 1 }}>
-                <Header headerText={'Favorite News'} style={{marginBottom: 10}} />
+                <ModalHeaderPlain headerText={'Favorite News'} style={{marginBottom: 10}} backSign={'arrow'} />
                 <ListView
                     dataSource={this.props.favorite_data}
                     renderRow={this.renderRow.bind(this)}

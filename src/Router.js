@@ -51,14 +51,14 @@ class RouterComponent extends Component {
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
-                            <Scene key="NewsFavorite" component={NewsFavorite} hideNavBar />
-                            <Scene key="EventJoined" component={EventJoined} hideNavBar />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} hideNavBar />                  
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="donationDes" component={DonationDescription} direction="horizontal" hideNavBar />
                         <Scene key="modalDonate" component={ModalDonate} direction="vertical" hideNavBar />
+                        <Scene key="EventJoined" component={EventJoined} direction="horizontal" hideNavBar />
+                        <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                     </Scene>
                 </Scene>
             </Router>

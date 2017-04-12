@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { Header, Card } from '../common'
+import { ModalHeaderPlain, Card } from '../common'
 import EventItem from './EventItem'
 
 class JoinedEvent extends Component {
@@ -18,7 +18,7 @@ class JoinedEvent extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-                <Header headerText={'Joined Event'} style={{marginBottom: 10}} />
+                <ModalHeaderPlain headerText={'Joined Event'} style={{marginBottom: 10}} backSign={'arrow'} />
                 <ListView
                     dataSource={this.props.fetch_event_joined}
                     renderRow={this.renderRow.bind(this)}
