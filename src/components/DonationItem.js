@@ -19,7 +19,7 @@ class DonationItem extends Component {
                     //this.props.selectNews(this.props.news._id)
                     this.updateContentModal()
                     //this.props.checkFavoriteNews(this.props.news._id)              
-                    return Actions.donationDes(this.props.donation)}
+                    return Actions.donationDes({donation: this.props.donation})}
                 }>
                 {selectCard}
             </TouchableOpacity>

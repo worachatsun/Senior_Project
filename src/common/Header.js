@@ -16,7 +16,7 @@ const Header = (props) => {
                     </View>
                 </TouchableOpacity>
                 <View>
-                    <Text style={textStyle}>{props.headerText}</Text>
+                    <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
                 <View style={headerIcon}>
 

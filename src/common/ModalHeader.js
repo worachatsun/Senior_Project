@@ -39,16 +39,17 @@ const ModalHeader = (props) => {
 export const ModalHeaderPlain = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
+    const backSign = props.backSign ? require('../env/images/left-arrow.png') : require('../env/images/close.png')
 
     return (
-        <View>
+        <View style={props.style}>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 <TouchableOpacity onPress={() => {
                     Actions.pop()
                     }}>
                     <View>
-                        <Image style={headerIcon} source={require('../env/images/close.png')} />
+                        <Image style={headerIcon} source={backSign} />
                     </View>
                 </TouchableOpacity>
                 <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
