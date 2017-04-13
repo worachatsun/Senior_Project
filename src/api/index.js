@@ -17,3 +17,5 @@ exports.GET_JOINED_EVENT = `${API_URL}/getJoinedEvent`
 
 
 exports.GET_DONATION = `${API_URL}/getDonation`
+
+exports.GET_CAREER = `${API_URL}/getCareer`

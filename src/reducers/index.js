@@ -5,6 +5,7 @@ import SelectionReducer from './SelectionReducer'
 import UserReducer from './UserReducer'
 import EventReducer from './EventReducer'
 import DonationReducer from './DonationReducer'
+import CareerReducer from './CareerReducer'
 
 export default combineReducers({
     closeModal: ModalReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
     modalContent: ModalReducer,
     user: UserReducer,
     event: EventReducer,
-    donation: DonationReducer
+    donation: DonationReducer,
+    career: CareerReducer
 })

@@ -16,19 +16,13 @@ class DonationItem extends Component {
         const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.donation.project_name} img={this.props.donation.assets.picture} /> : <Card description={this.props.donation.project_name} img={this.props.donation.picture} />
         return (
              <TouchableOpacity onPress={() => {
-                    //this.props.selectNews(this.props.news._id)
-                    this.updateContentModal()
-                    //this.props.checkFavoriteNews(this.props.news._id)              
+                    this.updateContentModal()            
                     return Actions.donationDes({donation: this.props.donation})}
-                }>
+            }>
                 {selectCard}
             </TouchableOpacity>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return { selectNewsId: state.selectedNewsId }
-}
-
-export default connect(mapStateToProps, actions)(DonationItem)
+export default connect(null, actions)(DonationItem)

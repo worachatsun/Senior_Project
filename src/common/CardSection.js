@@ -13,6 +13,7 @@ const styles = {
     containerStyle: {
         height: 1,
         backgroundColor: '#ddd',
+        margin: 10
     }
 }
 

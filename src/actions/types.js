@@ -15,3 +15,5 @@ export const CHECK_EVENT_AVAILABLE = 'check_event_available'
 export const FETCH_JOINED_EVENT = 'fetch_joined_event'
 
 export const FETCH_DONATION = 'fetch_donation'
+
+export const FETCH_CAREER = 'fetch_career'
