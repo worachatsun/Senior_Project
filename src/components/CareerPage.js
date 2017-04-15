@@ -42,10 +42,9 @@ class CareerPage extends Component {
     }
 
     render() {
-        console.log(this.props.fetch)
         const { limit, dataSource } = this.state
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, marginBottom: 50}}>
                 <Header headerText={'Career'} style={{marginBottom: 12}}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}

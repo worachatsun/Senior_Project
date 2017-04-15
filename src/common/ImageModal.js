@@ -10,4 +10,21 @@ const ImageModal = (props) => {
     )
 }
 
-export { ImageModal }
+const RoundImage = (props) => {
+    return (
+        <View>
+            <Image source={{uri: props.img}}
+            style={[styles.roundImage, props.style]} />
+        </View>
+    )
+}
+
+const styles = {
+    roundImage: {
+        height: 100, 
+        width: 100, 
+        borderRadius: 100/2
+    }
+}
+
+export { ImageModal, RoundImage }
