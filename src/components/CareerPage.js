@@ -8,9 +8,33 @@ import CareerItem from '../components/CareerItem'
 
 class CareerPage extends Component {
 
+    constructor(props) {
+        super(props)
+
+        const dataDs = new ListView.DataSource({
+            rowHasChanged: () => (r1, r2) => r1.id !== r2.id
+        })
+
+        this.state = {
+            dataSource: dataDs.cloneWithRows([]),
+            datas: [],
+            limit: 20,
+            offset: 0,
+        }
+    }
+
     componentWillMount() {
         Actions.refresh({key: 'drawer', open: false})
-        this.props.fetchCareer()
+        this.props.fetchCareer(this.state.offset, this.state.limit)
+    }
+
+    componentWillReceiveProps(nextProps){
+        const datas = this.state.datas.concat(nextProps.fetchCareerItem)
+        this.setState({
+            datas,
+            dataSource: this.state.dataSource.cloneWithRows(datas),
+            offset: this.state.offset + 20
+        })
     }
 
     renderRow(career, sectionID, rowID) {
@@ -18,22 +42,23 @@ class CareerPage extends Component {
     }
 
     render() {
+        console.log(this.props.fetch)
+        const { limit, dataSource } = this.state
         return (
             <View style={{flex: 1}}>
                 <Header headerText={'Career'} style={{marginBottom: 12}}/>
-                <ScrollView style={{flex: 1}}>
-                    <ListView
-                        dataSource={ds.cloneWithRows(this.props.fetchCareerItem)}
-                        renderRow={this.renderRow.bind(this)}
-                        enableEmptySections={true}
-                    />
-                </ScrollView>
+                <ListView
+                    contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
+                    initialListSize={limit}
+                    dataSource={dataSource}
+                    renderRow={this.renderRow.bind(this)}
+                    enableEmptySections={true}
+                    onEndReached={() => this.props.fetchCareer(this.state.offset, this.state.limit)}
+                />
             </View>
         )
     }
 }
-
-const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
 
 const mapStateToProps = state => {
     return { 

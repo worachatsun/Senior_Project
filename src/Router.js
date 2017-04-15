@@ -15,6 +15,7 @@ import NewsFavorite from './components/NewsFavorite'
 import EventJoined from './components/JoinedEvent'
 import CareerPage from './components/CareerPage'
 import ModalDonate from './components/ModalDonate'
+import ModalCareer from './components/ModalCareer'
 import CareerDescription from './components/CareerDescription'
 
 class TabIcon extends React.Component {
@@ -58,6 +59,7 @@ class RouterComponent extends Component {
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="donationDes" component={DonationDescription} direction="horizontal" hideNavBar />
                         <Scene key="modalDonate" component={ModalDonate} direction="vertical" hideNavBar />
+                        <Scene key="modalCareer" component={ModalCareer} direction="vertical" hideNavBar />
                         <Scene key="EventJoined" component={EventJoined} direction="horizontal" hideNavBar />
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />

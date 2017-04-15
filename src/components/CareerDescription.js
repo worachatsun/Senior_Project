@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, WebView, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, WebView, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import HTMLView from 'react-native-htmlview'
 import { 
@@ -14,27 +14,28 @@ class CareerDescription extends Component {
 
 
     render() {
-        console.log(this.props.career)
         return (
             <View style={{flex: 1}}>
                 <ModalHeaderPlain headerText={this.props.career.career_name} backSign={'arrow'}/>
                 <ScrollView style={{flex: 1}}>
                     <ImageModal img={this.props.career.assets.picture} />
-                    <EmptyCard style={{borderColor: "#FF7F11", borderWidth: 1}}>
-                        <View style={{margin: 5, justifyContent: 'center', alignItems: 'center', paddingBottom: 10, paddingTop: 10}}>
-                            <View>
-                                <Text style={{textAlign: 'center'}}>Company: {this.props.career.company}</Text>
-                            </View>
-                            <CardSection />
-                            <View>
-                                <Text style={{textAlign: 'center'}}>Salary: {this.props.career.salary}</Text>
-                            </View>
-                            <CardSection />
-                            <View>
-                                <Text style={{textAlign: 'center'}}>Capacity: {this.props.career.capacity}</Text>
-                            </View>
+                    <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: 10}}>
+                        <View>
+                            <Text style={{textAlign: 'center', fontSize: 25, fontWeight: 'bold'}}>{this.props.career.company}</Text>
                         </View>
-                    </EmptyCard>
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                        <Image style={styles.iconStyle} source={require('../env/images/capacity.png')} /> 
+                        <Text>
+                            {this.props.career.capacity}
+                        </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                        <Image style={styles.iconStyle} source={require('../env/images/salary.png')} /> 
+                        <Text>
+                            {this.props.career.salary}
+                        </Text>
+                    </View>
                     <CardSection />
                     <View style={styles.HTML_view_style}>
                         <WebViewRichText webText={this.props.career.career_description} />
@@ -47,7 +48,7 @@ class CareerDescription extends Component {
                     <CardSection />
                     <Text style={{color: '#ddd', marginLeft: 10}}>{this.props.career.created_by.name}</Text>
                 </ScrollView>
-                <TouchableOpacity onPress={() => Actions.modalDonate(this.props.career)}>
+                <TouchableOpacity onPress={() => Actions.modalCareer(this.props.career)}>
                     <View style={styles.footerBar}>
                         <Text style={{ color: 'white', fontWeight: 'bold' }}>JOB POSITION</Text>
                     </View>
@@ -77,6 +78,14 @@ const styles = {
         alignItems: 'center',
         fontWeight: 'bold',
         fontSize: 25
+    },
+    iconStyle: {
+        width: 30,
+        height: 30,
+        marginLeft: 25,
+        marginRight: 10,
+        marginTop: 5,
+        marginBottom: 5
     }
 }
 
