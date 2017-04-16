@@ -5,6 +5,12 @@ import { Header, EmptyCard, RoundImage } from '../common'
 import NewsFavorite from './NewsFavorite'
 
 class ProfilePage extends Component {
+
+    componentWillMount() {
+        Actions.refresh({key: 'drawer', open: false})
+    }
+
+
     render () {
         return (
             <View style={{flex: 1}}>

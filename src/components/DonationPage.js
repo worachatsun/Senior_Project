@@ -19,6 +19,7 @@ class DonationPage extends Component{
 
 
     render() {
+        console.log(this.props)
         return (
             <View style={{flex: 1, backgroundColor: '#353535'}}>
                 <Header headerText={'Donation'}/>
