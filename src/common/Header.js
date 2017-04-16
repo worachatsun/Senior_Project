@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 const Header = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
+    const rightIcon = props.rightIcon == 'edit' ? <EditHeader /> : <View style={headerIcon} />
 
     return (
         <View style={props.style}>
@@ -18,13 +19,17 @@ const Header = (props) => {
                 <View>
                     <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
-                <View style={headerIcon}>
-
-                </View>
+                {rightIcon}
             </View>
         </View>
     )
 }
+
+const EditHeader = () => (
+    <TouchableOpacity onPress={() => Actions.editProfile()}>
+        <Image style={styles.headerIcon} source={require('../env/images/edit.png')} />
+    </TouchableOpacity>
+)
 
 const MyStatusBar = ({backgroundColor, ...props}) => (
   <View style={[styles.statusBar, { backgroundColor }]}>

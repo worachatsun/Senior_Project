@@ -1,14 +1,39 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, TextInput } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { Header, EmptyCard, RoundImage } from '../common'
+import { ModalHeaderPlain, EmptyCard, RoundImage } from '../common'
 import NewsFavorite from './NewsFavorite'
 
-class ProfilePage extends Component {
+class EditProfile extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            tel: '080-000-0000',
+            email: 'bie_sukrit@gmail.com',
+            location: 'เชียงใหม่ ประเทศไทย',
+            faculty: 'KMUTT',
+            job: 'นักร้อง',
+            trophy: 'ผลงานศิสเก่า'
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            tel: '080-000-0000',
+            email: 'bie_sukrit@gmail.com',
+            location: 'เชียงใหม่ ประเทศไทย',
+            faculty: 'KMUTT',
+            job: 'นักร้อง',
+            trophy: 'ผลงานศิสเก่า'
+        })
+    }
+
     render () {
         return (
             <View style={{flex: 1}}>
-                <Header headerText={'Profile'} rightIcon={"edit"}/>
+                <ModalHeaderPlain headerText={'Profile'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
                         <RoundImage img={"https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_0027.jpg"} />
@@ -19,19 +44,19 @@ class ProfilePage extends Component {
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
                                 <Text>
-                                    080-000-0000
+                                    {this.state.tel}
                                 </Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/email.png')} /> 
                                 <Text>
-                                    bie_sukrit@gmail.com
+                                    {this.state.email}
                                 </Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
                                 <Text>
-                                    เชียงใหม่ ประเทศไทย
+                                    {this.state.location}
                                 </Text>
                             </View>
                         </View>
@@ -41,7 +66,7 @@ class ProfilePage extends Component {
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/hat.png')} /> 
                                 <Text>
-                                    KMUTT
+                                    {this.state.faculty}
                                 </Text>
                             </View>
                         </View>
@@ -51,7 +76,7 @@ class ProfilePage extends Component {
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/career.png')} /> 
                                 <Text>
-                                    นักร้อง
+                                    {this.state.job}
                                 </Text>
                             </View>
                         </View>
@@ -61,21 +86,11 @@ class ProfilePage extends Component {
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/trophy.png')} /> 
                                 <Text>
-                                    ผลงานศิสเก่า
+                                    {this.state.trophy}
                                 </Text>
                             </View>
                         </View>
                     </EmptyCard>
-                    <TouchableOpacity onPress={() => Actions.NewsFavorite()}>
-                        <EmptyCard>
-                            <Text>Favorite News</Text>
-                        </EmptyCard>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.EventJoined()}>
-                        <EmptyCard>
-                            <Text>Joined Event</Text>
-                        </EmptyCard>
-                    </TouchableOpacity>
                 </ScrollView>
             </View>
         )
@@ -95,4 +110,4 @@ const styles = {
 
 const {height, width} = Dimensions.get('window')
 
-export default ProfilePage
+export default EditProfile
