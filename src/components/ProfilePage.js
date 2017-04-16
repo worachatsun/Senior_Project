@@ -13,7 +13,7 @@ class ProfilePage extends Component {
 
     render () {
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, marginBottom: 50}}>
                 <Header headerText={'Profile'} rightIcon={"edit"}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>

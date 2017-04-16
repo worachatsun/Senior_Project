@@ -56,7 +56,7 @@ class RouterComponent extends Component {
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
-                        <Scene key="modalEvent" component={ModalContentEvent} hideNavBar />                  
+                        <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" hideNavBar hideNavBar />                  
                         <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="donationDes" component={DonationDescription} direction="horizontal" hideNavBar />
                         <Scene key="modalDonate" component={ModalDonate} direction="vertical" hideNavBar />

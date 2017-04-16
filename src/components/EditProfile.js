@@ -19,20 +19,20 @@ class EditProfile extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            tel: '080-000-0000',
-            email: 'bie_sukrit@gmail.com',
-            location: 'เชียงใหม่ ประเทศไทย',
-            faculty: 'KMUTT',
-            job: 'นักร้อง',
-            trophy: 'ผลงานศิสเก่า'
-        })
-    }
+    // componentWillReceiveProps(nextProps){
+    //     this.setState({
+    //         tel: '080-000-0000',
+    //         email: 'bie_sukrit@gmail.com',
+    //         location: 'เชียงใหม่ ประเทศไทย',
+    //         faculty: 'KMUTT',
+    //         job: 'นักร้อง',
+    //         trophy: 'ผลงานศิสเก่า'
+    //     })
+    // }
 
     render () {
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#ddd'}}>
                 <ModalHeaderPlain headerText={'Profile'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
@@ -43,21 +43,15 @@ class EditProfile extends Component {
                         <View style={{margin: 14}}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
-                                <Text>
-                                    {this.state.tel}
-                                </Text>
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(tel) => this.setState({tel})} value={this.state.tel} />
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/email.png')} /> 
-                                <Text>
-                                    {this.state.email}
-                                </Text>
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(email) => this.setState({email})} value={this.state.email} />
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
-                                <Text>
-                                    {this.state.location}
-                                </Text>
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(location) => this.setState({location})} value={this.state.location} />
                             </View>
                         </View>
                     </EmptyCard>
@@ -65,9 +59,7 @@ class EditProfile extends Component {
                         <View style={{margin: 14}}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/hat.png')} /> 
-                                <Text>
-                                    {this.state.faculty}
-                                </Text>
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(faculty) => this.setState({faculty})} value={this.state.faculty} />
                             </View>
                         </View>
                     </EmptyCard>
@@ -75,19 +67,15 @@ class EditProfile extends Component {
                         <View style={{margin: 14}}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/career.png')} /> 
-                                <Text>
-                                    {this.state.job}
-                                </Text>
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(job) => this.setState({job})} value={this.state.job} />
                             </View>
                         </View>
                     </EmptyCard>
                     <EmptyCard>
                         <View style={{margin: 14}}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Image style={styles.iconStyle} source={require('../env/images/trophy.png')} /> 
-                                <Text>
-                                    {this.state.trophy}
-                                </Text>
+                                <Image style={styles.iconStyle} source={require('../env/images/trophy.png')} />
+                                <TextInput style={{borderColor: 'gray', borderWidth: 1, width: 200}} onChangeText={(trophy) => this.setState({trophy})} value={this.state.trophy} />
                             </View>
                         </View>
                     </EmptyCard>
