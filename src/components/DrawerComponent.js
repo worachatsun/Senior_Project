@@ -8,7 +8,6 @@ export default class NavigationDrawer extends Component {
     render(){
         const state = this.props.navigationState
         const children = state.children
-        console.log(this.props)
         return (
             <Drawer
                 ref="navigation"

@@ -18,8 +18,9 @@ import ModalDonate from './components/ModalDonate'
 import ModalCareer from './components/ModalCareer'
 import CareerDescription from './components/CareerDescription'
 import EditProfile from './components/EditProfile'
+import LoginPage from './components/LoginPage'
 
-class TabIcon extends React.Component {
+class TabIcon extends Component {
     iconByName = (iconName) => {
         switch (iconName) {
             case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`);
@@ -49,7 +50,7 @@ class RouterComponent extends Component {
                             <Scene key="Home" title="home" icon={TabIcon}>
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
-                                <Scene key="Donation"  component={DonationPage} initial/>
+                                <Scene key="Donation"  component={DonationPage} />
                                 <Scene key="Career" component={CareerPage}  />
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
@@ -65,6 +66,7 @@ class RouterComponent extends Component {
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
+                        <Scene key="login" component={LoginPage} initial/>
                     </Scene>
                 </Scene>
             </Router>
