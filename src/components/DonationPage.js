@@ -10,7 +10,9 @@ class DonationPage extends Component{
     
     componentWillMount() {
         Actions.refresh({key: 'drawer', open: false})
-        this.props.fetchDonation()
+        this.props.fetchDonation().then(() => {
+            
+        })
     }
 
     renderRow(donation, sectionID, rowID) {

@@ -19,6 +19,7 @@ import ModalCareer from './components/ModalCareer'
 import CareerDescription from './components/CareerDescription'
 import EditProfile from './components/EditProfile'
 import LoginPage from './components/LoginPage'
+import Test from './components/Test'
 
 class TabIcon extends Component {
     iconByName = (iconName) => {
@@ -66,7 +67,8 @@ class RouterComponent extends Component {
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
-                        <Scene key="login" component={LoginPage} initial/>
+                        <Scene key="login" component={LoginPage}/>
+                        <Scene key="pro" component={Test} initial/>
                     </Scene>
                 </Scene>
             </Router>

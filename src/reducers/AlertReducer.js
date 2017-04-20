@@ -5,7 +5,7 @@ const INITIAL_STATE = []
 
 export default ( state = INITIAL_STATE, action ) => {
     switch(action.type) {
-        case ADD_ALERT :
+        case ADD_ALERT:
             return [
                 ...state,
                 {
@@ -13,9 +13,9 @@ export default ( state = INITIAL_STATE, action ) => {
                     id: uuid.v4()
                 }
             ]
-        case REMOVE_ALERT :
+        case REMOVE_ALERT:
             return state.filter(alert => {
-                if(alert.id === action.id)
+                if(alert.id === action.payload)
                     return false
                 else
                     return true

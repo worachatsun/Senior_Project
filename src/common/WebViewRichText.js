@@ -25,7 +25,12 @@ function renderNode(node, index, siblings, parent, defaultRenderer) {
     const iframeHtml = `<iframe frameborder="0" style="overflow:hidden;" seamless="seamless" scrolling="no" src="${a.src}"></iframe>`
     return (
       <View key={index} style={{width: 278, height: 160}}>
-        <WebView scrollEnabled={false} source={{html: iframeHtml}} />
+        <WebView 
+            scrollEnabled={false} 
+            source={{html: iframeHtml}}
+            onLoadStart={() => console.log('loading')}
+            onLoadEnd={() => console.log('loaded')}
+        />
       </View>
     )
   }

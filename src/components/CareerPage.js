@@ -20,12 +20,20 @@ class CareerPage extends Component {
             datas: [],
             limit: 20,
             offset: 0,
+            loading: false
         }
     }
 
     componentWillMount() {
         Actions.refresh({key: 'drawer', open: false})
-        this.props.fetchCareer(this.state.offset, this.state.limit)
+        this.setState({
+            loading: true
+        })
+        this.props.fetchCareer(this.state.offset, this.state.limit).then(() => {
+            this.setState({
+                loading: true
+            })
+        })
     }
 
     componentWillReceiveProps(nextProps){

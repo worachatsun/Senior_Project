@@ -5,8 +5,8 @@ import { FETCH_DONATION } from './types'
 export const fetchDonation = () => {
     const promise = axios.get(GET_DONATION)
     
-    return (dispatch) => {
-        promise.then(({data}) => {
+    return function(dispatch) {
+        return promise.then(({data}) => {
             dispatch({
                 type: FETCH_DONATION,
                 payload: data
