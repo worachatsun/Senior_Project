@@ -22,6 +22,8 @@ class CareerPage extends Component {
             offset: 0,
             loading: false
         }
+
+        this.fetchEndReached = this.fetchEndReached.bind(this)
     }
 
     componentWillMount() {
@@ -49,6 +51,12 @@ class CareerPage extends Component {
         return <CareerItem career={career} rowID={rowID}/>
     }
 
+    fetchEndReached() {
+        setTimeout(() => {
+            this.props.fetchCareer(this.state.offset, this.state.limit)
+        }, 1500)
+    }
+
     render() {
         const { limit, dataSource } = this.state
         return (
@@ -60,7 +68,8 @@ class CareerPage extends Component {
                     dataSource={dataSource}
                     renderRow={this.renderRow.bind(this)}
                     enableEmptySections={true}
-                    onEndReached={() => this.props.fetchCareer(this.state.offset, this.state.limit)}
+                    onEndReached={this.fetchEndReached}
+                    onEndReachedThreshold={100}
                 />
             </View>
         )
@@ -68,7 +77,6 @@ class CareerPage extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.career)
     return { 
         fetchCareerItem: state.career.fetchCareer
     }

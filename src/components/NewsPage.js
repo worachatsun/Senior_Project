@@ -3,38 +3,23 @@ import { connect } from 'react-redux'
 import { 
     View, 
     Text, 
-    TouchableOpacity,
-    StatusBar,
-    Image,
-    ScrollView,
-    ListView
 } from 'react-native'
 import { 
     Header, 
-    BigCard, 
-    CardSection, 
-    Content,
 } from '../common'
 import * as actions from '../actions'
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 import { Actions } from 'react-native-router-flux'
-import NewsItem from './NewsItem'
+import AllNewsComponent from './AllNewsComponent'
+import AllNewsFaculty from './AllNewsFaculty'
 
 class NewsPage extends Component {
 
     componentWillMount() {
-        this.props.fetchNews()
-        this.props.fetchNewsFaculty('SIT')
         Actions.refresh({key: 'drawer', open: false})
-        this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
-    }
-
-    renderRow(news, sectionID, rowID) {
-        return <NewsItem news={news} rowID={rowID}/>
     }
 
     render () {
-        console.log(this.props)
         return (
             <View style={styles.container}>
                 <Header headerText={'News'}/>
@@ -44,23 +29,11 @@ class NewsPage extends Component {
                                         underlineStyle={{backgroundColor:"#FF7F11"}}
                                         activeTextColor="#FF7F11"
                                         inactiveTextColor="black"/>}>
-                    <View tabLabel="All" style={{flex: 1}}>
-                        <ScrollView style={{marginBottom: 50}}>
-                            <ListView
-                            dataSource={this.dataSource.cloneWithRows(this.props.newsList)}
-                            renderRow={this.renderRow.bind(this)}
-                            enableEmptySections={true}
-                            />
-                        </ScrollView>
+                    <View tabLabel="All" style={{flex: 1, marginBottom: 50}}>
+                        <AllNewsComponent />
                     </View>
-                    <View tabLabel="Faculty" style={{flex: 1}}>
-                        <ScrollView style={{marginBottom:50, marginTop: 12}}>
-                            <ListView
-                                dataSource={this.dataSource.cloneWithRows(this.props.newsFaculty)}
-                                renderRow={this.renderRow.bind(this)}
-                                enableEmptySections={true}
-                            />
-                        </ScrollView>
+                    <View tabLabel="Faculty" style={{flex: 1, marginBottom: 50}}>
+                        <AllNewsFaculty />
                     </View>
                 </ScrollableTabView>   
             </View>
@@ -92,8 +65,6 @@ const mapStateToProps = state => {
     const { isOpen } = state.closeModal
     return { 
         isOpen, 
-        newsList: state.newsList.news,
-        newsFaculty: state.newsList.news_faculty,
         selectNewsId: state.selectedNewsId 
     }
 }

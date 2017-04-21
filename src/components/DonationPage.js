@@ -22,6 +22,8 @@ class DonationPage extends Component{
             offset: 0,
             loading: false
         }
+
+        this.fetchEndReached = this.fetchEndReached.bind(this)
     }
     
     componentWillMount() {
@@ -49,6 +51,12 @@ class DonationPage extends Component{
         return <DonationItem donation={donation} rowID={rowID}/>
     }
 
+    fetchEndReached() {
+        setTimeout(() => {
+            this.props.fetchDonation(this.state.offset, this.state.limit)
+        }, 1500)
+    }
+
 
     render() {
         const { limit, dataSource } = this.state
@@ -61,7 +69,8 @@ class DonationPage extends Component{
                     dataSource={dataSource}
                     renderRow={this.renderRow.bind(this)}
                     enableEmptySections={true}
-                    onEndReached={() => this.props.fetchDonation(this.state.offset, this.state.limit)}
+                    onEndReached={this.fetchEndReached}
+                    onEndReachedThreshold={100}
                 />
             </View>
         )

@@ -68,7 +68,7 @@ class RouterComponent extends Component {
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
                         <Scene key="login" component={LoginPage}/>
-                        <Scene key="pro" component={Test}  initial/>
+                        <Scene key="pro" component={Test}/>
                     </Scene>
                 </Scene>
             </Router>
