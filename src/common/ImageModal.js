@@ -1,11 +1,17 @@
 import React from 'react'
 import { View, Image } from 'react-native'
+import ProgressiveImage from '../components/ProgressiveImage'
 
 const ImageModal = (props) => {
     return (
         <View>
-            <Image source={{uri: props.img}}
-            style={[{resizeMode: 'stretch', width: null, height: props.height||230}, props.style]} />
+            <ProgressiveImage
+                thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
+                imageSource={{ uri: props.img }}
+                style={[{width: null, height: props.height||230}, props.style]}
+            />
+            {/*<Image source={{uri: props.img}}
+            style={[{resizeMode: 'stretch', width: null, height: props.height||230}, props.style]} />*/}
         </View>
     )
 }

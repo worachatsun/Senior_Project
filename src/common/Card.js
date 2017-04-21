@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { ImageModal } from './'
-import { Col, Row, Grid } from "react-native-easy-grid"
+import { Col, Row, Grid } from 'react-native-easy-grid'
+import ProgressiveImage from '../components/ProgressiveImage'
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
@@ -11,7 +12,12 @@ const Card = (props) => {
     return (
         <View style={styles.containerStyle}>
             <View>
-                <Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: 130, height: 90}} />
+                <ProgressiveImage
+                    thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
+                    imageSource={{ uri: props.img }}
+                    style={{ flex: 1, alignItems: 'stretch', width: 130, height: 90 }}
+                />
+                {/*<Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: 130, height: 90}} />*/}
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
@@ -28,7 +34,12 @@ const BigCard = (props) => {
     return (
         <View style={rowContainerStyle}>
             <View>
-                <Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: null, height: 230}} />
+                <ProgressiveImage
+                    thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
+                    imageSource={{ uri: props.img }}
+                    style={{ alignItems: 'stretch', height: 230 }}
+                />
+                {/*<Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: null, height: 230}} />*/}
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>
