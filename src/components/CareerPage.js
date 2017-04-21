@@ -31,7 +31,7 @@ class CareerPage extends Component {
         })
         this.props.fetchCareer(this.state.offset, this.state.limit).then(() => {
             this.setState({
-                loading: true
+                loading: false
             })
         })
     }

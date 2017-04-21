@@ -7,11 +7,41 @@ import { Header, BigCard } from '../common'
 import DonationItem from './DonationItem'
 
 class DonationPage extends Component{
+
+    constructor(props) {
+        super(props)
+
+        const dataDs = new ListView.DataSource({
+            rowHasChanged: () => (r1, r2) => r1.id !== r2.id
+        })
+
+        this.state = {
+            dataSource: dataDs.cloneWithRows([]),
+            datas: [],
+            limit: 20,
+            offset: 0,
+            loading: false
+        }
+    }
     
     componentWillMount() {
         Actions.refresh({key: 'drawer', open: false})
-        this.props.fetchDonation().then(() => {
-            
+        this.setState({
+            loading: true
+        })
+        this.props.fetchDonation(this.state.offset, this.state.limit).then(() => {
+            this.setState({
+                loading: false
+            })
+        })
+    }
+
+    componentWillReceiveProps(nextProps){
+        const datas = this.state.datas.concat(nextProps.fetchDonate)
+        this.setState({
+            datas,
+            dataSource: this.state.dataSource.cloneWithRows(datas),
+            offset: this.state.offset + 20
         })
     }
 
@@ -21,22 +51,22 @@ class DonationPage extends Component{
 
 
     render() {
+        const { limit, dataSource } = this.state
         return (
             <View style={{flex: 1, backgroundColor: '#353535'}}>
                 <Header headerText={'Donation'}/>
-                <ScrollView>
-                    <ListView
-                        dataSource={ds.cloneWithRows(this.props.fetchDonate)}
-                        renderRow={this.renderRow.bind(this)}
-                        enableEmptySections={true}
-                    />
-                </ScrollView>
+                <ListView
+                    contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
+                    initialListSize={limit}
+                    dataSource={dataSource}
+                    renderRow={this.renderRow.bind(this)}
+                    enableEmptySections={true}
+                    onEndReached={() => this.props.fetchDonation(this.state.offset, this.state.limit)}
+                />
             </View>
         )
     }
 }
-
-const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
 
 const mapStateToProps = state => {
     return { 

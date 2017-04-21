@@ -2,8 +2,8 @@ import axios from 'axios'
 import { GET_DONATION } from '../api'
 import { FETCH_DONATION } from './types'
 
-export const fetchDonation = () => {
-    const promise = axios.get(GET_DONATION)
+export const fetchDonation = (offset=0, limit=15) => {
+    const promise = axios.get(`${GET_DONATION}/${offset}/${limit}`)
     
     return function(dispatch) {
         return promise.then(({data}) => {
@@ -11,6 +11,8 @@ export const fetchDonation = () => {
                 type: FETCH_DONATION,
                 payload: data
             })
+        }).catch(error => {
+            dispatch(addAlert('fetch donation'))
         })
     }
 }
