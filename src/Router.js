@@ -52,7 +52,7 @@ class RouterComponent extends Component {
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
                                 <Scene key="Donation"  component={DonationPage} />
-                                <Scene key="Career" component={CareerPage}  />
+                                <Scene key="Career" component={CareerPage} />
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
                             <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
@@ -68,7 +68,7 @@ class RouterComponent extends Component {
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
                         <Scene key="login" component={LoginPage}/>
-                        <Scene key="pro" component={Test}/>
+                        <Scene key="pro" component={Test}  initial/>
                     </Scene>
                 </Scene>
             </Router>

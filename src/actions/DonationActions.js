@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GET_DONATION } from '../api'
 import { FETCH_DONATION } from './types'
+import { addAlert } from './AlertActions'
 
 export const fetchDonation = (offset=0, limit=15) => {
     const promise = axios.get(`${GET_DONATION}/${offset}/${limit}`)

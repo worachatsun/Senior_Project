@@ -68,6 +68,7 @@ class CareerPage extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.career)
     return { 
         fetchCareerItem: state.career.fetchCareer
     }
