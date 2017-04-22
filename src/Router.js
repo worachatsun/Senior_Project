@@ -20,6 +20,7 @@ import CareerDescription from './components/CareerDescription'
 import EditProfile from './components/EditProfile'
 import LoginPage from './components/LoginPage'
 import Test from './components/Test'
+import SignupComponent from './components/SignupComponent'
 
 class TabIcon extends Component {
     iconByName = (iconName) => {
@@ -69,6 +70,7 @@ class RouterComponent extends Component {
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
                         <Scene key="login" component={LoginPage}/>
                         <Scene key="pro" component={Test}/>
+                        <Scene key="signup" component={SignupComponent} initial/>
                     </Scene>
                 </Scene>
             </Router>

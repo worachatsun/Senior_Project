@@ -33,11 +33,15 @@ export const loginUser = (email, password) => {
     }
 }
 
-export const signupUser = (email, password) => {
+export const signupUser = (email, password, name, surname, tel, address) => {
     return function(dispatch) {
         return axios.post(SIGNUP_URL, {
             "email": email, 
-            "password": password
+            "password": password,
+            "name": name,
+            "surname": surname,
+            "tel": tel,
+            "address": address
         }).then(response => {
             const { user_id, token } = response.data
             // Keychain.setGenericPassword(user_id, token)
