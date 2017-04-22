@@ -70,7 +70,7 @@ class RouterComponent extends Component {
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
                         <Scene key="login" component={LoginPage}/>
                         <Scene key="pro" component={Test}/>
-                        <Scene key="signup" component={SignupComponent} initial/>
+                        <Scene key="signup" component={SignupComponent}/>
                     </Scene>
                 </Scene>
             </Router>

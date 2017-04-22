@@ -13,7 +13,6 @@ class NewsItem extends Component {
     }
 
     render () {
-        console.log(this.props)
         const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.news.news_title} img={this.props.news.assets.picture} /> : <Card description={this.props.news.news_title} img={this.props.news.assets.picture} />
         return (
              <TouchableOpacity onPress={() => {

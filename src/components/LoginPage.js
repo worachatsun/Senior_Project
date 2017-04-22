@@ -4,6 +4,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux' 
 
 class LoginPage extends Component {
     constructor(props) {
@@ -17,7 +18,6 @@ class LoginPage extends Component {
         }
 
         this.onSignIn = this.onSignIn.bind(this)
-        this.onSignUp = this.onSignUp.bind(this)
     }
 
     onSignIn() {
@@ -32,24 +32,6 @@ class LoginPage extends Component {
             loading: true
         })
         this.props.loginUser(email, password).then(() => {
-            this.setState({
-                loading: false
-            })
-        })
-    }
-
-    onSignUp() {
-        let { email, password, errors } = this.state
-        if (!email) {
-            errors.email = "Please enter an email."
-        }
-        if (!password) {
-            errors.password = "Please enter a password."
-        }
-        this.setState({
-            loading: true
-        })
-        this.props.signupUser(email, password).then(() => {
             this.setState({
                 loading: false
             })
@@ -85,7 +67,7 @@ class LoginPage extends Component {
                         <TouchableOpacity onPress={this.onSignIn}>
                             <Text style={{margin: 10, borderColor: '#ddd', borderWidth: 1, padding: 10}}>Sign in</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={this.onSignUp}>
+                        <TouchableOpacity onPress={() => Actions.signup()}>
                             <Text style={{margin: 10, borderColor: '#ddd', borderWidth: 1, padding: 10}}>Sign up</Text>
                         </TouchableOpacity>
                     </View>
