@@ -12,7 +12,6 @@ class CareerItem extends Component {
     }
 
     render () {
-        console.log(this.props)
         return (
              <TouchableOpacity onPress={() => {         
                     return Actions.careerDes({career: this.props.career})
