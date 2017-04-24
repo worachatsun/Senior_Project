@@ -14,7 +14,7 @@ class ProfilePage extends Component {
     render () {
         return (
             <View style={{flex: 1, marginBottom: 50}}>
-                <Header headerText={'Profile'} rightIcon={"edit"}/>
+                <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
                         <RoundImage img={"https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_0027.jpg"} />

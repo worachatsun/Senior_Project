@@ -12,11 +12,15 @@ const Header = (props) => {
         else { return <SearchHeader /> }
     }
 
+    const leftIcon = () => {
+        return props.leftIcon == 'back' ? <BackIcon />: <View style={headerIcon} />
+    }
+
     return (
         <View style={props.style}>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <View style={headerIcon}></View>
+                {leftIcon()}
                 <View>
                     <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
@@ -25,6 +29,14 @@ const Header = (props) => {
         </View>
     )
 }
+
+const BackIcon = () => (
+    <TouchableOpacity onPress={() => Actions.pop()}>
+        <View>
+            <Image style={styles.headerIcon} source={require('../env/images/left-arrow.png')} />
+        </View>
+    </TouchableOpacity>
+)
 
 const SearchHeader = () => (
     <TouchableOpacity onPress={() => Actions.SearchPage()}>

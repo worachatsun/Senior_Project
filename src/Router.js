@@ -67,8 +67,7 @@ class RouterComponent extends Component {
                             <Scene key="Donation"  component={DonationPage} icon={TabIcon} title="donation"/>
                             <Scene key="Career" component={CareerPage} icon={TabIcon} title="career"/>
                             <Scene key="Menu" component={DrawerContent} icon={TabIcon} title="menu"/>
-                            <Scene key="ProfilePage" component={ProfilePage} title="profile" />
-                            <Scene key="SearchPage" component={SearchPage} title="news" />
+                            {/*<Scene key="ProfilePage" component={ProfilePage} title="menu" />*/}
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" hideNavBar hideNavBar />                  
@@ -83,6 +82,8 @@ class RouterComponent extends Component {
                         <Scene key="login" component={LoginPage}/>
                         <Scene key="pro" component={Test}/>
                         <Scene key="signup" component={SignupComponent}/>
+                        <Scene key="SearchPage" component={SearchPage} />
+                        <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
                     </Scene>
                 {/*</Scene>*/}
             </Router>

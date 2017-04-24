@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, ListView } from 'react-native'
-import { BottomNavBar, Header } from '../common'
+import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import NewsItem from './NewsItem'
@@ -50,7 +50,7 @@ class SearchPage extends Component {
         console.log(this.props)
         return (
             <View style={styles.container}>
-                <Header headerText={'Search'} rightIcon={'no'}/>
+                <ModalHeaderPlain headerText={'Search'} backSign={true}/>
                 <View>
                     <TextInput
                         style={styles.searchBar}

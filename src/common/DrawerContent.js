@@ -19,28 +19,16 @@ const DrawerContent = (props) => {
                     </View>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.News() }>
+            <TouchableOpacity onPress={() => Actions.EventJoined() }>
                 <View style={menuStyle}>
                     <Image style={iconStyle} source={require(`../env/images/news.png`)} />
-                    <Text style={textStyle}>News</Text>
+                    <Text style={textStyle}>Event Joined</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Event() }>
+            <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
                 <View style={menuStyle}>
                     <Image style={iconStyle} source={require(`../env/images/event.png`)} />
-                    <Text style={textStyle}>Event</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Donation() }>
-                <View style={menuStyle}>
-                    <Image style={iconStyle} source={require(`../env/images/donation.png`)} />
-                    <Text style={textStyle}>Donation</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Career() }>
-                <View style={menuStyle}>
-                    <Image style={iconStyle} source={require(`../env/images/career.png`)} />
-                    <Text style={textStyle}>Career</Text>
+                    <Text style={textStyle}>News Favorite</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => console.log('drawer')}>
