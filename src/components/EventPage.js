@@ -14,8 +14,9 @@ class EventPage extends Component {
         this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
     }
 
-    renderRow(event) {
-        return <EventItem event={event}/>
+    renderRow(event, sectionID, rowID) {
+        console.log(rowID)
+        return <EventItem event={event} rowID={rowID}/>
     }
 
     render () {
@@ -23,9 +24,9 @@ class EventPage extends Component {
             <View style={styles.containerStyle}>
                 <Header headerText={'Event'}/>
                 <View style={{flex: 1}}>
-                    <ScrollView style={{ marginBottom: 50}}>
+                    <ScrollView style={{ marginBottom: 50, marginTop: 10}}>
                         <View>
-                            <ImageModal style={{marginBottom: 12}} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />
+                            {/*<ImageModal style={{marginBottom: 12}} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />*/}
                             <View style={styles.halfCardContainer}>
                                 <ListView contentContainerStyle={styles.halfCardContainer}
                                     dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}

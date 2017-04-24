@@ -19,6 +19,9 @@ const DrawerContent = (props) => {
                     </View>
                 </View>
             </TouchableOpacity>
+            <View style={styles.sectionMenu}>
+                <Text style={{color: 'white'}}>Follow</Text>
+            </View>
             <TouchableOpacity onPress={() => Actions.EventJoined() }>
                 <View style={menuStyle}>
                     <Image style={iconStyle} source={require(`../env/images/news.png`)} />
@@ -31,6 +34,16 @@ const DrawerContent = (props) => {
                     <Text style={textStyle}>News Favorite</Text>
                 </View>
             </TouchableOpacity>
+            <View style={styles.sectionMenu}>
+                <Text style={{color: 'white'}}>Chat</Text>
+            </View>
+            <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
+                <View style={menuStyle}>
+                    <Image style={iconStyle} source={require(`../env/images/chat.png`)} />
+                    <Text style={textStyle}>Chat with Admin</Text>
+                </View>
+            </TouchableOpacity>
+            <View style={styles.sectionMenu} />
             <TouchableOpacity onPress={() => console.log('drawer')}>
                 <View style={footerBar}>
                     <Image style={iconStyle} source={require(`../env/images/logout.png`)} />
@@ -87,6 +100,11 @@ const styles = {
         paddingLeft: 30,
         alignItems: 'center',
     },
+    sectionMenu: {
+        marginTop: 20,
+        marginBottom: 9,
+        marginLeft: 9
+    }
 }
 
 export { DrawerContent }
