@@ -5,25 +5,34 @@ import { Actions } from 'react-native-router-flux'
 const Header = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
-    const rightIcon = props.rightIcon == 'edit' ? <EditHeader /> : <View style={headerIcon} />
+
+    const rightIcon = () => {
+        if (props.rightIcon == 'edit') { return <EditHeader /> }
+        else if (props.rightIcon == 'no') {return <View style={headerIcon} />}
+        else { return <SearchHeader /> }
+    }
 
     return (
         <View style={props.style}>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
-                <TouchableOpacity onPress={() => Actions.refresh({key: 'drawer', open: true})}>
-                    <View>
-                        <Image style={headerIcon} source={require('../env/images/menu-button.png')} />
-                    </View>
-                </TouchableOpacity>
+                <View style={headerIcon}></View>
                 <View>
                     <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
-                {rightIcon}
+                {rightIcon()}
             </View>
         </View>
     )
 }
+
+const SearchHeader = () => (
+    <TouchableOpacity onPress={() => Actions.SearchPage()}>
+        <View>
+            <Image style={styles.headerIcon} source={require('../env/images/search.png')} />
+        </View>
+    </TouchableOpacity>
+)
 
 const EditHeader = () => (
     <TouchableOpacity onPress={() => Actions.editProfile()}>

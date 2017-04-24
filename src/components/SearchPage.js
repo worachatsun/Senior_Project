@@ -50,14 +50,16 @@ class SearchPage extends Component {
         console.log(this.props)
         return (
             <View style={styles.container}>
-                <Header headerText={'Search'} />
-                <TextInput
-                    style={styles.searchBar}
-                    value={this.state.searchText}
-                    onChangeText={this.setSearchText}
-                    placeholder={'Search'}
-                    autoCorrect={false}
-                />
+                <Header headerText={'Search'} rightIcon={'no'}/>
+                <View>
+                    <TextInput
+                        style={styles.searchBar}
+                        value={this.state.searchText}
+                        onChangeText={this.setSearchText}
+                        placeholder={'Search'}
+                        autoCorrect={false}
+                    />
+                </View>
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}

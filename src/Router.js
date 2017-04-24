@@ -21,13 +21,19 @@ import EditProfile from './components/EditProfile'
 import LoginPage from './components/LoginPage'
 import Test from './components/Test'
 import SignupComponent from './components/SignupComponent'
+import { DrawerContent } from './common/DrawerContent'
 
 class TabIcon extends Component {
     iconByName = (iconName) => {
         switch (iconName) {
-            case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`);
-            case "search": return this.props.selected ? require(`./env/images/search.png`) : require(`./env/images/search_black.png`);
-            case "profile": return this.props.selected ? require(`./env/images/profile.png`) : require(`./env/images/profile_black.png`);
+            // case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`)
+            // case "search": return this.props.selected ? require(`./env/images/search.png`) : require(`./env/images/search_black.png`)
+            // case "profile": return this.props.selected ? require(`./env/images/profile.png`) : require(`./env/images/profile_black.png`)
+            case "event": return this.props.selected ? require(`./env/images/event.png`) : require(`./env/images/event_black.png`)
+            case "news": return this.props.selected ? require(`./env/images/news.png`) : require(`./env/images/news_black.png`)
+            case "donation": return this.props.selected ? require(`./env/images/donation.png`) : require(`./env/images/donation_black.png`)
+            case "career": return this.props.selected ? require(`./env/images/career.png`) : require(`./env/images/career_black.png`)
+            case "menu": return this.props.selected ? require(`./env/images/menu.png`) : require(`./env/images/menu_black.png`)
         }
     }
 
@@ -46,17 +52,23 @@ class RouterComponent extends Component {
     render () {
         return (
             <Router hideNavBar={true}>
-                <Scene key="drawer" component={DrawerComponent} open={false} >
+                {/*<Scene key="drawer" component={DrawerComponent} open={false} >*/}
                     <Scene key="root" >
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            <Scene key="Home" title="home" icon={TabIcon}>
+                            {/*<Scene key="Home" title="home" icon={TabIcon}>
                                 <Scene key="News" component={NewsPage} />
                                 <Scene key="Event" component={EventPage} />
                                 <Scene key="Donation"  component={DonationPage} />
                                 <Scene key="Career" component={CareerPage} />
                             </Scene>
-                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />
-                            <Scene key="ProfilePage" component={ProfilePage} icon={TabIcon} title="profile" />
+                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />*/}
+                            <Scene key="News" component={NewsPage} icon={TabIcon} title="news"/>
+                            <Scene key="Event" component={EventPage} icon={TabIcon} title="event" />
+                            <Scene key="Donation"  component={DonationPage} icon={TabIcon} title="donation"/>
+                            <Scene key="Career" component={CareerPage} icon={TabIcon} title="career"/>
+                            <Scene key="Menu" component={DrawerContent} icon={TabIcon} title="menu"/>
+                            <Scene key="ProfilePage" component={ProfilePage} title="profile" />
+                            <Scene key="SearchPage" component={SearchPage} title="news" />
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" hideNavBar hideNavBar />                  
@@ -72,7 +84,7 @@ class RouterComponent extends Component {
                         <Scene key="pro" component={Test}/>
                         <Scene key="signup" component={SignupComponent}/>
                     </Scene>
-                </Scene>
+                {/*</Scene>*/}
             </Router>
         )
     }

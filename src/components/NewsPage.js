@@ -15,9 +15,19 @@ import AllNewsFaculty from './AllNewsFaculty'
 
 class NewsPage extends Component {
 
-    componentWillMount() {
-        Actions.refresh({key: 'drawer', open: false})
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            index: 0
+        }
     }
+
+    onPress(index) {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+
+    this.setState({index})
+  }
 
     render () {
         return (

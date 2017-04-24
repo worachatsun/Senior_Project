@@ -35,14 +35,14 @@ export const getTicket = (user_id, event_id, coupon = null) => (dispatch) => {
     if(coupon){
         url = POST_EVENT_BY_COUPON
         promise = axios.post(url, {
-            "user_id" : "58d7b1b31200407006609a79",
+            "user_id" : "58fa5cd404717a4c19ebdb77",
             "join_event": event_id,
             "coupon": coupon
         })
     }else{
         url = POST_EVENT_JOINER
         promise = axios.post(url, {
-            "user_id" : "58d7b1b31200407006609a79",
+            "user_id" : "58fa5cd404717a4c19ebdb77",
             "join_event": event_id
         })
     }

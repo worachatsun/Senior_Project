@@ -9,7 +9,7 @@ import EventItem from './EventItem'
 class EventPage extends Component {
 
     componentWillMount() {
-        Actions.refresh({key: 'drawer', open: false})
+        //Actions.refresh({key: 'drawer', open: false})
         this.props.fetchEvent()
         this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
     }

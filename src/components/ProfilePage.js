@@ -7,7 +7,7 @@ import NewsFavorite from './NewsFavorite'
 class ProfilePage extends Component {
 
     componentWillMount() {
-        Actions.refresh({key: 'drawer', open: false})
+        //Actions.refresh({key: 'drawer', open: false})
     }
 
 

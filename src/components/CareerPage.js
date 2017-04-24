@@ -27,7 +27,7 @@ class CareerPage extends Component {
     }
 
     componentWillMount() {
-        Actions.refresh({key: 'drawer', open: false})
+        //Actions.refresh({key: 'drawer', open: false})
         this.setState({
             loading: true
         })

@@ -19,7 +19,7 @@ export const FavoriteNews = (favorite_news, status) => {
     else if (status === 'delete')
         url = POST_DELETE_FAVORITE_NEWS
     const promise = axios.post(url, {
-        "user_id" : "58d7b1b31200407006609a79",
+        "user_id" : "58fa5cd404717a4c19ebdb77",
         "favorite_news": favorite_news
     })
 
@@ -35,7 +35,7 @@ export const FavoriteNews = (favorite_news, status) => {
 
 export const checkFavoriteNews = favorite_news => {
     const promise = axios.post(POST_CHECK_FAVORITE_NEWS, {
-        "user_id" : "58d7b1b31200407006609a79",
+        "user_id" : "58fa5cd404717a4c19ebdb77",
         "favorite_news": favorite_news
     })
 
@@ -50,7 +50,7 @@ export const checkFavoriteNews = favorite_news => {
 }
 
 export const fetchFavoriteNews = () => {
-    const promise = axios.get(GET_ALL_FAVORITE_NEWS+"/"+'58d7b1b31200407006609a79')
+    const promise = axios.get(GET_ALL_FAVORITE_NEWS+"/"+'58fa5cd404717a4c19ebdb77')
     
     return (dispatch) => {
         promise.then(({data}) => {
@@ -63,7 +63,7 @@ export const fetchFavoriteNews = () => {
 }
 
 export const fetchJoinedEvent = () => {
-    const promise = axios.get(GET_JOINED_EVENT+"/"+'58d7b1b31200407006609a79')
+    const promise = axios.get(GET_JOINED_EVENT+"/"+'58fa5cd404717a4c19ebdb77')
     
     return (dispatch) => {
         promise.then(({data}) => {
