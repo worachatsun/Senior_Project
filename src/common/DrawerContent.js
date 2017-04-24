@@ -37,7 +37,7 @@ const DrawerContent = (props) => {
             <View style={styles.sectionMenu}>
                 <Text style={{color: 'white'}}>Chat</Text>
             </View>
-            <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
+            <TouchableOpacity onPress={() => Actions.chat() }>
                 <View style={menuStyle}>
                     <Image style={iconStyle} source={require(`../env/images/chat.png`)} />
                     <Text style={textStyle}>Chat with Admin</Text>

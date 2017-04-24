@@ -47,7 +47,6 @@ class SearchPage extends Component {
     }
 
     render () {
-        console.log(this.props)
         return (
             <View style={styles.container}>
                 <ModalHeaderPlain headerText={'Search'} backSign={true}/>
@@ -64,7 +63,7 @@ class SearchPage extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
                     enableEmptySections={true}
-                    style={{marginTop: 10, marginBottom: 50}}
+                    style={{marginTop: 10}}
                 />
             </View>
         )

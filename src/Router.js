@@ -22,6 +22,7 @@ import LoginPage from './components/LoginPage'
 import Test from './components/Test'
 import SignupComponent from './components/SignupComponent'
 import { DrawerContent } from './common/DrawerContent'
+import ChatPage from './components/ChatPage'
 
 class TabIcon extends Component {
     iconByName = (iconName) => {
@@ -84,6 +85,7 @@ class RouterComponent extends Component {
                         <Scene key="signup" component={SignupComponent}/>
                         <Scene key="SearchPage" component={SearchPage} />
                         <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
+                        <Scene key="chat" component={ChatPage} />
                     </Scene>
                 {/*</Scene>*/}
             </Router>
