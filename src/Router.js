@@ -31,7 +31,7 @@ class TabIcon extends Component {
 
     return (
       <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
-        <Icon style={{color: color}} name={this.props.iconName || "circle"} size={22}/>
+        <Icon style={{color: color}} name={this.props.iconName || "comment-alert-outline"} size={22}/>
         <Text style={{color: color, fontSize: 10}}>{this.props.title}</Text>
       </View>
     )

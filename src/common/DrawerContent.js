@@ -1,5 +1,6 @@
 import React, { Proptype } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
 import { CardSection, RoundImage } from '../common'
 
@@ -24,13 +25,13 @@ const DrawerContent = (props) => {
             </View>
             <TouchableOpacity onPress={() => Actions.EventJoined() }>
                 <View style={menuStyle}>
-                    <Image style={iconStyle} source={require(`../env/images/news.png`)} />
+                    <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
                     <Text style={textStyle}>Event Joined</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
                 <View style={menuStyle}>
-                    <Image style={iconStyle} source={require(`../env/images/event.png`)} />
+                    <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
                     <Text style={textStyle}>News Favorite</Text>
                 </View>
             </TouchableOpacity>
@@ -39,14 +40,14 @@ const DrawerContent = (props) => {
             </View>
             <TouchableOpacity onPress={() => Actions.chat() }>
                 <View style={menuStyle}>
-                    <Image style={iconStyle} source={require(`../env/images/chat.png`)} />
+                    <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"comment-text"} size={20}/>
                     <Text style={textStyle}>Chat with Admin</Text>
                 </View>
             </TouchableOpacity>
             <View style={styles.sectionMenu} />
             <TouchableOpacity onPress={() => console.log('drawer')}>
                 <View style={footerBar}>
-                    <Image style={iconStyle} source={require(`../env/images/logout.png`)} />
+                    <Icon style={[{color: 'red'}, iconStyle]} name={"logout-variant"} size={20}/>
                     <Text style={{color: 'red', margin: 5}}>Logout</Text>
                 </View>
             </TouchableOpacity>
@@ -82,8 +83,6 @@ const styles = {
         margin: 5
     },
     iconStyle: {
-        width: 20,
-        height: 20,
         marginRight: 10
     },
     roundImage: {
