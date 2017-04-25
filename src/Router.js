@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, Image } from 'react-native'
+import { Text, Image, View } from 'react-native'
 import { Scene, Router, TabBar, Modal } from 'react-native-router-flux'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
 import ModalContent from './common/ModalContent'
@@ -25,27 +26,16 @@ import { DrawerContent } from './common/DrawerContent'
 import ChatPage from './components/ChatPage'
 
 class TabIcon extends Component {
-    iconByName = (iconName) => {
-        switch (iconName) {
-            // case "home": return this.props.selected ? require(`./env/images/home.png`) : require(`./env/images/home_black.png`)
-            // case "search": return this.props.selected ? require(`./env/images/search.png`) : require(`./env/images/search_black.png`)
-            // case "profile": return this.props.selected ? require(`./env/images/profile.png`) : require(`./env/images/profile_black.png`)
-            case "event": return this.props.selected ? require(`./env/images/event.png`) : require(`./env/images/event_black.png`)
-            case "news": return this.props.selected ? require(`./env/images/news.png`) : require(`./env/images/news_black.png`)
-            case "donation": return this.props.selected ? require(`./env/images/donation.png`) : require(`./env/images/donation_black.png`)
-            case "career": return this.props.selected ? require(`./env/images/career.png`) : require(`./env/images/career_black.png`)
-            case "menu": return this.props.selected ? require(`./env/images/menu.png`) : require(`./env/images/menu_black.png`)
-        }
-    }
+  render() {
+    var color = this.props.selected ? '#FF7F11' : '#301c2a'
 
-    render(){
-        return (
-            <Image 
-                style={styles.iconStyle}
-                source={this.iconByName(this.props.title)} 
-            />
-        )
-    }
+    return (
+      <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
+        <Icon style={{color: color}} name={this.props.iconName || "circle"} size={22}/>
+        <Text style={{color: color, fontSize: 10}}>{this.props.title}</Text>
+      </View>
+    )
+  }
 }
 
 class RouterComponent extends Component {
@@ -63,11 +53,11 @@ class RouterComponent extends Component {
                                 <Scene key="Career" component={CareerPage} />
                             </Scene>
                             <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />*/}
-                            <Scene key="News" component={NewsPage} icon={TabIcon} title="news"/>
-                            <Scene key="Event" component={EventPage} icon={TabIcon} title="event" />
-                            <Scene key="Donation"  component={DonationPage} icon={TabIcon} title="donation"/>
-                            <Scene key="Career" component={CareerPage} icon={TabIcon} title="career"/>
-                            <Scene key="Menu" component={DrawerContent} icon={TabIcon} title="menu"/>
+                            <Scene key="News" component={NewsPage} icon={TabIcon} iconName={'newspaper'} title="NEWS"/>
+                            <Scene key="Event" component={EventPage} icon={TabIcon} iconName={'calendar-text'} title="EVENT" />
+                            <Scene key="Donation"  component={DonationPage} icon={TabIcon} iconName={'coin'} title="DONATION"/>
+                            <Scene key="Career" component={CareerPage} icon={TabIcon} iconName={'worker'} title="CAREER"/>
+                            <Scene key="Menu" component={DrawerContent} icon={TabIcon} iconName={'menu'} title="MENU"/>
                             {/*<Scene key="ProfilePage" component={ProfilePage} title="menu" />*/}
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
