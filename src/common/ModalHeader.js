@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
 import * as actions from '../actions'
 
@@ -18,7 +19,7 @@ const ModalHeader = (props) => {
                     Actions.pop()
                     }}>
                     <View>
-                        <Image style={headerIcon} source={require('../env/images/close.png')} />
+                        <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={'close'} size={25}/>
                     </View>
                 </TouchableOpacity>
                 <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
@@ -39,7 +40,7 @@ const ModalHeader = (props) => {
 export const ModalHeaderPlain = (props) => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
-    const backSign = props.backSign ? require('../env/images/left-arrow.png') : require('../env/images/close.png')
+    const backSign = props.backSign ? 'arrow-left' : 'close'
 
     return (
         <View style={props.style}>
@@ -49,7 +50,7 @@ export const ModalHeaderPlain = (props) => {
                     Actions.pop()
                     }}>
                     <View>
-                        <Image style={headerIcon} source={backSign} />
+                        <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={backSign} size={25}/>
                     </View>
                 </TouchableOpacity>
                 <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
@@ -99,6 +100,9 @@ const styles = {
         width: 13,
         height: 13,
         margin: 10
+    },
+    vectorIcon: {
+        marginLeft: 10
     },
     starIcon: {
         width: 20,

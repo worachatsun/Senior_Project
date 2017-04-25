@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
 
 const Header = (props) => {
@@ -33,7 +34,8 @@ const Header = (props) => {
 const BackIcon = () => (
     <TouchableOpacity onPress={() => Actions.pop()}>
         <View>
-            <Image style={styles.headerIcon} source={require('../env/images/left-arrow.png')} />
+            {/*<Image style={styles.headerIcon} source={require('../env/images/left-arrow.png')} />*/}
+            <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={"arrow-left"} size={22}/>
         </View>
     </TouchableOpacity>
 )
@@ -41,7 +43,8 @@ const BackIcon = () => (
 const SearchHeader = () => (
     <TouchableOpacity onPress={() => Actions.SearchPage()}>
         <View>
-            <Image style={styles.headerIcon} source={require('../env/images/search.png')} />
+            {/*<Image style={styles.headerIcon} source={require('../env/images/search.png')} />*/}
+            <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={"magnify"} size={24}/>
         </View>
     </TouchableOpacity>
 )
@@ -88,6 +91,9 @@ const styles = {
     headerIcon: {
         width: 20,
         height: 20,
+        margin: 11
+    },
+    vectorIcon: {
         margin: 11
     }
 }
