@@ -47,26 +47,46 @@ class SearchPage extends Component {
     }
 
     render () {
-        return (
-            <View style={styles.container}>
-                <ModalHeaderPlain headerText={'Search'} backSign={true}/>
-                <View>
-                    <TextInput
-                        style={styles.searchBar}
-                        value={this.state.searchText}
-                        onChangeText={this.setSearchText}
-                        placeholder={'Search'}
-                        autoCorrect={false}
+        if(this.state.searchText){
+            return (
+                <View style={styles.container}>
+                    <ModalHeaderPlain headerText={'Search'} backSign={true}/>
+                    <View>
+                        <TextInput
+                            style={styles.searchBar}
+                            value={this.state.searchText}
+                            onChangeText={this.setSearchText}
+                            placeholder={'Search'}
+                            autoCorrect={false}
+                        />
+                    </View>
+                    <ListView
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow}
+                        enableEmptySections={true}
+                        style={{marginTop: 10}}
                     />
                 </View>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow}
-                    enableEmptySections={true}
-                    style={{marginTop: 10}}
-                />
-            </View>
-        )
+            )
+        }else{
+            return (
+                <View style={styles.container}>
+                    <ModalHeaderPlain headerText={'Search'} backSign={true}/>
+                    <View>
+                        <TextInput
+                            style={styles.searchBar}
+                            value={this.state.searchText}
+                            onChangeText={this.setSearchText}
+                            placeholder={'Search'}
+                            autoCorrect={false}
+                        />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+                        <Text style={{textAlign: 'center', color: '#333333', marginBottom: 10}}>Search for Topics, Shows or Authors</Text>
+                    </View>
+                </View>
+            )
+        }
     }
 }
 
