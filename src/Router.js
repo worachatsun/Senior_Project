@@ -24,6 +24,7 @@ import Test from './components/Test'
 import SignupComponent from './components/SignupComponent'
 import { DrawerContent } from './common/DrawerContent'
 import ChatPage from './components/ChatPage'
+import SearchPageEvent from './components/SearchPageEvent'
 
 class TabIcon extends Component {
   render() {
@@ -74,6 +75,7 @@ class RouterComponent extends Component {
                         <Scene key="pro" component={Test}/>
                         <Scene key="signup" component={SignupComponent}/>
                         <Scene key="SearchPage" component={SearchPage} />
+                        <Scene key="SearchPageEvent" component={SearchPageEvent} initial/>
                         <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
                         <Scene key="chat" component={ChatPage} />
                     </Scene>
