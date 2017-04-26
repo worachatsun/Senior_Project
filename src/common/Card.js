@@ -39,7 +39,6 @@ const BigCard = (props) => {
                     imageSource={{ uri: props.img }}
                     style={{ alignItems: 'stretch', height: 230 }}
                 />
-                {/*<Image source={{uri: props.img}} style={{resizeMode: 'stretch', width: null, height: 230}} />*/}
             </View>
             <View style={viewStyle}>
                 <Text style={textStyle} numberOfLines={2}>

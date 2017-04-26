@@ -39,10 +39,10 @@ class NewsPage extends Component {
                                         underlineStyle={{backgroundColor:"#FF7F11"}}
                                         activeTextColor="#FF7F11"
                                         inactiveTextColor="black"/>}>
-                    <View tabLabel="All" style={{flex: 1, marginBottom: 50}}>
+                    <View tabLabel="Information" style={{flex: 1, marginBottom: 50}}>
                         <AllNewsComponent />
                     </View>
-                    <View tabLabel="Faculty" style={{flex: 1, marginBottom: 50}}>
+                    <View tabLabel="Event" style={{flex: 1, marginBottom: 50}}>
                         <AllNewsFaculty />
                     </View>
                 </ScrollableTabView>   

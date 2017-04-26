@@ -27,7 +27,7 @@ class AllNewsFaculty extends Component {
         this.setState({
             loading: true
         })
-        this.props.fetchNewsFaculty('SIT', this.state.offset, this.state.limit).then(() => {
+        this.props.fetchNewsFaculty('Event', this.state.offset, this.state.limit).then(() => {
             this.setState({
                 loading: false
             })
@@ -36,7 +36,7 @@ class AllNewsFaculty extends Component {
 
     fetchEndReached() {
         setTimeout(() => {
-            this.props.fetchNewsFaculty('SIT', this.state.offset, this.state.limit)
+            this.props.fetchNewsFaculty('Event', this.state.offset, this.state.limit)
         }, 1500)
     }
 

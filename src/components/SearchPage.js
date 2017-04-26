@@ -82,7 +82,7 @@ class SearchPage extends Component {
                         />
                     </View>
                     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                        <Text style={{textAlign: 'center', color: '#333333', marginBottom: 10}}>Search for Topics, Shows or Authors</Text>
+                        <Text style={{textAlign: 'center', color: '#333333', marginBottom: 10}}>Search for Title</Text>
                     </View>
                 </View>
             )

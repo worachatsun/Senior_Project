@@ -15,7 +15,6 @@ class EventPage extends Component {
     }
 
     renderRow(event, sectionID, rowID) {
-        console.log(rowID)
         return <EventItem event={event} rowID={rowID}/>
     }
 
@@ -26,14 +25,18 @@ class EventPage extends Component {
                 <View style={{flex: 1}}>
                     <ScrollView style={{ marginBottom: 50, marginTop: 10}}>
                         <View>
-                            {/*<ImageModal style={{marginBottom: 12}} img={'https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg'} />*/}
-                            <View style={styles.halfCardContainer}>
-                                <ListView contentContainerStyle={styles.halfCardContainer}
+                            {/*<View style={styles.halfCardContainer}>*/}
+                                <ListView
                                     dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
                                     renderRow={this.renderRow.bind(this)}
                                     enableEmptySections={true}
                                 />
-                            </View>
+                                {/*<ListView contentContainerStyle={styles.halfCardContainer}
+                                    dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
+                                    renderRow={this.renderRow.bind(this)}
+                                    enableEmptySections={true}
+                                />*/}
+                            {/*</View>*/}
                         </View>
                     </ScrollView>
                 </View>

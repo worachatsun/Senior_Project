@@ -41,7 +41,7 @@ class ChatPage extends Component {
                 messages={this.state.messages}
                 onSend={this.onSend}
                 user={{
-                _id: 1,
+                    _id: 1,
                 }}
             />
         </View>

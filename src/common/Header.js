@@ -65,7 +65,7 @@ Header.PropTypes = {
     headerText: PropTypes.string.isRequired
 }
 
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0
 
 const styles = {
     textStyle: {
