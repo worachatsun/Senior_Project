@@ -43,7 +43,7 @@ class AllNewsFaculty extends Component {
 
     _onRefresh() {
         this.setState({refreshing: true});
-        this.props.fetchNewsFaculty('Event', this.state.offset, this.state.limit).then(() => {
+        this.props.fetchNewsFaculty('Event', 0, 20).then(() => {
             this.setState({refreshing: false});
         });
     }

@@ -20,6 +20,7 @@ class DonationPage extends Component{
             datas: [],
             limit: 20,
             offset: 0,
+            refreshing: false,
             loading: false
         }
 
@@ -49,7 +50,7 @@ class DonationPage extends Component{
 
     _onRefresh() {
         this.setState({refreshing: true})
-        this.props.fetchDonation(this.state.offset, this.state.limit).then(() => {
+        this.props.fetchDonation(0, 20).then(() => {
             this.setState({refreshing: false})
         })
     }
