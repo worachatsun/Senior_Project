@@ -69,7 +69,7 @@ class EventPage extends Component {
 
         return (
             <View style={styles.containerStyle}>
-                <Header headerText={'Event'}/>
+                <Header headerText={'Event'} route_to={'event'} />
                 <View style={{flex: 1}}>
                     <View style={{ marginBottom: 50, marginTop: 10}}>
                         {/*<View style={styles.halfCardContainer}>*/}

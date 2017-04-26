@@ -10,7 +10,7 @@ const Header = (props) => {
     const rightIcon = () => {
         if (props.rightIcon == 'edit') { return <EditHeader /> }
         else if (props.rightIcon == 'no') {return <View style={headerIcon} />}
-        else { return <SearchHeader /> }
+        else { return <SearchHeader route_to={props.route_to}/> }
     }
 
     const leftIcon = () => {
@@ -40,8 +40,17 @@ const BackIcon = () => (
     </TouchableOpacity>
 )
 
-const SearchHeader = () => (
-    <TouchableOpacity onPress={() => Actions.SearchPage()}>
+const searchTo = (searchTo) => {
+    switch (searchTo) {
+        case 'news' : return Actions.SearchPage()
+        case 'event' : return Actions.SearchPageEvent()
+        case 'donation' : return Actions.SearchPageDonation()
+        case 'career' : return Actions.SearchPageCareer()
+    }
+}
+
+const SearchHeader = (props) => (
+    <TouchableOpacity onPress={() => searchTo(props.route_to)}>
         <View>
             {/*<Image style={styles.headerIcon} source={require('../env/images/search.png')} />*/}
             <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={"magnify"} size={24}/>

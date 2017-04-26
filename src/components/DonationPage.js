@@ -70,7 +70,7 @@ class DonationPage extends Component{
         const { limit, dataSource } = this.state
         return (
             <View style={{flex: 1, backgroundColor: '#353535'}}>
-                <Header headerText={'Donation'}/>
+                <Header headerText={'Donation'} route_to={'donation'}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
                     initialListSize={limit}

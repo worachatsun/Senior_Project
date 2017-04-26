@@ -3,9 +3,9 @@ import { View, Text, TextInput, ListView } from 'react-native'
 import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import NewsItem from './NewsItem'
+import CareerItem from './CareerItem'
 
-class SearchPage extends Component {
+class SearchPageCareer extends Component {
     constructor(props) {
         super(props)
 
@@ -22,12 +22,12 @@ class SearchPage extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchAllNews()
+        this.props.fetchAllCareer()
     }
 
     setSearchText(searchText) {
         this.setState({searchText})
-        let filteredData = this.filterNotes(searchText, this.props.all_news)
+        let filteredData = this.filterNotes(searchText, this.props.all_career)
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(filteredData)
         })
@@ -37,20 +37,20 @@ class SearchPage extends Component {
         let text = searchText.toLowerCase()
 
         return notes.filter((n) => {
-            let note = n.news_title.toLowerCase();
+            let note = n.career_name.toLowerCase();
             return note.search(text) !== -1;
         })
     }
 
-    renderRow(news, sectionID, rowID) {
-        return <NewsItem ableBigCard={true} news={news} rowID={rowID}/>
+    renderRow(career, sectionID, rowID) {
+        return <CareerItem career={career} rowID={rowID}/>
     }
 
     render () {
         if(this.state.searchText){
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain headerText={'Search Career'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -71,7 +71,7 @@ class SearchPage extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain headerText={'Search Career'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -105,7 +105,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    return { all_news: state.newsList.all_news }
+    return { all_career: state.career.all_career }
 }
 
-export default connect(mapStateToProps, actions)(SearchPage)
+export default connect(mapStateToProps, actions)(SearchPageCareer)

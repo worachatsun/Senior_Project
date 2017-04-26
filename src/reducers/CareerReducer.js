@@ -1,7 +1,8 @@
-import { FETCH_CAREER } from '../actions/types'
+import { FETCH_CAREER, FETCH_ALL_CAREER } from '../actions/types'
 
 const INITIAL_STATE = {
-    fetchCareer: []
+    fetchCareer: [],
+    all_career: {}
 }
 
 export default ( state = INITIAL_STATE, action ) => {
@@ -10,6 +11,11 @@ export default ( state = INITIAL_STATE, action ) => {
             return {
                 ...state,
                 fetchCareer: action.payload
+            }
+        case FETCH_ALL_CAREER :
+            return {
+                ...state,
+                all_career: action.payload
             }
         default:
             return state

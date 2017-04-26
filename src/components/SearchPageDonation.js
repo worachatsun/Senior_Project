@@ -3,9 +3,9 @@ import { View, Text, TextInput, ListView } from 'react-native'
 import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import NewsItem from './NewsItem'
+import DonationItem from './DonationItem'
 
-class SearchPage extends Component {
+class SearchPageDonation extends Component {
     constructor(props) {
         super(props)
 
@@ -22,12 +22,12 @@ class SearchPage extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchAllNews()
+        this.props.fetchAllDonation()
     }
 
     setSearchText(searchText) {
         this.setState({searchText})
-        let filteredData = this.filterNotes(searchText, this.props.all_news)
+        let filteredData = this.filterNotes(searchText, this.props.all_donate)
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(filteredData)
         })
@@ -37,20 +37,21 @@ class SearchPage extends Component {
         let text = searchText.toLowerCase()
 
         return notes.filter((n) => {
-            let note = n.news_title.toLowerCase();
+            let note = n.project_name.toLowerCase();
             return note.search(text) !== -1;
         })
     }
 
-    renderRow(news, sectionID, rowID) {
-        return <NewsItem ableBigCard={true} news={news} rowID={rowID}/>
+    renderRow(donation, sectionID, rowID) {
+        return <DonationItem donation={donation} rowID={rowID+1}/>
     }
 
     render () {
+        console.log(this.props.all_donate)
         if(this.state.searchText){
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain headerText={'Search Donation'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -71,7 +72,7 @@ class SearchPage extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain headerText={'Search Donation'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -105,7 +106,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    return { all_news: state.newsList.all_news }
+    return { all_donate: state.donation.all_donate }
 }
 
-export default connect(mapStateToProps, actions)(SearchPage)
+export default connect(mapStateToProps, actions)(SearchPageDonation)

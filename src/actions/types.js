@@ -17,8 +17,10 @@ export const CHECK_EVENT_AVAILABLE = 'check_event_available'
 export const FETCH_JOINED_EVENT = 'fetch_joined_event'
 
 export const FETCH_DONATION = 'fetch_donation'
+export const FETCH_ALL_DONATION = 'fetch_all_donation'
 
 export const FETCH_CAREER = 'fetch_career'
+export const FETCH_ALL_CAREER = 'fetch_all_career'
 
 export const AUTH_USER = 'auth_user'
 export const UNAUTH_USER = 'unauth_user'

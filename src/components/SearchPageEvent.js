@@ -71,7 +71,7 @@ class SearchPageEvent extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search'} backSign={true}/>
+                    <ModalHeaderPlain headerText={'Search Event'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}

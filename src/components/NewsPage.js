@@ -32,7 +32,7 @@ class NewsPage extends Component {
     render () {
         return (
             <View style={styles.container}>
-                <Header headerText={'News'}/>
+                <Header headerText={'News'} route_to={'news'}/>
                 <ScrollableTabView
                  renderTabBar={() => <DefaultTabBar 
                                         style={styles.tabbar} 
