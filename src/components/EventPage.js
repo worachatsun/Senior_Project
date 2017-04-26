@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ScrollView, ListView, Dimensions } from 'react-native'
+import { View, ScrollView, ListView, Dimensions, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -8,37 +8,105 @@ import EventItem from './EventItem'
 
 class EventPage extends Component {
 
+    constructor(props) {
+        super(props)
+
+        const dataDs = new ListView.DataSource({
+            rowHasChanged: () => (r1, r2) => r1.id !== r2.id
+        })
+
+        this.state = {
+            dataSource: dataDs.cloneWithRows([]),
+            datas: [],
+            limit: 20,
+            offset: 0,
+            refreshing: false,
+            loading: false
+        }
+
+        this.fetchEndReached = this.fetchEndReached.bind(this)
+    }
+
+    _onRefresh() {
+        this.setState({refreshing: true})
+        this.props.fetchEvent(this.state.offset, this.state.limit).then(() => {
+            this.setState({refreshing: false})
+        })
+    }
+
     componentWillMount() {
-        //Actions.refresh({key: 'drawer', open: false})
-        this.props.fetchEvent()
-        this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
+        this.setState({
+            loading: true
+        })
+        this.props.fetchEvent(this.state.offset, this.state.limit).then(() => {
+            this.setState({
+                loading: false
+            })
+        })
+    }
+
+    componentWillReceiveProps(nextProps){
+        const datas = this.state.datas.concat(nextProps.eventList)
+        this.setState({
+            datas,
+            dataSource: this.state.dataSource.cloneWithRows(datas),
+            offset: this.state.offset + 20
+        })
     }
 
     renderRow(event, sectionID, rowID) {
         return <EventItem event={event} rowID={rowID}/>
     }
 
+    fetchEndReached() {
+        setTimeout(() => {
+            this.props.fetchEvent(this.state.offset, this.state.limit)
+        }, 1500)
+    }
+
     render () {
+        const { limit, dataSource } = this.state
+
         return (
             <View style={styles.containerStyle}>
                 <Header headerText={'Event'}/>
                 <View style={{flex: 1}}>
-                    <ScrollView style={{ marginBottom: 50, marginTop: 10}}>
-                        <View>
-                            {/*<View style={styles.halfCardContainer}>*/}
-                                <ListView
-                                    dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
-                                    renderRow={this.renderRow.bind(this)}
-                                    enableEmptySections={true}
-                                />
-                                {/*<ListView contentContainerStyle={styles.halfCardContainer}
-                                    dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
-                                    renderRow={this.renderRow.bind(this)}
-                                    enableEmptySections={true}
-                                />*/}
-                            {/*</View>*/}
-                        </View>
-                    </ScrollView>
+                    <View style={{ marginBottom: 50, marginTop: 10}}>
+                        {/*<View style={styles.halfCardContainer}>*/}
+                            {/*<ListView
+                                dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
+                                renderRow={this.renderRow.bind(this)}
+                                enableEmptySections={true}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this._onRefresh.bind(this)}
+                                    />
+                                }
+                            />*/}
+
+                            <ListView
+                                contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
+                                initialListSize={limit}
+                                dataSource={dataSource}
+                                renderRow={this.renderRow.bind(this)}
+                                enableEmptySections={true}
+                                onEndReached={this.fetchEndReached}
+                                onEndReachedThreshold={100}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this._onRefresh.bind(this)}
+                                    />
+                                }
+                            />
+                            {/*<ListView contentContainerStyle={styles.halfCardContainer}
+                                dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}
+                                renderRow={this.renderRow.bind(this)}
+                                enableEmptySections={true}
+                            />*/}
+                        {/*</View>*/}
+                    </View>
                 </View>
             </View>
         )
@@ -59,7 +127,7 @@ const styles = {
 
 const mapStateToProps = state => {
     return { 
-        event: state.event
+        eventList: state.event.fetchEvent
     }
 }
 

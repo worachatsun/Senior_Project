@@ -6,8 +6,9 @@ import {
     POST_CHECK_EVENT_AVAILABLE
 } from '../api'
 import { Alert } from 'react-native'
-import { SELECT_EVENT, FETCH_EVENT, ADD_USER_EVENT, CHECK_EVENT_AVAILABLE } from './types'
+import { SELECT_EVENT, FETCH_EVENT, FETCH_ALL_EVENT, ADD_USER_EVENT, CHECK_EVENT_AVAILABLE } from './types'
 import { Actions } from 'react-native-router-flux'
+import { addAlert } from './AlertActions'
 
 export const selectEvent = (eventId) => {
     return {
@@ -16,16 +17,31 @@ export const selectEvent = (eventId) => {
     }
 }
 
-export const fetchEvent = () => {
+export const fetchAllEvent = () => {
     const promise = axios.get(GET_EVENT_URL)
     
     return (dispatch) => {
         promise.then(({data}) => {
             dispatch({
-                type: FETCH_EVENT,
+                type: FETCH_ALL_EVENT,
                 payload: data
             })
         })  
+    }
+}
+
+export const fetchEvent = (offset=0, limit=15) => {
+    const promise = axios.get(`${GET_EVENT_URL}/${offset}/${limit}`)
+    
+    return (dispatch) => {
+        return promise.then(({data}) => {
+            dispatch({
+                type: FETCH_EVENT,
+                payload: data
+            })
+        }).catch(error => {
+            dispatch(addAlert('fetch news'))
+        })
     }
 }
 

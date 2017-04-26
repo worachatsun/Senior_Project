@@ -41,8 +41,7 @@ class ModalContentEvent extends Component {
                 </ScrollView>
                 <TouchableOpacity onPress={() => Actions.modalTicket({modalEvent: this.props.modalContent})}>
                     <View style={styles.footerBar}>
-                        <Text style={{ color: 'white' }}>FREE</Text>
-                        <Text style={{ color: 'white', fontWeight: 'bold' }}>GET TICKETS</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold' }}>JOIN EVENT</Text>
                     </View>
                 </TouchableOpacity>
             </View>

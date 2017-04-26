@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, ListView } from 'react-native'
+import { View, Text, ScrollView, ListView, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -20,10 +20,18 @@ class CareerPage extends Component {
             datas: [],
             limit: 20,
             offset: 0,
+            refreshing: false,
             loading: false
         }
 
         this.fetchEndReached = this.fetchEndReached.bind(this)
+    }
+
+    _onRefresh() {
+        this.setState({refreshing: true});
+        this.props.fetchCareer(this.state.offset, this.state.limit).then(() => {
+            this.setState({refreshing: false});
+        });
     }
 
     componentWillMount() {
@@ -70,6 +78,12 @@ class CareerPage extends Component {
                     enableEmptySections={true}
                     onEndReached={this.fetchEndReached}
                     onEndReachedThreshold={100}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)}
+                        />
+                    }
                 />
             </View>
         )

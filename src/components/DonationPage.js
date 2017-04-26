@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView, TouchableOpacity, ListView } from 'react-native'
+import { Text, View, Image, ScrollView, TouchableOpacity, ListView, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -47,6 +47,13 @@ class DonationPage extends Component{
         })
     }
 
+    _onRefresh() {
+        this.setState({refreshing: true})
+        this.props.fetchDonation(this.state.offset, this.state.limit).then(() => {
+            this.setState({refreshing: false})
+        })
+    }
+
     renderRow(donation, sectionID, rowID) {
         return <DonationItem donation={donation} rowID={rowID}/>
     }
@@ -71,6 +78,12 @@ class DonationPage extends Component{
                     enableEmptySections={true}
                     onEndReached={this.fetchEndReached}
                     onEndReachedThreshold={100}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)}
+                        />
+                    }
                 />
             </View>
         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { View, Text, ListView } from 'react-native'
+import { View, Text, ListView, RefreshControl } from 'react-native'
 import NewsItem from './NewsItem'
 
 class AllNewsComponent extends Component {
@@ -17,10 +17,18 @@ class AllNewsComponent extends Component {
             datas: [],
             limit: 20,
             offset: 0,
+            refreshing: false,
             loading: false
         }
 
         this.fetchEndReached = this.fetchEndReached.bind(this)
+    }
+
+    _onRefresh() {
+        this.setState({refreshing: true})
+        this.props.fetchNews(this.state.offset, this.state.limit).then(() => {
+            this.setState({refreshing: false})
+        })
     }
 
     componentWillMount() {
@@ -64,6 +72,12 @@ class AllNewsComponent extends Component {
                 enableEmptySections={true}
                 onEndReached={this.fetchEndReached}
                 onEndReachedThreshold={100}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh.bind(this)}
+                    />
+                }
             />
         )
     }
