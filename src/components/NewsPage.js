@@ -30,6 +30,8 @@ class NewsPage extends Component {
   }
 
     render () {
+        const fromOutside = this.props.fromOutside ? {} : {marginBottom: 50}
+
         return (
             <View style={styles.container}>
                 <Header headerText={'News'} route_to={'news'}/>
@@ -39,10 +41,10 @@ class NewsPage extends Component {
                                         underlineStyle={{backgroundColor:"#FF7F11"}}
                                         activeTextColor="#FF7F11"
                                         inactiveTextColor="black"/>}>
-                    <View tabLabel="Information" style={{flex: 1, marginBottom: 50}}>
+                    <View tabLabel="Information" style={[{flex: 1}, fromOutside]}>
                         <AllNewsComponent />
                     </View>
-                    <View tabLabel="Event" style={{flex: 1, marginBottom: 50}}>
+                    <View tabLabel="Event" style={[{flex: 1}, fromOutside]}>
                         <AllNewsFaculty />
                     </View>
                 </ScrollableTabView>   
@@ -77,6 +79,10 @@ const mapStateToProps = state => {
         isOpen, 
         selectNewsId: state.selectedNewsId 
     }
+}
+
+NewsPage.defaultProps = {
+    fromOutside: false
 }
 
 export default connect(mapStateToProps, actions)(NewsPage)
