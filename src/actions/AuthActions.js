@@ -1,13 +1,14 @@
 import axios from 'axios'
 //import * as Keychain from 'react-native-keychain'
 import { AUTH_USER, UNAUTH_USER } from './types'
-import { SIGNIN_URL, SIGNUP_URL } from '../api'
+import { SIGNIN_URL, SIGNUP_URL, SIGNIN_LDAP_URL } from '../api'
 import { addAlert } from './AlertActions'
+import { Actions } from 'react-native-router-flux'
 
-export const authUser = user_id => {
+export const authUser = user_detail => {
     return {
         type: AUTH_USER,
-        payload: user_id
+        payload: user_detail
     }
 }
 
@@ -25,8 +26,33 @@ export const loginUser = (email, password) => {
             //     }).catch(error => {
             //         dispatch(addAlert('Could not login credential'))
             //     })
+            console.log(response.data)
             dispatch(addAlert(token))
             dispatch(authUser(user_id))
+        }).catch(error => {
+            dispatch(addAlert('Could not login'))
+        })
+    }
+}
+
+export const loginLdap = (username, password) => {
+    return function(dispatch) {
+        return axios.post(SIGNIN_LDAP_URL, {
+            "username": username, 
+            "password": password
+        }).then(response => {
+            //console.log(response.data)
+            const { uid, token } = response.data
+            // Keychain.setGenericPassword(user_id, token)
+            //     .then(function() {
+            //         dispatch(addAlert(token))
+            //         dispatch(authUser(user_id))
+            //     }).catch(error => {
+            //         dispatch(addAlert('Could not login credential'))
+            //     })
+            //dispatch(addAlert(token))
+            Actions.tabbar()
+            dispatch(authUser(response.data))
         }).catch(error => {
             dispatch(addAlert('Could not login'))
         })

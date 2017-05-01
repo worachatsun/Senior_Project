@@ -22,7 +22,7 @@ import EditProfile from './components/EditProfile'
 import LoginPage from './components/LoginPage'
 import Test from './components/Test'
 import SignupComponent from './components/SignupComponent'
-import { DrawerContent } from './common/DrawerContent'
+import DrawerContent from './common/DrawerContent'
 import ChatPage from './components/ChatPage'
 import SearchPageEvent from './components/SearchPageEvent'
 import SearchPageDonation from './components/SearchPageDonation'
@@ -47,22 +47,13 @@ class RouterComponent extends Component {
     render () {
         return (
             <Router hideNavBar={true}>
-                {/*<Scene key="drawer" component={DrawerComponent} open={false} >*/}
                     <Scene key="root" >
                         <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            {/*<Scene key="Home" title="home" icon={TabIcon}>
-                                <Scene key="News" component={NewsPage} />
-                                <Scene key="Event" component={EventPage} />
-                                <Scene key="Donation"  component={DonationPage} />
-                                <Scene key="Career" component={CareerPage} />
-                            </Scene>
-                            <Scene key="SearchPage" component={SearchPage} icon={TabIcon} title="search" />*/}
                             <Scene key="News" component={NewsPage} icon={TabIcon} iconName={'newspaper'} title="NEWS"/>
                             <Scene key="Event" component={EventPage} icon={TabIcon} iconName={'calendar-text'} title="EVENT" />
                             <Scene key="Donation"  component={DonationPage} icon={TabIcon} iconName={'coin'} title="DONATION"/>
                             <Scene key="Career" component={CareerPage} icon={TabIcon} iconName={'worker'} title="CAREER"/>
                             <Scene key="Menu" component={DrawerContent} icon={TabIcon} iconName={'menu'} title="MENU"/>
-                            {/*<Scene key="ProfilePage" component={ProfilePage} title="menu" />*/}
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
                         <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" hideNavBar hideNavBar />                  
@@ -74,7 +65,7 @@ class RouterComponent extends Component {
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
-                        <Scene key="login" component={LoginPage} />
+                        <Scene key="login" component={LoginPage} initial/>
                         <Scene key="pro" component={Test}/>
                         <Scene key="signup" component={SignupComponent}/>
                         <Scene key="SearchPage" component={SearchPage} />
@@ -85,7 +76,6 @@ class RouterComponent extends Component {
                         <Scene key="chat" component={ChatPage} />
                         <Scene key="first" component={AllowAllUserNews}/>
                     </Scene>
-                {/*</Scene>*/}
             </Router>
         )
     }

@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-import { View, Text, TextInput, TouchableOpacity, Image, StatusBar, Platform } from 'react-native'
+import { 
+    View, 
+    Text, 
+    TextInput, 
+    TouchableOpacity, 
+    Image, 
+    StatusBar, 
+    Platform, 
+    Linking 
+} from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
@@ -31,11 +40,15 @@ class LoginPage extends Component {
         this.setState({
             loading: true
         })
-        this.props.loginUser(email, password).then(() => {
+        this.props.loginLdap(email, password).then(() => {
             this.setState({
                 loading: false
             })
         })
+    }
+
+    onForgetPassword() {
+        Linking.openURL('https://accountrecovery.kmutt.ac.th/changepwd/changepasswdTH.php').catch(err => console.error('An error occurred', err))
     }
 
     render() {
@@ -59,10 +72,10 @@ class LoginPage extends Component {
                             <Text style={styles.title}>Alumni</Text>
                         </View>
                         <View style={styles.field}>
-                            <TextInput value={email} onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
+                            <TextInput value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
                         </View>
                         <View style={styles.field}>
-                            <TextInput value={password} onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
+                            <TextInput value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                             <TouchableOpacity onPress={this.onSignIn}>
@@ -73,7 +86,7 @@ class LoginPage extends Component {
                             </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={this.onForgetPassword}>
                                 <Text style={{ color: '#ff7f11' }}>Forget password ?</Text>
                             </TouchableOpacity>
                         </View>
@@ -138,4 +151,9 @@ const styles = {
     },
 }
 
-export default connect(null, actions)(LoginPage)
+const mapStateToProps = state => {
+    console.log(state)
+    return { a: state }
+}
+
+export default connect(mapStateToProps, actions)(LoginPage)

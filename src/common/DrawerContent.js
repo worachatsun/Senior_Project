@@ -1,10 +1,23 @@
 import React, { Proptype, Component } from 'react'
 import { View, Text, Image, TouchableOpacity, StatusBar, Platform } from 'react-native'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
 import { CardSection, RoundImage } from '../common'
 
 class DrawerContent extends Component {
+    constructor(props) {
+        super(props)
+
+        this.onLogout = this.onLogout.bind(this)
+    }
+
+    onLogout() {
+        this.props.unauthUser()
+        return Actions.login()
+    }
+
     render() {
         const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle, footerBar } = styles
 
@@ -47,7 +60,7 @@ class DrawerContent extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.sectionMenu} />
-                <TouchableOpacity onPress={() => console.log('drawer')}>
+                <TouchableOpacity onPress={() => this.onLogout()}>
                     <View style={footerBar}>
                         <Icon style={[{color: 'red'}, iconStyle]} name={"logout-variant"} size={20}/>
                         <Text style={{color: 'red', margin: 5}}>Logout</Text>
@@ -120,4 +133,4 @@ const styles = {
     }
 }
 
-export { DrawerContent }
+export default connect(null, actions)(DrawerContent)

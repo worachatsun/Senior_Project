@@ -47,7 +47,6 @@ class SearchPageDonation extends Component {
     }
 
     render () {
-        console.log(this.props.all_donate)
         if(this.state.searchText){
             return (
                 <View style={styles.container}>
@@ -98,7 +97,7 @@ const styles = {
     },
     searchBar: {
         height: 50,
-        borderWidth: 9,
+        borderWidth: 1,
         paddingLeft: 30,
         fontSize: 18,
         borderColor: '#E4E4E4',

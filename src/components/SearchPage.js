@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, ListView } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -97,10 +98,10 @@ const styles = {
     },
     searchBar: {
         height: 50,
-        borderWidth: 9,
+        borderWidth: 1,
         paddingLeft: 30,
         fontSize: 18,
-        borderColor: '#E4E4E4',
+        borderColor: '#E4E4E4'
     }
 }
 

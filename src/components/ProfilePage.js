@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native'
+import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
 import { Header, EmptyCard, RoundImage } from '../common'
 import NewsFavorite from './NewsFavorite'
@@ -7,7 +9,7 @@ import NewsFavorite from './NewsFavorite'
 class ProfilePage extends Component {
 
     componentWillMount() {
-        //Actions.refresh({key: 'drawer', open: false})
+        
     }
 
 
@@ -91,4 +93,4 @@ const styles = {
 
 const {height, width} = Dimensions.get('window')
 
-export default ProfilePage
+export default connect(null, actions)(ProfilePage)

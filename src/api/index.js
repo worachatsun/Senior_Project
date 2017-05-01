@@ -21,4 +21,5 @@ exports.GET_DONATION = `${API_URL}/getDonation`
 exports.GET_CAREER = `${API_URL}/getCareer`
 
 exports.SIGNIN_URL = `${API_URL}/signin`
+exports.SIGNIN_LDAP_URL = `${API_URL}/signinLdap`
 exports.SIGNUP_URL = `${API_URL}/signup`

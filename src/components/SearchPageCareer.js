@@ -97,7 +97,7 @@ const styles = {
     },
     searchBar: {
         height: 50,
-        borderWidth: 9,
+        borderWidth: 1,
         paddingLeft: 30,
         fontSize: 18,
         borderColor: '#E4E4E4',

@@ -71,10 +71,10 @@ class SignupComponent extends Component {
                         <Text style={styles.title}>REGISTER</Text>
                     </View>
                     <View style={styles.field}>
-                        <TextInput value={email} onChangeText={email => this.setState({email})} placeholder={"email"} style={styles.textInput}/>
+                        <TextInput value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} placeholder={"email"} style={styles.textInput}/>
                     </View>
                     <View style={styles.field}>
-                        <TextInput value={password} onChangeText={password => this.setState({password})} placeholder={"password"} style={styles.textInput}/>
+                        <TextInput value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} placeholder={"password"} style={styles.textInput}/>
                     </View>
                     <View style={styles.field}>
                         <TextInput value={name} onChangeText={name => this.setState({name})} placeholder={"name"} style={styles.textInput}/>
@@ -83,10 +83,10 @@ class SignupComponent extends Component {
                         <TextInput value={surname} onChangeText={surname => this.setState({surname})} placeholder={"surname"} style={styles.textInput}/>
                     </View>
                     <View style={styles.field}>
-                        <TextInput value={tel} onChangeText={tel => this.setState({tel})} placeholder={"tel"} style={styles.textInput}/>
+                        <TextInput value={tel} autoCapitalize = 'none' onChangeText={tel => this.setState({tel})} placeholder={"tel"} style={styles.textInput}/>
                     </View>
                     <View style={styles.field}>
-                        <TextInput value={address} onChangeText={address => this.setState({address})} placeholder={"address"} style={styles.textInput}/>
+                        <TextInput value={address} autoCapitalize = 'none' onChangeText={address => this.setState({address})} placeholder={"address"} style={styles.textInput}/>
                     </View>
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity onPress={this.onSignUp}>

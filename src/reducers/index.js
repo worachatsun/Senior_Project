@@ -8,6 +8,7 @@ import DonationReducer from './DonationReducer'
 import CareerReducer from './CareerReducer'
 import {reducer as formReducer} from 'redux-form'
 import AlertReducer from './AlertReducer'
+import AuthReducer from './AuthReducer'
 
 export default combineReducers({
     closeModal: ModalReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
     donation: DonationReducer,
     career: CareerReducer,
     form: formReducer,
-    alerts: AlertReducer
+    alerts: AlertReducer,
+    auth: AuthReducer
 })
