@@ -14,29 +14,31 @@ class ProfilePage extends Component {
 
 
     render () {
+        const { assets, name, email, surname } = this.props.profile.user_detail.existingUser
+
         return (
             <View style={{flex: 1, marginBottom: 50}}>
                 <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
-                        <RoundImage img={"https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_0027.jpg"} />
-                        <Text style={{ margin: 12, fontSize: 18}}>Sukrit Wisetkaeo</Text>
+                        <RoundImage img={assets.picture} />
+                        <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
                     </View>
                     <EmptyCard>
                         <View style={{margin: 14}}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
                                 <Text>
                                     080-000-0000
                                 </Text>
                             </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, justifyContent: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/email.png')} /> 
                                 <Text>
-                                    bie_sukrit@gmail.com
+                                    {email}
                                 </Text>
                             </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 , justifyContent: 'center'}}>
                                 <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
                                 <Text>
                                     เชียงใหม่ ประเทศไทย
@@ -46,7 +48,7 @@ class ProfilePage extends Component {
                     </EmptyCard>
                     <EmptyCard>
                         <View style={{margin: 14}}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/hat.png')} /> 
                                 <Text>
                                     KMUTT
@@ -56,7 +58,7 @@ class ProfilePage extends Component {
                     </EmptyCard>
                     <EmptyCard>
                         <View style={{margin: 14}}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/career.png')} /> 
                                 <Text>
                                     นักร้อง
@@ -66,7 +68,7 @@ class ProfilePage extends Component {
                     </EmptyCard>
                     <EmptyCard>
                         <View style={{margin: 14}}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Image style={styles.iconStyle} source={require('../env/images/trophy.png')} /> 
                                 <Text>
                                     ผลงานศิสเก่า
@@ -93,4 +95,8 @@ const styles = {
 
 const {height, width} = Dimensions.get('window')
 
-export default connect(null, actions)(ProfilePage)
+const mapStateToProps = state => {
+    return { profile: state.auth }
+}
+
+export default connect(mapStateToProps, actions)(ProfilePage)

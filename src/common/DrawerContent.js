@@ -20,6 +20,7 @@ class DrawerContent extends Component {
 
     render() {
         const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle, footerBar } = styles
+        const { assets, name, surname, uid } = this.props.profile.user_detail.existingUser
 
         return (
             <View style={viewStyle}>
@@ -27,11 +28,11 @@ class DrawerContent extends Component {
                 <TouchableOpacity onPress={() => Actions.ProfilePage() }>
                     <View style={profileStyle}>
                         <View style={{margin: 15}}>
-                            <RoundImage img={"https://www4.sit.kmutt.ac.th/files/story_pictures/IMG_0027.jpg"} style={styles.roundImage}/>
+                            <RoundImage img={assets.picture} style={styles.roundImage}/>
                         </View>
                         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>Sukrit Wisetkaeo</Text>
-                            <Text style={{margin: 5}}>57130500057</Text>
+                            <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
+                            <Text style={{margin: 5}}>{uid}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -133,4 +134,8 @@ const styles = {
     }
 }
 
-export default connect(null, actions)(DrawerContent)
+const mapStateToProps = state => {
+    return { profile: state.auth }
+}
+
+export default connect(mapStateToProps, actions)(DrawerContent)
