@@ -14,7 +14,7 @@ class ProfilePage extends Component {
 
 
     render () {
-        const { assets, name, email, surname } = this.props.profile.user_detail.existingUser
+        const { assets, name, email, surname } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1, marginBottom: 50}}>

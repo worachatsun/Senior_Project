@@ -8,9 +8,8 @@ import { ModalHeaderPlain } from '../common'
 class NewsFavorite extends Component {
 
     componentWillMount() {
-        this.props.fetchFavoriteNews()
+        this.props.fetchFavoriteNews(this.props.profile._id)
     }
-    
 
     renderRow(news) {
         return <NewsItem news={news}/>
@@ -34,6 +33,7 @@ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
 
 const mapStateToProps = state => {
     return {  
+        profile: state.auth.user_detail.user,
         user: state.user,
         favorite_data: ds.cloneWithRows(state.user.fetch_favorite_news)
     }

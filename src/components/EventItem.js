@@ -13,8 +13,8 @@ class EventItem extends Component {
     }
 
     render () {
-        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <BigCard description={this.props.event.event_name} img={this.props.event.assets.picture[0]} />
-        // <HalfScreenCard content={this.props.event}/>
+        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <BigCard description={this.props.event.event_name} startDate={this.props.event.regis_date_begin} endDate={this.props.event.regis_date_end} img={this.props.event.assets.picture[0]} />
+        
         return (
             <View>
                 <TouchableOpacity onPress={() => { 

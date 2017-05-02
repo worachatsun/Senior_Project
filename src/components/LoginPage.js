@@ -152,7 +152,6 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return { a: state }
 }
 

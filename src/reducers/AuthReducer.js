@@ -5,7 +5,6 @@ const INITIAL_STATE = {
 }
 
 export default ( state = INITIAL_STATE, action ) => {
-    console.log(action)
     switch(action.type) {
         case AUTH_USER :
             return {
@@ -13,7 +12,7 @@ export default ( state = INITIAL_STATE, action ) => {
             }
         case UNAUTH_USER :
             return {
-                user_detail: undefined
+                user_detail: {}
             }
         default:
             return state

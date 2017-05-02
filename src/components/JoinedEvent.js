@@ -8,7 +8,7 @@ import EventItem from './EventItem'
 class JoinedEvent extends Component {
 
     componentWillMount() {
-        this.props.fetchJoinedEvent()
+        this.props.fetchJoinedEvent(this.props.profile._id)
     }
 
     renderRow(event) {
@@ -33,6 +33,7 @@ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1!==r2})
 
 const mapStateToProps = state => {
     return { 
+        profile: state.auth.user_detail.user,
         fetch_event_joined: ds.cloneWithRows(state.user.fetch_joined_event)
     }
 }

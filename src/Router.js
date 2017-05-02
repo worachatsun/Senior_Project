@@ -65,8 +65,8 @@ class RouterComponent extends Component {
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
                         <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
-                        <Scene key="login" component={LoginPage} initial/>
-                        <Scene key="pro" component={Test}/>
+                        <Scene key="login" component={LoginPage}/>
+                        <Scene key="pro" component={Test} />
                         <Scene key="signup" component={SignupComponent}/>
                         <Scene key="SearchPage" component={SearchPage} />
                         <Scene key="SearchPageEvent" component={SearchPageEvent} />
@@ -74,7 +74,7 @@ class RouterComponent extends Component {
                         <Scene key="SearchPageCareer" component={SearchPageCareer} />
                         <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
                         <Scene key="chat" component={ChatPage} />
-                        <Scene key="first" component={AllowAllUserNews}/>
+                        <Scene key="first" component={AllowAllUserNews} initial/>
                     </Scene>
             </Router>
         )

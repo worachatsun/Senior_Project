@@ -12,10 +12,17 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 import { Actions} from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
+import DropDown, {
+  Select,
+  Option,
+  OptionList,
+} from 'react-native-selectme'
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 
 class ModalGetTicket extends Component {
 
@@ -25,17 +32,29 @@ class ModalGetTicket extends Component {
             dropdownSelection: 1,
             coupon: null,
             ticket: 1,
+            dropdown: 1
         }
+    }
+
+    _getOptionList() {
+        return this.refs['OPTIONLIST'];
     }
 
     componentWillMount() {
         this.props.checkEventAvailable(this.props.modalEvent._id)
     }
 
+    _dropdown(value) {
+
+        this.setState({
+            dropdown: value
+        });
+    }
+
     onButtonPress(coupon = null) {
         if(coupon){
             if(this.state.coupon){
-                this.props.getTicket(null, this.props.modalEvent._id, this.state.coupon)
+                this.props.getTicket(this.props.profile._id, this.props.modalEvent._id, this.state.coupon)
             }else{
                 Alert.alert(
                     'Coupon not found',
@@ -46,7 +65,7 @@ class ModalGetTicket extends Component {
     }
 
     onButtonPressWithoutCoupon() {
-        this.props.getTicket(null, this.props.modalEvent._id)
+        this.props.getTicket(this.props.profile._id, this.props.modalEvent._id)
         Alert.alert(
             'Event Alert',
             'Joined success',
@@ -57,60 +76,56 @@ class ModalGetTicket extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View>
-                    <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
-                </View>
-                <View>
-                    <EmptyCard>
-                        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Tickets</Text>
-                            <CardSection />
-                            <Text>Do you have promotion code for this event ?</Text>
-                            <TextInput placeholder={'Type in promotional code'} value={this.state.coupon} onChangeText={coupon => {this.setState({coupon})}} keyboardType='default' style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, padding: 3, borderRadius: 4, width: width-70}}/>                        
-                        </View>
-                        <View style={{ borderColor: '#FF7F11', borderWidth: 1, width: width-70, borderRadius: 3, margin: 5 }}>
-                            <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress('coupon')} />
-                        </View>
-                        <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
-                        <View style={{ margin: 10 }}>
-                            <View style={{ flexDirection: 'row', width: width-70, justifyContent: 'space-between' }}>
-                                <View style={{ flexDirection: 'column'}}>
-                                    <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
-                                    <Text style={{ fontWeight: 'bold', marginTop: 3 }}>Free</Text>
+                <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
+                <ScrollableTabView
+                 renderTabBar={() => <DefaultTabBar 
+                                        style={styles.tabbar} 
+                                        underlineStyle={{backgroundColor:"#FF7F11"}}
+                                        activeTextColor="#FF7F11"
+                                        inactiveTextColor="black"/>}>
+                    <View tabLabel="Buy Ticket" style={[{flex: 1}]}>
+                        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
+                            <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
+                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
+                                
+                                <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
+                                    <Select
+                                        width={40}
+                                        height={30}
+                                        style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center', color: 'white'}}
+                                        ref="SELECT1"
+                                        optionListRef={this._getOptionList.bind(this)}
+                                        defaultValue={0}
+                                        onSelect={this._dropdown.bind(this)}>
+                                        <Option key={1} value={1}>1</Option>
+                                        <Option key={2} value={0}>0</Option>
+                                    </Select>
+                                    <OptionList ref="OPTIONLIST"/>
                                 </View>
-                                <View style={{ justifyContent: 'center' }}>
-                                    <MenuContext style={{ flex: 1 }} ref="MenuContext">
-                                        <Menu style={styles.dropdown} onSelect={(value) => this.setState({ dropdownSelection: value })}>
-                                            <MenuTrigger>
-                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                                    <View>
-                                                        <Text style={{ color: 'white' }}>{this.state.dropdownSelection}</Text>
-                                                    </View>
-                                                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                                        <Image style={{ width: 10, height: 10 }} source={require('../env/images/arrow.png')}/>
-                                                    </View>
-                                                </View>
-                                            </MenuTrigger>
-                                            <MenuOptions optionsContainerStyle={styles.dropdownOption}
-                                                        renderOptionsContainer={(options) => <ScrollView>{options}</ScrollView>}>
-                                            <MenuOption value={1}>
-                                                <Text style={{ color: '#FF7F11' }}>1</Text>
-                                            </MenuOption>
-                                            <MenuOption value={0}>
-                                                <Text style={{ color: '#FF7F11' }}>0</Text>
-                                            </MenuOption>
-                                            </MenuOptions>
-                                        </Menu>
-                                    </MenuContext>
-                                </View>
+                                <Text style={{marginTop: 10 }}>Price: Free</Text>
+                                <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
+                            </View>
+
+                            <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
+                                <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
                             </View>
                         </View>
-                        <View style={{ backgroundColor: 'gray', height: 1, width: width-70, margin: 5, justifyContent: 'space-between' }}/>
-                        <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
+                    </View>
+                    <View tabLabel="Use Coupon" style={[{flex: 1}]}>
+                        <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
+                            <Text style={{margin: 10}}>Do you have promotion code for this event ?</Text>
+                            <View style={{borderBottomColor: '#ff7f11', borderBottomWidth: 1, margin: 10}}>
+                                <TextInput placeholder={'Type in promotional code'} value={this.state.coupon} autoCorrect={false} onChangeText={coupon => {this.setState({coupon})}} keyboardType='default' style={{height: 40, marginBottom: 0, borderRadius: 4, width: width-70}}/>                        
+                            </View>
+                            <View style={{ borderColor: '#FF7F11', borderWidth: 1, width: width-70, borderRadius: 3, margin: 10 }}>
+                                <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress('coupon')} />
+                            </View>
                         </View>
-                    </EmptyCard>
-                </View>
+                    </View>
+                </ScrollableTabView>
             </View>
         )
     }
@@ -121,7 +136,6 @@ const {height, width} = Dimensions.get('window')
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: '#353535'
     },
     footerBar: {
         justifyContent: 'flex-end', 
@@ -140,6 +154,7 @@ const styles = {
         borderRadius: 5,
     },
     dropdownOptions: {
+        flex: 1,
         marginTop: 30,
         borderColor: '#FF7F11',
         borderWidth: 2,
@@ -147,11 +162,23 @@ const styles = {
         height: 200,
         backgroundColor: 'white',
         color: '#FF7F11'
+    },
+    tabbar: {
+        height: 40, 
+        alignItems: 'center', 
+        paddingTop: 10,
+        backgroundColor: "white",
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        elevation: 2,
+        borderTopColor: '#FF7F11',
+        borderTopWidth: 1
     }
 }
 
 const mapStateToProps = state => {
-    return { modalContent: state.modalContent, event: state.event }
+    return { profile: state.auth.user_detail.user, modalContent: state.modalContent, event: state.event }
 }
 
 export default connect(mapStateToProps, actions)( ModalGetTicket )

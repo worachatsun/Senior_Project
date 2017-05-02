@@ -16,7 +16,7 @@ class CareerItem extends Component {
              <TouchableOpacity onPress={() => {         
                     return Actions.careerDes({career: this.props.career})
                 }}>
-                <Card description={this.props.career.career_name} img={this.props.career.assets.picture} />
+                <Card description={this.props.career.career_name} capacity={this.props.career.capacity} img={this.props.career.assets.picture} />
             </TouchableOpacity>
         )
     }

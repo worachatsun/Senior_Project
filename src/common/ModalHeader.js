@@ -10,7 +10,7 @@ const ModalHeader = (props) => {
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
     const imageStar = props.user.check_favorite_news ? require('../env/images/star.png') : require('../env/images/star_blank.png')
     const favorite_status = props.user.check_favorite_news ? 'delete' : 'add'
-    
+    console.log(props.profile._id)
     return (
         <View>
             <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
@@ -26,8 +26,8 @@ const ModalHeader = (props) => {
                     <Text style={textStyle} numberOfLines={1}>{props.headerText}</Text>
                 </View>
                 <TouchableOpacity onPress={() => {
-                    props.FavoriteNews(props.favorite_Id, favorite_status)
-                    props.checkFavoriteNews(props.favorite_Id)  }}>
+                    props.FavoriteNews(props.favorite_Id, favorite_status, props.profile._id)
+                    props.checkFavoriteNews(props.favorite_Id, props.profile._id)  }}>
                     <View>
                         <Image style={starIcon} source={imageStar} />
                     </View>
@@ -112,7 +112,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    return { user: state.user }
+    return { profile: state.auth.user_detail.user, user: state.user }
 }
 
 export default connect(mapStateToProps, actions)(ModalHeader)

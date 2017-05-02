@@ -15,12 +15,12 @@ class DrawerContent extends Component {
 
     onLogout() {
         this.props.unauthUser()
-        return Actions.login()
+        return Actions.popTo('login')
     }
 
     render() {
         const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle, footerBar } = styles
-        const { assets, name, surname, uid } = this.props.profile.user_detail.existingUser
+        const { assets, name, surname, uid } = this.props.profile.user_detail.user
 
         return (
             <View style={viewStyle}>
@@ -39,16 +39,16 @@ class DrawerContent extends Component {
                 <View style={styles.sectionMenu}>
                     <Text style={{color: 'grey'}}>Follow</Text>
                 </View>
-                <TouchableOpacity onPress={() => Actions.EventJoined() }>
-                    <View style={[menuStyle, {borderTopWidth: 1,borderColor: '#ddd'}]}>
-                        <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
-                        <Text style={textStyle}>Event Joined</Text>
-                    </View>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
-                    <View style={[menuStyle, {borderBottomWidth: 1,borderColor: '#ddd'}]}>
+                    <View style={[menuStyle, {borderTopWidth: 1,borderColor: '#ddd'}]}>
                         <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
                         <Text style={textStyle}>News Favorite</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => Actions.EventJoined() }>
+                    <View style={[menuStyle, {borderBottomWidth: 1,borderColor: '#ddd'}]}>
+                        <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
+                        <Text style={textStyle}>Event Joined</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.sectionMenu}>

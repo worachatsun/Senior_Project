@@ -19,7 +19,7 @@ class NewsItem extends Component {
                 <TouchableOpacity onPress={() => {
                         this.props.selectNews(this.props.news._id)
                         this.updateContentModal()
-                        this.props.checkFavoriteNews(this.props.news._id)              
+                        this.props.checkFavoriteNews(this.props.news._id, this.props.user.profile._id)              
                         return Actions.modal()}
                     }>
                     <Card description={this.props.news.news_title} img={this.props.news.assets.picture} />
@@ -30,7 +30,7 @@ class NewsItem extends Component {
                 <TouchableOpacity onPress={() => {
                         this.props.selectNews(this.props.news._id)
                         this.updateContentModal()
-                        this.props.checkFavoriteNews(this.props.news._id)              
+                        this.props.checkFavoriteNews(this.props.news._id, this.props.user.profile._id)              
                         return Actions.modal()}
                     }>
                     {selectCard}
@@ -41,7 +41,7 @@ class NewsItem extends Component {
 }
 
 const mapStateToProps = state => {
-    return { selectNewsId: state.selectedNewsId }
+    return { profile: state.auth.user_detail, selectNewsId: state.selectedNewsId }
 }
 
 NewsItem.propTypes = {

@@ -1,66 +1,55 @@
 import React, { Component } from 'react'
-import { View, Animated, TouchableOpacity, Text } from 'react-native'
+import { View, Animated, TouchableOpacity, Text, ListView } from 'react-native'
+import { Header } from '../common'
 import AllNewsComponent from './AllNewsComponent'
+import DropDown, {
+  Select,
+  Option,
+  OptionList,
+} from 'react-native-selectme'
 
 export default class Test extends Component {
-
     constructor(props) {
-        super(props)
+    super(props);
+ 
+    this.state = {
+      canada: 1
+    };
+  }
 
-        this.state = {
-            _rowOpacity : new Animated.Value(1),
-            searchHeaderOpacity : new Animated.Value(0)
-        }
+    _getOptionList() {
+    return this.refs['OPTIONLIST'];
+  }
+ 
+  
+  _canada(province) {
 
-        this.hideHeader = this.hideHeader.bind(this)
-    }
-
-    _defaultTransition  = 250
-
-
-    hideHeader() {
-        Animated.timing(this.state._rowOpacity, {
-           toValue  : 0,
-           duration : this._defaultTransition
-       }).start()
-
-       Animated.timing(this.state.searchHeaderOpacity, {
-           toValue  : 1,
-           duration : this._defaultTransition
-       }).start()
-    }
-
-    showHeader() {
-        Animated.timing(this.state._rowOpacity, {
-           toValue  : 1,
-           duration : this._defaultTransition
-       }).start()
-
-        Animated.timing(this.state.searchHeaderOpacity, {
-           toValue  : 0,
-           duration : this._defaultTransition
-       }).start()
-    }
+  this.setState({
+      ...this.state,
+      canada: province
+    });
+  }
 
     render() {
-        // const leftHeader = this.state.index == 0 ? { flex: 1 } : { width: 0 }
-        // const rightHeader = this.state.index == 1 ? { flex: 1 } : { width: 0 }
 
         return (
-            <View style={{marginTop: 20, flex: 1}}>
-                <View style={{flexDirection: 'row'}}>
-                    <Animated.View  style={[styles.header, {height: 50, backgroundColor: 'blue'}, {opacity: this.state._rowOpacity}]}>
-                        <TouchableOpacity onPress={() => this.hideHeader()}>
-                            <Text>Hide</Text>
-                        </TouchableOpacity>
-                    </Animated.View >
-                    <Animated.View  style={[styles.header, {height: 50, backgroundColor: 'red'}, {opacity: this.state.searchHeaderOpacity}]}>
-                        <TouchableOpacity onPress={() => this.showHeader()}>
-                            <Text>Show</Text>
-                        </TouchableOpacity>
-                    </Animated.View >
-                </View>
-            </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Select
+                width={40}
+                height={30}
+                style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center'}}
+                ref="SELECT1"
+                optionListRef={this._getOptionList.bind(this)}
+                defaultValue={0}
+                onSelect={this._canada.bind(this)}>
+                <Option key={1} value={1}>1</Option>
+                <Option key={2} value={0}>0</Option>
+            </Select>
+    
+            <Text>Selected Canada's province: {this.state.canada}</Text>
+            
+            <OptionList ref="OPTIONLIST"/>
+        </View>
         )
     }
 }
