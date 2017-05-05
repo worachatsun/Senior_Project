@@ -41,7 +41,6 @@ class NewsItem extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.auth.user_detail)
     return { profile: state.auth.user_detail, selectNewsId: state.selectedNewsId }
 }
 

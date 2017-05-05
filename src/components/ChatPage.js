@@ -14,24 +14,32 @@ class ChatPage extends Component {
   componentWillMount() {
     let now = new Date();
     let now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+    this.props.fetchInboxChat('590729229b3e717a8971268c')
+      .then((previousState)=> {
+        console.log((this.props.chat).reverse())
+          this.setState({
+            messages: (this.props.chat).reverse()
+          })
+      })
 
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: 'สวัสดีค่ะ ต้องการให้ช่วยอะไรค่ะ',
-          createdAt: now_utc,
-          user: {
-            _id: 2,
-            name: 'Admin',
-            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
-          },
-        },
-      ],
-    });
+    // this.setState({
+    //   messages: [
+    //     {
+    //       _id: 1,
+    //       text: 'สวัสดีค่ะ ต้องการให้ช่วยอะไรค่ะ',
+    //       createdAt: now_utc,
+    //       user: {
+    //         _id: 2,
+    //         name: 'Admin',
+    //         // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+    //       },
+    //     },
+    //   ],
+    // })
+    console.log(this.state.message)
   }
   onSend(messages = []) {
-    console.log(messages)
+    this.props.sendChat('590729229b3e717a8971268c', messages[0])
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
@@ -39,7 +47,7 @@ class ChatPage extends Component {
     });
   }
   render() {
-    console.log(this.state.messages)
+    console.log(this.props.chat)
     return (
         <View style={{flex: 1}}>
             <ModalHeaderPlain headerText={'Chat'} backSign={true} />
@@ -48,6 +56,7 @@ class ChatPage extends Component {
               onSend={this.onSend}
               user={{
                   _id: this.props.profile._id,
+                  //name: 'sun'
               }}
             />
         </View>
@@ -57,6 +66,7 @@ class ChatPage extends Component {
 
 const mapStateToProps = state => {
     return { 
+        chat: state.inbox.chat,
         profile: state.auth.user_detail.user,
     }
 }

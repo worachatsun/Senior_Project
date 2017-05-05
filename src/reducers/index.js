@@ -9,6 +9,7 @@ import CareerReducer from './CareerReducer'
 import {reducer as formReducer} from 'redux-form'
 import AlertReducer from './AlertReducer'
 import AuthReducer from './AuthReducer'
+import InboxReducer from './InboxReducer'
 
 export default combineReducers({
     closeModal: ModalReducer,
@@ -21,5 +22,6 @@ export default combineReducers({
     career: CareerReducer,
     form: formReducer,
     alerts: AlertReducer,
-    auth: AuthReducer
+    auth: AuthReducer,
+    inbox: InboxReducer
 })
