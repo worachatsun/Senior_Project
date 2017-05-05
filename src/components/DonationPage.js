@@ -69,7 +69,7 @@ class DonationPage extends Component{
     render() {
         const { limit, dataSource } = this.state
         return (
-            <View style={{flex: 1, backgroundColor: '#353535'}}>
+            <View style={{flex: 1}}>
                 <Header headerText={'Donation'} route_to={'donation'}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}

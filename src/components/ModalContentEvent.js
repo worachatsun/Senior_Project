@@ -51,8 +51,7 @@ class ModalContentEvent extends Component {
 
 const styles = {
     container: {
-        flex: 1,
-        backgroundColor: '#353535'
+        flex: 1
     },
     footerBar: {
         justifyContent: 'flex-end', 

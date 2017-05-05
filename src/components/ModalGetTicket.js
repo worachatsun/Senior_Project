@@ -113,7 +113,7 @@ class ModalGetTicket extends Component {
                             </View>
                         </View>
                     </View>
-                    <View tabLabel="Use Coupon" style={[{flex: 1}]}>
+                    {/*<View tabLabel="Use Coupon" style={[{flex: 1}]}>
                         <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
                             <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
                             <Text style={{margin: 10}}>Do you have promotion code for this event ?</Text>
@@ -124,7 +124,7 @@ class ModalGetTicket extends Component {
                                 <Button color="#FF7F11" title={'Use Code'} onPress={() => this.onButtonPress('coupon')} />
                             </View>
                         </View>
-                    </View>
+                    </View>*/}
                 </ScrollableTabView>
             </View>
         )

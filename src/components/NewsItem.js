@@ -30,7 +30,7 @@ class NewsItem extends Component {
                 <TouchableOpacity onPress={() => {
                         this.props.selectNews(this.props.news._id)
                         this.updateContentModal()
-                        this.props.checkFavoriteNews(this.props.news._id, this.props.user.profile._id)              
+                        this.props.checkFavoriteNews(this.props.news._id, this.props.profile.user._id)              
                         return Actions.modal()}
                     }>
                     {selectCard}
@@ -41,6 +41,7 @@ class NewsItem extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.auth.user_detail)
     return { profile: state.auth.user_detail, selectNewsId: state.selectedNewsId }
 }
 
