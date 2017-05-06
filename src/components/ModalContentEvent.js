@@ -9,8 +9,10 @@ import {
     CardSection, 
     Map, 
     WebViewRichText,
-    ImageCard
+    ImageCard,
+    ModalHeaderOpacity
 } from '../common'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ModalContentEvent extends Component {
 
@@ -22,31 +24,35 @@ class ModalContentEvent extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View>
-                    <ModalHeaderPlain style={{backgroundColor: 'rgba(0,0,0,0)'}} headerText={this.props.modalContent.event_name} />
-                </View>
                 <ScrollView>
                     <View style={{flex: 1}}>
-                        <ImageCard img={this.props.modalContent.assets.picture[0]} description={this.props.modalContent.event_name} />
+                        <ImageCard height={400} img={this.props.modalContent.assets.picture[0]} description={this.props.modalContent.event_name} />
+                        <ModalHeaderOpacity/>
                     </View>
-                    <EmptyCard>
-                        <View style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>
-                            <View>
-                                <Text style={{textAlign: 'center'}}>{this.props.modalContent.event_name}</Text>
-                            </View>
-                            <CardSection />
-                            <View style={{flexDirection: 'row',}}>
-                                <Text>{this.dateFormat(this.props.modalContent.event_date_begin)} - {this.dateFormat(this.props.modalContent.event_date_end)}</Text>
-                            </View>
-                            <View style={{flexDirection: 'row',}}>
-                                <Text numberOfLines={2}>{this.props.modalContent.location}</Text>
-                            </View>
+                    <View style={{margin: 10}}>
+                        <View style={{marginBottom: 5, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{color: '#ddd', fontSize: 18, fontWeight: 'bold'}}>Info</Text>
                         </View>
-                    </EmptyCard>
+                        <CardSection />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                            <Icon style={{color: 'black'}} name={"calendar-clock"} size={20}/>
+                            <Text style={{marginLeft: 5}}>{this.dateFormat(this.props.modalContent.event_date_begin)} - {this.dateFormat(this.props.modalContent.event_date_end)}</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                            <Icon style={{color: 'black'}} name={"map-marker"} size={20}/>
+                            <Text numberOfLines={2} style={{marginLeft: 5}}>{this.props.modalContent.location}</Text>
+                        </View>
+                    </View>
                     <Map />
-                    <EmptyCard>
-                        <WebViewRichText webText={this.props.modalContent.event_description} />
-                    </EmptyCard>
+                    <View style={{margin: 10}}>
+                        <View style={{marginBottom: 5, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{color: '#ddd', fontSize: 18, fontWeight: 'bold'}}>Detail</Text>
+                        </View>
+                        <CardSection />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                            <WebViewRichText webText={this.props.modalContent.event_description} />
+                        </View>
+                    </View>
                 </ScrollView>
                 <TouchableOpacity onPress={() => Actions.modalTicket({modalEvent: this.props.modalContent})}>
                     <View style={styles.footerBar}>

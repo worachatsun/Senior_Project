@@ -63,6 +63,27 @@ export const ModalHeaderPlain = (props) => {
     )
 }
 
+export const ModalHeaderOpacity = (props) => {
+    const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
+    const backSign = props.backSign ? 'arrow-left' : 'close'
+
+    return (
+        <View style={{backgroundColor: 'rgba(0,0,0,0)', position: 'absolute', marginTop: 22, marginLeft: 10}}>
+            <TouchableOpacity onPress={() => {
+                Actions.pop()
+                }}>
+                <View>
+                    <Icon style={[{color: "white"}]} name={backSign} size={25}/>
+                </View>
+            </TouchableOpacity>
+            <View style={headerIcon}>
+            </View>
+            <View style={headerIcon}>
+            </View>
+        </View>
+    )
+}
+
 const MyStatusBar = ({backgroundColor, ...props}) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
     <StatusBar backgroundColor={backgroundColor} {...props} />

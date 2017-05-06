@@ -8,12 +8,14 @@ import { Col, Row, Grid } from 'react-native-easy-grid'
 import ProgressiveImage from '../components/ProgressiveImage'
 
 const ImageCard = props => {
+    const imgHeight = props.height || 300
+
     return (
-        <View style={{height: 300}}>
+        <View style={{height: imgHeight}}>
             <ProgressiveImage
                 thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
                 imageSource={{ uri: props.img }}
-                style={{ flex: 1, alignItems: 'stretch', height: 300 }}
+                style={{ flex: 1, alignItems: 'stretch', height: imgHeight }}
             />
             <View style={{position: 'absolute', backgroundColor: 'rgba(0, 0, 0, 0.3)', bottom: 0, right: 0, left: 0, padding: 5, flexDirection: 'row', alignItems: 'center', height: 105}}>
                 <View style={{ margin: 10 }}>
@@ -29,7 +31,6 @@ const ImageCard = props => {
 }
 
 const dateTime = (start, end) => {
-    console.log(start, end)
     if(start || end){
         return (
         <View>
