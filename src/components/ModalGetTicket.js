@@ -77,40 +77,32 @@ class ModalGetTicket extends Component {
         return (
             <View style={styles.container}>
                 <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
-                <ScrollableTabView
-                 renderTabBar={() => <DefaultTabBar 
-                                        style={styles.tabbar} 
-                                        underlineStyle={{backgroundColor:"#FF7F11"}}
-                                        activeTextColor="#FF7F11"
-                                        inactiveTextColor="black"/>}>
-                    <View tabLabel="Buy Ticket" style={[{flex: 1}]}>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
+                        <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
                         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
+                            <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
+                            
+                            <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
+                                <Select
+                                    width={40}
+                                    height={30}
+                                    style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center'}}
+                                    ref="SELECT1"
+                                    optionListRef={this._getOptionList.bind(this)}
+                                    defaultValue={0}
+                                    onSelect={this._dropdown.bind(this)}>
+                                    <Option key={1} value={1}>1</Option>
+                                    <Option key={2} value={0}>0</Option>
+                                </Select>
+                                <OptionList ref="OPTIONLIST"/>
+                            </View>
+                            <Text style={{marginTop: 10 }}>Price: Free</Text>
                             <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
-                                
-                                <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
-                                    <Select
-                                        width={40}
-                                        height={30}
-                                        style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center', color: 'white'}}
-                                        ref="SELECT1"
-                                        optionListRef={this._getOptionList.bind(this)}
-                                        defaultValue={0}
-                                        onSelect={this._dropdown.bind(this)}>
-                                        <Option key={1} value={1}>1</Option>
-                                        <Option key={2} value={0}>0</Option>
-                                    </Select>
-                                    <OptionList ref="OPTIONLIST"/>
-                                </View>
-                                <Text style={{marginTop: 10 }}>Price: Free</Text>
-                                <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
-                            </View>
+                        </View>
 
-                            <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                                <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
-                            </View>
+                        <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
+                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
                         </View>
                     </View>
                     {/*<View tabLabel="Use Coupon" style={[{flex: 1}]}>
@@ -125,7 +117,6 @@ class ModalGetTicket extends Component {
                             </View>
                         </View>
                     </View>*/}
-                </ScrollableTabView>
             </View>
         )
     }

@@ -6,6 +6,7 @@ exports.POST_ADD_FAVORITE_NEWS = `${API_URL}/addFavoriteNews`
 exports.POST_DELETE_FAVORITE_NEWS = `${API_URL}/deleteFavoriteNews`
 exports.POST_CHECK_FAVORITE_NEWS = `${API_URL}/checkFavoriteNews`
 exports.GET_ALL_FAVORITE_NEWS = `${API_URL}/getAllFavoriteNews`
+exports.GET_COUNT_FAVORITE = `${API_URL}/getFavoriteCount`
 
 
 exports.GET_EVENT_URL = `${API_URL}/getEvent`

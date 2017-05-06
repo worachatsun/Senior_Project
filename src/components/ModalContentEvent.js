@@ -19,7 +19,12 @@ class ModalContentEvent extends Component {
                     <ModalHeaderPlain headerText={this.props.modalContent.event_name} />
                 </View>
                 <ScrollView>
-                    <ImageModal img={this.props.modalContent.assets.picture[0]} />
+                    <View style={{flex: 1}}>
+                        <ImageModal img={this.props.modalContent.assets.picture[0]} />
+                        <View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,0.3)', bottom: 0, left: 0, right: 0 , height: 100, padding: 10}}>
+                            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>{this.props.modalContent.event_name}</Text>
+                        </View>
+                    </View>
                     <EmptyCard>
                         <View style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>
                             <View>

@@ -1,9 +1,10 @@
-import { FETCH_NEWS, FETCH_NEWS_FACULTY, FETCH_ALL_NEWS } from '../actions/types'
+import { FETCH_NEWS, FETCH_NEWS_FACULTY, FETCH_ALL_NEWS, COUNT_FAVORITE_NEWS } from '../actions/types'
 
 const INITIAL_STATE = {
     news: {},
     all_news: {},
-    news_faculty: {}
+    news_faculty: {},
+    count_favorite: 0
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,6 +24,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 news_faculty: action.payload
             }
+        case COUNT_FAVORITE_NEWS:
+            return {
+                ...state,
+                count_favorite: action.payload
+            } 
         default:
             return state
     }

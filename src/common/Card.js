@@ -42,6 +42,7 @@ const Card = (props) => {
                         imageSource={{ uri: props.img }}
                         style={{ flex: 1, alignItems: 'stretch', width: 130, height: 90 }}
                     />
+                    { countFavorite(props.count_favorite) }
                 </View>
                 <View style={viewStyle}>
                     <Text style={textStyle} numberOfLines={2}>
@@ -56,6 +57,17 @@ const Card = (props) => {
 const dateFormat = date => {
     const arrDate = (new Date(date)).toUTCString().split(" ")
     return `${arrDate[1]} ${arrDate[2]} ${arrDate[3]}`
+}
+
+const countFavorite = count => {
+    if(count || count==0){
+        return (
+            <View style={{position: 'absolute', backgroundColor: '#ff7f11', bottom: 0, right: 0 , padding: 5, flexDirection: 'row', alignItems: 'center'}}>
+                <Icon style={{color: "white"}} name={"star"} size={17}/>
+                <Text style={{color: 'white', marginLeft: 3}}>{count}</Text>
+            </View>
+        )
+    }
 }
 
 const BigCard = (props) => {
@@ -90,6 +102,7 @@ const BigCard = (props) => {
                         imageSource={{ uri: props.img }}
                         style={{ alignItems: 'stretch', height: 230 }}
                     />
+                    { countFavorite(props.count_favorite) }
                 </View>
                 <View style={viewStyle}>
                     <Text style={textStyle} numberOfLines={2}>

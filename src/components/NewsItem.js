@@ -10,10 +10,11 @@ class NewsItem extends Component {
     updateContentModal() {
         const { news } = this.props
         this.props.modalContent(news)
+        this.props.countFavoriteNews(news._id)
     }
 
     render () {
-        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.news.news_title} img={this.props.news.assets.picture} /> : <Card description={this.props.news.news_title} img={this.props.news.assets.picture} />
+        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.assets.picture} /> : <Card description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.assets.picture} />
         if(this.props.ableBigCard){
             return (
                 <TouchableOpacity onPress={() => {

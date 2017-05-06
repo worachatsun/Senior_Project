@@ -8,6 +8,7 @@ export const FETCH_NEWS_FACULTY = 'fetch_news_faculty'
 export const ADD_FAVORITE_NEWS = 'add_favorite_news'
 export const CHECK_FAVORITE_NEWS = 'check_favorite_news'
 export const FETCH_FAVORITE_NEWS = 'fetch_favorite_news'
+export const COUNT_FAVORITE_NEWS = 'count_favorite_news'
 
 export const FETCH_EVENT = 'fetch_event'
 export const FETCH_ALL_EVENT = 'fetch_all_event'

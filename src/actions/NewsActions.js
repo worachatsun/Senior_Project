@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { GETNEWS_URL, GETNEWS_FACULTY_URL } from '../api'
-import { SELECT_NEWS, FETCH_NEWS, FETCH_NEWS_FACULTY, FETCH_ALL_NEWS } from './types'
+import { GETNEWS_URL, GETNEWS_FACULTY_URL, GET_COUNT_FAVORITE } from '../api'
+import { SELECT_NEWS, FETCH_NEWS, FETCH_NEWS_FACULTY, FETCH_ALL_NEWS, COUNT_FAVORITE_NEWS } from './types'
 import { addAlert } from './AlertActions'
 
 export const selectNews = (newsId) => {
@@ -50,6 +50,21 @@ export const fetchNewsFaculty = (faculty, offset=0, limit=15) => {
             })
         }).catch(error => {
             dispatch(addAlert('fetch news faculty'))
+        })
+    }
+}
+
+export const countFavoriteNews = id => {
+    const promise = axios.get(`${GET_COUNT_FAVORITE}/${id}`)
+    
+    return (dispatch) => {
+        return promise.then(({data}) => {
+            dispatch({
+                type: COUNT_FAVORITE_NEWS,
+                payload: data
+            })
+        }).catch(error => {
+            dispatch(addAlert('count favorite news'))
         })
     }
 }

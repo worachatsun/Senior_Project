@@ -16,12 +16,11 @@ class ChatPage extends Component {
     let now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
     this.props.fetchInboxChat('590729229b3e717a8971268c')
       .then((previousState)=> {
-        console.log((this.props.chat).reverse())
           this.setState({
-            messages: (this.props.chat).reverse()
+            messages: this.props.chat
           })
       })
-
+      console.log(now_utc)
     // this.setState({
     //   messages: [
     //     {
@@ -36,7 +35,6 @@ class ChatPage extends Component {
     //     },
     //   ],
     // })
-    console.log(this.state.message)
   }
   onSend(messages = []) {
     this.props.sendChat('590729229b3e717a8971268c', messages[0])
