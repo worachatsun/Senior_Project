@@ -7,50 +7,15 @@ import DropDown, {
   Option,
   OptionList,
 } from 'react-native-selectme'
+import { ImageCard } from '../common'
 
 export default class Test extends Component {
-    constructor(props) {
-    super(props);
- 
-    this.state = {
-      canada: 1
-    };
-  }
-
-    _getOptionList() {
-    return this.refs['OPTIONLIST'];
-  }
- 
-  
-  _canada(province) {
-
-  this.setState({
-      ...this.state,
-      canada: province
-    });
-  }
-
     render() {
-
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Select
-                width={40}
-                height={30}
-                style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center'}}
-                ref="SELECT1"
-                optionListRef={this._getOptionList.bind(this)}
-                defaultValue={0}
-                onSelect={this._canada.bind(this)}>
-                <Option key={1} value={1}>1</Option>
-                <Option key={2} value={0}>0</Option>
-            </Select>
-    
-            <Text>Selected Canada's province: {this.state.canada}</Text>
-            
-            <OptionList ref="OPTIONLIST"/>
+      return (
+        <View style={{flex: 1}}>
+          <ImageCard img={"https://pbs.twimg.com/profile_images/473506797462896640/_M0JJ0v8.png"}/>
         </View>
-        )
+      )
     }
 }
 

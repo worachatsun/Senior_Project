@@ -20,7 +20,7 @@ class ChatPage extends Component {
             messages: this.props.chat
           })
       })
-      console.log(now_utc)
+    
     // this.setState({
     //   messages: [
     //     {

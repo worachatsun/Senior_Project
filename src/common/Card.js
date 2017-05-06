@@ -7,6 +7,41 @@ import { ImageModal } from './'
 import { Col, Row, Grid } from 'react-native-easy-grid'
 import ProgressiveImage from '../components/ProgressiveImage'
 
+const ImageCard = props => {
+    return (
+        <View style={{height: 300}}>
+            <ProgressiveImage
+                thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
+                imageSource={{ uri: props.img }}
+                style={{ flex: 1, alignItems: 'stretch', height: 300 }}
+            />
+            <View style={{position: 'absolute', backgroundColor: 'rgba(0, 0, 0, 0.3)', bottom: 0, right: 0, left: 0, padding: 5, flexDirection: 'row', alignItems: 'center', height: 105}}>
+                <View style={{ margin: 10 }}>
+                    {/*<Icon style={{color: "white"}} name={"star"} size={17}/>*/}
+                    <Text style={{color: 'white', fontSize: 16}} numberOfLines={2}>
+                        {props.description}
+                    </Text>
+                    { dateTime(props.startDate, props.endDate) }
+                </View>
+            </View>
+        </View>
+    )
+}
+
+const dateTime = (start, end) => {
+    console.log(start, end)
+    if(start || end){
+        return (
+        <View>
+            <View style={{borderTopWidth: 1,borderColor: '#ddd', margin: 5}} />
+            <Text style={{fontSize: 13, marginTop: 4, color: 'white'}} numberOfLines={1}>
+                START: {dateFormat(start)} END: {dateFormat(end)}
+            </Text>
+        </View>
+    )
+    }
+}
+
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
     
@@ -64,7 +99,9 @@ const countFavorite = count => {
         return (
             <View style={{position: 'absolute', backgroundColor: '#ff7f11', bottom: 0, right: 0 , padding: 5, flexDirection: 'row', alignItems: 'center'}}>
                 <Icon style={{color: "white"}} name={"star"} size={17}/>
-                <Text style={{color: 'white', marginLeft: 3}}>{count}</Text>
+                <View>
+                    <Text style={{color: 'white', marginLeft: 3}}>{count}</Text>
+                </View>
             </View>
         )
     }
@@ -144,6 +181,7 @@ const EmptyCard = (props) => {
     )
 }
 
+
 const {height, width} = Dimensions.get('window')
                 
 const styles = {
@@ -212,4 +250,4 @@ const styles = {
     }
 }
 
-export { Card, BigCard, HalfScreenCard, EmptyCard }
+export { Card, BigCard, HalfScreenCard, EmptyCard, ImageCard }

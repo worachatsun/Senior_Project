@@ -8,22 +8,26 @@ import {
     EmptyCard, 
     CardSection, 
     Map, 
-    WebViewRichText 
+    WebViewRichText,
+    ImageCard
 } from '../common'
 
 class ModalContentEvent extends Component {
+
+    dateFormat = date => {
+        const arrDate = (new Date(date)).toUTCString().split(" ")
+        return `${arrDate[1]} ${arrDate[2]} ${arrDate[3]}`
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View>
-                    <ModalHeaderPlain headerText={this.props.modalContent.event_name} />
+                    <ModalHeaderPlain style={{backgroundColor: 'rgba(0,0,0,0)'}} headerText={this.props.modalContent.event_name} />
                 </View>
                 <ScrollView>
                     <View style={{flex: 1}}>
-                        <ImageModal img={this.props.modalContent.assets.picture[0]} />
-                        <View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,0.3)', bottom: 0, left: 0, right: 0 , height: 100, padding: 10}}>
-                            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>{this.props.modalContent.event_name}</Text>
-                        </View>
+                        <ImageCard img={this.props.modalContent.assets.picture[0]} description={this.props.modalContent.event_name} />
                     </View>
                     <EmptyCard>
                         <View style={{margin: 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -32,7 +36,7 @@ class ModalContentEvent extends Component {
                             </View>
                             <CardSection />
                             <View style={{flexDirection: 'row',}}>
-                                <Text>{this.props.modalContent.event_date_begin}</Text>
+                                <Text>{this.dateFormat(this.props.modalContent.event_date_begin)} - {this.dateFormat(this.props.modalContent.event_date_end)}</Text>
                             </View>
                             <View style={{flexDirection: 'row',}}>
                                 <Text numberOfLines={2}>{this.props.modalContent.location}</Text>

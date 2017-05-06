@@ -71,7 +71,7 @@ class EventPage extends Component {
             <View style={styles.containerStyle}>
                 <Header headerText={'Event'} route_to={'event'} />
                 <View style={{flex: 1}}>
-                    <View style={{ marginBottom: 50, marginTop: 10}}>
+                    <View style={{ marginBottom: 50 }}>
                         {/*<View style={styles.halfCardContainer}>*/}
                             {/*<ListView
                                 dataSource={this.dataSource.cloneWithRows(this.props.event.fetchEvent)}

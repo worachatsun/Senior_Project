@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import * as actions from '../actions'
-import { HalfScreenCard, Card, BigCard } from '../common'
+import { HalfScreenCard, Card, BigCard, ImageCard } from '../common'
 
 class EventItem extends Component {
 
@@ -13,7 +13,7 @@ class EventItem extends Component {
     }
 
     render () {
-        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <BigCard description={this.props.event.event_name} startDate={this.props.event.regis_date_begin} endDate={this.props.event.regis_date_end} img={this.props.event.assets.picture[0]} />
+        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <ImageCard description={this.props.event.event_name} startDate={this.props.event.regis_date_begin} endDate={this.props.event.regis_date_end} img={this.props.event.assets.picture[0]} />
         
         return (
             <View>
