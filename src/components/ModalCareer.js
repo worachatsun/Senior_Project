@@ -5,7 +5,6 @@ import { ModalHeaderPlain, WebViewRichText,  } from '../common'
 
 class ModalCareer extends Component {
     render() {
-        console.log(this.props.position)
         return (
             <View>
                 <ModalHeaderPlain headerText={this.props.career_name} style={{marginBottom: 10}}/>

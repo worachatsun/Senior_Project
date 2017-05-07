@@ -38,7 +38,7 @@
     <false/>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
-    <key>NSAppTransportSecurity</key>
+    <!--<key>NSAppTransportSecurity</key>
     <dict>
       <key>NSExceptionDomains</key>
       <dict>
@@ -48,6 +48,12 @@
           <true/>
         </dict>
       </dict>
+    </dict>-->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <!--Include to allow all connections (DANGER)-->
+      <key>NSAllowsArbitraryLoads</key>
+          <true/>
     </dict>
     <key>UIAppFonts</key>
     <array>
