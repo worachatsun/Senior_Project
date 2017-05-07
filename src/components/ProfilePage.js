@@ -15,14 +15,14 @@ class ProfilePage extends Component {
 
 
     render () {
-        const { assets, name, email, surname } = this.props.profile.user_detail.user
+        const { assets, name, email, surname, uid } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1}}>
                 <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
-                        <RoundImage img={assets.picture} />
+                        <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} />
                         <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
                     </View>
                     <CardSection />

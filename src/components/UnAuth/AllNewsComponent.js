@@ -25,7 +25,7 @@ class AllNewsComponent extends Component {
     }
 
     _onRefresh() {
-        this.setState({refreshing: true})
+        this.setState({refreshing: true, datas: []})
         this.props.fetchNews(0, 20).then(() => {
             this.setState({refreshing: false})
         })

@@ -8,20 +8,21 @@ import {
     Dimensions,
     Picker,
     Image,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
-import { Actions} from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
-import DropDown, {
-  Select,
-  Option,
-  OptionList,
-} from 'react-native-selectme'
+// import DropDown, {
+//   Select,
+//   Option,
+//   OptionList,
+// } from 'react-native-selectme'
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 
 class ModalGetTicket extends Component {
@@ -66,11 +67,13 @@ class ModalGetTicket extends Component {
 
     onButtonPressWithoutCoupon() {
         this.props.getTicket(this.props.profile._id, this.props.modalEvent._id)
-        Alert.alert(
-            'Event Alert',
-            'Joined success',
-            {text: 'OK', onPress: Actions.EventJoined()}
-        )
+        this.props.fetchJoinedEvent(this.props.profile._id)
+        Actions.EventJoined()
+        // Alert.alert(
+        //     'Event Alert',
+        //     'Joined success',
+        //     {text: 'OK', onPress: Actions.EventJoined()}
+        // )
     }
 
     render() {
@@ -84,25 +87,16 @@ class ModalGetTicket extends Component {
                             <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
                             
                             <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
-                                <Select
-                                    width={40}
-                                    height={30}
-                                    style={{backgroundColor: '#ff7f11', borderRadius: 5, borderWidth: 0, justifyContent: 'center'}}
-                                    ref="SELECT1"
-                                    optionListRef={this._getOptionList.bind(this)}
-                                    defaultValue={0}
-                                    onSelect={this._dropdown.bind(this)}>
-                                    <Option key={1} value={1}>1</Option>
-                                    <Option key={2} value={0}>0</Option>
-                                </Select>
-                                <OptionList ref="OPTIONLIST"/>
+                                <Text>1</Text>
                             </View>
                             <Text style={{marginTop: 10 }}>Price: Free</Text>
                             <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
                         </View>
 
-                        <View style={{ backgroundColor: '#FF7F11', borderRadius: 3, width: width-70, margin: 5, marginBottom: 10 }}>
-                            <Button color="white" title={'Get Tickets'} onPress={() => this.onButtonPressWithoutCoupon()} disabled={!this.props.event.eventAvailable}/>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                            <TouchableOpacity onPress={() => this.onButtonPressWithoutCoupon()}>
+                                <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white', padding: 10 }]}>Get Tickets</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     {/*<View tabLabel="Use Coupon" style={[{flex: 1}]}>

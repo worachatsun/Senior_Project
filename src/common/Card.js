@@ -61,7 +61,7 @@ const Card = (props) => {
                         {props.description}
                     </Text>
                 </View>
-                <View style={{width: 50, height: 22, backgroundColor: '#ff7f11', position: 'absolute', right: 0, bottom: 0, alignItems: 'center'}}>
+                <View style={{ height: 22, backgroundColor: '#ff7f11', position: 'absolute', right: 0, bottom: 0, alignItems: 'center'}}>
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <Icon style={{color: "white"}} name={"account"} size={20}/>
                         <Text style={{color: "white"}}>{props.capacity}</Text>

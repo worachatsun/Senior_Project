@@ -49,7 +49,7 @@ class DonationPage extends Component{
     }
 
     _onRefresh() {
-        this.setState({refreshing: true})
+        this.setState({refreshing: true, datas: []})
         this.props.fetchDonation(0, 20).then(() => {
             this.setState({refreshing: false})
         })

@@ -76,7 +76,6 @@ class RouterComponent extends Component {
                         <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
                         <Scene key="chat" component={ChatPage} />
                         <Scene key="first" component={AllowAllUserNews} initial/>
-                        <Scene key="NewsOutside" component={NewsPageOutside} />
                     </Scene>
             </Router>
         )

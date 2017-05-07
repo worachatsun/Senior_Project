@@ -20,7 +20,7 @@ class CareerDescription extends Component {
                 <ScrollView style={{flex: 1}}>
                     <ImageModal img={this.props.career.assets.picture} />
                     <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: 10}}>
-                        <View>
+                        <View style={{margin: 10}}>
                             <Text style={{textAlign: 'center', fontSize: 25, fontWeight: 'bold'}}>{this.props.career.company}</Text>
                         </View>
                     </View>

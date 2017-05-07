@@ -71,19 +71,19 @@ class LoginPage extends Component {
                             <Image source={require('../env/images/kmutt.png')} style={{ height: 160, width: 160 }}/>
                             <Text style={styles.title}>Alumni</Text>
                         </View>
-                        <View style={[styles.field, {height: 30}]}>
-                            <TextInput style={{height: 30}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
+                        <View style={[styles.field, {height: 55}]}>
+                            <TextInput style={{height: 55}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
                         </View>
-                        <View style={[styles.field, {height: 30}]}>
-                            <TextInput style={{height: 30}} value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
+                        <View style={[styles.field, {height: 55}]}>
+                            <TextInput style={{height: 55}} value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                             <TouchableOpacity onPress={this.onSignIn}>
-                                <Text style={styles.textButton}>Sign in</Text>
+                                <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign in</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => Actions.signup()}>
+                            {/*<TouchableOpacity onPress={() => Actions.signup()}>
                                 <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign up</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>*/}
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
                             <TouchableOpacity onPress={this.onForgetPassword}>
@@ -128,15 +128,14 @@ const styles = {
     },
     field: {
         borderRadius: 5,
-        padding: 5,
+        // padding: 5,
         paddingLeft: 8,
         margin: 7,
-        marginTop: 0,
         borderBottomWidth: 1,
         borderColor: '#ff7f11'
     },
     textInput: {
-        height: 26
+        height: 55
     },
     statusBar: {
         height: STATUSBAR_HEIGHT,
