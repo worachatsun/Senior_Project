@@ -45,6 +45,7 @@ class ChatPage extends Component {
     });
   }
   render() {
+    
     return (
         <View style={{flex: 1}}>
             <ModalHeaderPlain headerText={'Chat'} backSign={true} />
