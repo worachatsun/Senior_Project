@@ -1,4 +1,4 @@
-let API_URL = 'http://localhost:3000/v1'
+let API_URL = 'http://10.1.150.79:3000:3000/v1'
 
 exports.GETNEWS_URL = `${API_URL}/getNews`
 exports.GETNEWS_FACULTY_URL = `${API_URL}/getNewsByFaculty`
