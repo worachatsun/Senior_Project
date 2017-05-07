@@ -29,8 +29,4 @@ class EventItem extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { selectNewsId: state.selectedNewsId }
-}
-
-export default connect(mapStateToProps, actions)(EventItem)
+export default connect(null, actions)(EventItem)

@@ -43,7 +43,7 @@ class ModalContentEvent extends Component {
                             <Text numberOfLines={2} style={{marginLeft: 5}}>{this.props.modalContent.location}</Text>
                         </View>
                     </View>
-                    <Map />
+                    {/*<Map />*/}
                     <View style={{margin: 10}}>
                         <View style={{marginBottom: 5, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{color: '#ddd', fontSize: 18, fontWeight: 'bold'}}>Detail</Text>
