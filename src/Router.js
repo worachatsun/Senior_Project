@@ -28,6 +28,7 @@ import SearchPageEvent from './components/SearchPageEvent'
 import SearchPageDonation from './components/SearchPageDonation'
 import SearchPageCareer from './components/SearchPageCareer'
 import AllowAllUserNews from './components/AllowAllUserNews'
+import NewsPageOutside from './components/UnAuth/NewsPageOutside'
 
 class TabIcon extends Component {
   render() {
@@ -75,6 +76,7 @@ class RouterComponent extends Component {
                         <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
                         <Scene key="chat" component={ChatPage} />
                         <Scene key="first" component={AllowAllUserNews} initial/>
+                        <Scene key="NewsOutside" component={NewsPageOutside} />
                     </Scene>
             </Router>
         )

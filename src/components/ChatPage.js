@@ -14,7 +14,7 @@ class ChatPage extends Component {
   componentWillMount() {
     let now = new Date();
     let now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
-    this.props.fetchInboxChat('590729229b3e717a8971268c')
+    this.props.fetchInboxChat(this.props.profile._id)
       .then((previousState)=> {
           this.setState({
             messages: this.props.chat
@@ -37,7 +37,7 @@ class ChatPage extends Component {
     // })
   }
   onSend(messages = []) {
-    this.props.sendChat('590729229b3e717a8971268c', messages[0])
+    this.props.sendChat(this.props.profile._id, messages[0])
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
@@ -45,7 +45,6 @@ class ChatPage extends Component {
     });
   }
   render() {
-    console.log(this.props.chat)
     return (
         <View style={{flex: 1}}>
             <ModalHeaderPlain headerText={'Chat'} backSign={true} />

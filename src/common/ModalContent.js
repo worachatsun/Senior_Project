@@ -7,7 +7,7 @@ import {
     ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Card, ImageModal, CardSection } from './index'
+import { Card, ImageModal, CardSection, ModalHeaderPlain } from './index'
 import ModalHeader from './ModalHeader'
 import { WebViewRichText } from './WebViewRichText'
 
@@ -33,10 +33,11 @@ class ModalContent extends Component {
     render () {
         const { modalContent } = this.props
         const { headerTextStyle, contentTextStyle, viewStyle } = styles
+        const headerFrom = !this.props.outside ? <ModalHeader headerText={modalContent.news_title} favorite_Id={modalContent._id} /> : <ModalHeaderPlain headerText={modalContent.news_title} />
         return (
             <View style={{flex: 1}}>
                 <View>
-                    <ModalHeader headerText={modalContent.news_title} favorite_Id={modalContent._id} />
+                    {headerFrom}
                 </View>
                 <ScrollView>
                     <ImageModal img={modalContent.assets.picture} />

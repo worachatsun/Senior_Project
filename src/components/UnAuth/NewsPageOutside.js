@@ -6,14 +6,14 @@ import {
 } from 'react-native'
 import { 
     Header, 
-} from '../common'
-import * as actions from '../actions'
+} from '../../common'
+import * as actions from '../../actions'
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 import { Actions } from 'react-native-router-flux'
 import AllNewsComponent from './AllNewsComponent'
 import AllNewsFaculty from './AllNewsFaculty'
 
-class NewsPage extends Component {
+class NewsPageOutside extends Component {
 
     constructor(props) {
         super(props)
@@ -42,10 +42,10 @@ class NewsPage extends Component {
                                         activeTextColor="#FF7F11"
                                         inactiveTextColor="black"/>}>
                     <View tabLabel="Information" style={[{flex: 1}, fromOutside]}>
-                        <AllNewsComponent outside={true} />
+                        <AllNewsComponent />
                     </View>
                     <View tabLabel="Event" style={[{flex: 1}, fromOutside]}>
-                        <AllNewsFaculty outside={true} />
+                        <AllNewsFaculty />
                     </View>
                 </ScrollableTabView>   
             </View>
@@ -81,8 +81,8 @@ const mapStateToProps = state => {
     }
 }
 
-NewsPage.defaultProps = {
+NewsPageOutside.defaultProps = {
     fromOutside: false
 }
 
-export default connect(mapStateToProps, actions)(NewsPage)
+export default connect(mapStateToProps, actions)(NewsPageOutside)

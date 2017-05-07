@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
-import NewsPage from './NewsPage'
+import NewsPageOutside from './UnAuth/NewsPageOutside'
 import { Actions } from 'react-native-router-flux'
 
 class AllowAllUserNews extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-                <NewsPage fromOutside={true} />
+                <NewsPageOutside fromOutside={true} />
                 <TouchableOpacity onPress={() => Actions.login()}>
                         <View style={styles.footerBar}>
                             <Text style={{ color: 'white', fontWeight: 'bold' }}>SIGN IN FOR MORE FUNCTION</Text>
