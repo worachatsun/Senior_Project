@@ -55,7 +55,6 @@ class EventPage extends Component {
     }
 
     renderRow(event, sectionID, rowID) {
-        console.log(event._id)
         return <EventItem key={event._id} event={event} rowID={rowID}/>
     }
 

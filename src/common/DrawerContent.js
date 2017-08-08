@@ -13,62 +13,71 @@ class DrawerContent extends Component {
         this.onLogout = this.onLogout.bind(this)
     }
 
-    onLogout() {
-        this.props.unauthUser()
-        return Actions.popTo('login')
+    async onLogout() {
+        await this.props.unauthUser()
+        await Actions.popTo('login')
     }
 
     render() {
         const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle, footerBar } = styles
-        const { assets, name, surname, uid } = this.props.profile.user_detail.user
 
-        return (
-            <View style={viewStyle}>
-                <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
-                <TouchableOpacity onPress={() => Actions.ProfilePage() }>
-                    <View style={profileStyle}>
-                        <View style={{margin: 15}}>
-                            <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} style={styles.roundImage}/>
+        if(this.props.profile.user_detail.user) {
+            const { assets, name, surname, uid } = this.props.profile.user_detail.user
+     
+            return (
+                <View style={viewStyle}>
+                    <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+                    <TouchableOpacity onPress={() => Actions.ProfilePage() }>
+                        <View style={profileStyle}>
+                            <View style={{margin: 15}}>
+                                <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} style={styles.roundImage}/>
+                            </View>
+                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
+                                <Text style={{margin: 5}}>{uid}</Text>
+                            </View>
                         </View>
-                        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
-                            <Text style={{margin: 5}}>{uid}</Text>
+                    </TouchableOpacity>
+                    <View style={styles.sectionMenu}>
+                        <Text style={{color: 'grey'}}>Follow</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
+                        <View style={[menuStyle, {borderTopWidth: 1,borderColor: '#ddd'}]}>
+                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
+                            <Text style={textStyle}>News Favorite</Text>
                         </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Actions.EventJoined() }>
+                        <View style={[menuStyle, {borderBottomWidth: 1,borderColor: '#ddd'}]}>
+                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
+                            <Text style={textStyle}>Event Joined</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.sectionMenu}>
+                        <Text style={{color: 'grey'}}>Chat</Text>
                     </View>
-                </TouchableOpacity>
-                <View style={styles.sectionMenu}>
-                    <Text style={{color: 'grey'}}>Follow</Text>
+                    <TouchableOpacity onPress={() => Actions.chat() }>
+                        <View style={[menuStyle, {borderTopWidth: 1, borderBottomWidth: 1,borderColor: '#ddd'}]}>
+                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"comment-text"} size={20}/>
+                            <Text style={textStyle}>Chat with Admin</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.sectionMenu} />
+                    <TouchableOpacity onPress={() => this.onLogout()}>
+                        <View style={footerBar}>
+                            <Icon style={[{color: 'red'}, iconStyle]} name={"logout-variant"} size={20}/>
+                            <Text style={{color: 'red', margin: 5}}>Logout</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
-                    <View style={[menuStyle, {borderTopWidth: 1,borderColor: '#ddd'}]}>
-                        <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
-                        <Text style={textStyle}>News Favorite</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => Actions.EventJoined() }>
-                    <View style={[menuStyle, {borderBottomWidth: 1,borderColor: '#ddd'}]}>
-                        <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
-                        <Text style={textStyle}>Event Joined</Text>
-                    </View>
-                </TouchableOpacity>
-                <View style={styles.sectionMenu}>
-                    <Text style={{color: 'grey'}}>Chat</Text>
+            )
+        } else {
+            return(
+                <View>
+                    <Text>Unauth</Text>
                 </View>
-                <TouchableOpacity onPress={() => Actions.chat() }>
-                    <View style={[menuStyle, {borderTopWidth: 1, borderBottomWidth: 1,borderColor: '#ddd'}]}>
-                        <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"comment-text"} size={20}/>
-                        <Text style={textStyle}>Chat with Admin</Text>
-                    </View>
-                </TouchableOpacity>
-                <View style={styles.sectionMenu} />
-                <TouchableOpacity onPress={() => this.onLogout()}>
-                    <View style={footerBar}>
-                        <Icon style={[{color: 'red'}, iconStyle]} name={"logout-variant"} size={20}/>
-                        <Text style={{color: 'red', margin: 5}}>Logout</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        )
+            )
+        }
     }
 }
 

@@ -3554,6 +3554,10 @@ react-native-drawer@^2.3.0:
   dependencies:
     tween-functions "^1.0.1"
 
+react-native-dropdown-menu@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-dropdown-menu/-/react-native-dropdown-menu-1.1.0.tgz#1f0eeea8ee3a49abaf15b4335df4156929598274"
+
 react-native-easy-grid@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.1.8.tgz#7953fb85e0e2c316d814bbd189cb9efdf56ff2a5"
@@ -3603,7 +3607,7 @@ react-native-keychain@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-1.2.0.tgz#57aad19b7b08fb7e12173763de1c9da1949ab704"
 
-"react-native-lightbox@github:oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875":
+react-native-lightbox@oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875:
   version "0.6.0"
   resolved "https://codeload.github.com/oblador/react-native-lightbox/tar.gz/c84a8543d4511fe6a44c3d7820747c9c1bddd875"
   dependencies:
@@ -3619,6 +3623,10 @@ react-native-menu@^0.20.2:
   dependencies:
     react-timer-mixin "^0.13.3"
 
+react-native-modal-dropdown@^0.4.2:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-modal-dropdown/-/react-native-modal-dropdown-0.4.4.tgz#1164f3844b3847391fc3a0d0133189e6629d02c2"
+
 react-native-modalbox@^1.3.9:
   version "1.3.9"
   resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.9.tgz#9991c51ebc69c720d8a778aaa47c89137ddea111"
@@ -3626,6 +3634,10 @@ react-native-modalbox@^1.3.9:
 react-native-parsed-text@0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/react-native-parsed-text/-/react-native-parsed-text-0.0.16.tgz#788f6a51c3e2c224ad89101cc3d63f5993d37747"
+
+react-native-push-notification@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.2.1.tgz#9b392cee8f5223a1e1772c9a88c95742549fcfc3"
 
 react-native-router-flux@3.38.0:
   version "3.38.0"
@@ -3645,6 +3657,10 @@ react-native-scrollable-tab-view@^0.7.3:
   dependencies:
     react-static-container "^1.0.1"
     react-timer-mixin "^0.13.3"
+
+react-native-selectme@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-selectme/-/react-native-selectme-1.2.3.tgz#08b34a8603abf40c29e9d1ab14d79c6a939902ff"
 
 react-native-tabs@^1.0.9:
   version "1.0.9"

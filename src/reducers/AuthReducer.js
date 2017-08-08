@@ -12,7 +12,7 @@ export default ( state = INITIAL_STATE, action ) => {
             }
         case UNAUTH_USER :
             return {
-                user_detail: {}
+                user_detail: INITIAL_STATE
             }
         default:
             return state
