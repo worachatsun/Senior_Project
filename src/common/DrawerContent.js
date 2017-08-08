@@ -74,7 +74,7 @@ class DrawerContent extends Component {
         } else {
             return(
                 <View>
-                    <Text>Unauth</Text>
+                    <Text>Unauthen</Text>
                 </View>
             )
         }

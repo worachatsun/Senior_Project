@@ -11,6 +11,7 @@ import {
     Linking 
 } from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
+import PushNotification from 'react-native-push-notification'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux' 
@@ -27,6 +28,14 @@ class LoginPage extends Component {
         }
 
         this.onSignIn = this.onSignIn.bind(this)
+    }
+
+    componentDidMount() {
+        PushNotification.configure({
+            onNotification: function(notification) {
+                console.log('NOTOFICATION:', notification)
+            }
+        })
     }
 
     onSignIn() {
