@@ -26,7 +26,7 @@ class ModalContentEvent extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <View style={{flex: 1}}>
-                        <ImageCard height={400} img={this.props.modalContent.assets.picture[0]} description={this.props.modalContent.event_name} />
+                        <ImageCard height={400} img={this.props.modalContent.picture} description={this.props.modalContent.event_name} />
                         <ModalHeaderOpacity/>
                     </View>
                     <View style={{margin: 10}}>
@@ -79,6 +79,7 @@ const styles = {
 }
 
 const mapStateToProps = state => {
+    console.log(state.modalContent)
     return { modalContent: state.modalContent }
 }
 

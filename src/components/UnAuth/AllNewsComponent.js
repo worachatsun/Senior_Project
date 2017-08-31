@@ -84,6 +84,7 @@ class AllNewsComponent extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.newsList.news)
     return { newsList: state.newsList.news }
 }
 

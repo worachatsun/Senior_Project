@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text, AppState } from 'react-native'
 import NewsPageOutside from './UnAuth/NewsPageOutside'
+import PushNotification from 'react-native-push-notification'
 import { Actions } from 'react-native-router-flux'
 
 class AllowAllUserNews extends Component {
+
     render() {
         return (
             <View style={{flex: 1}}>

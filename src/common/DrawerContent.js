@@ -15,7 +15,7 @@ class DrawerContent extends Component {
 
     async onLogout() {
         await this.props.unauthUser()
-        await Actions.popTo('login')
+        await Actions.popTo('first')
     }
 
     render() {

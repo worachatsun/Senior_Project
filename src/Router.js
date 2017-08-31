@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import { getUserInfo } from './actions'
 import { Text, Image, View } from 'react-native'
-import { Scene, Router, TabBar, Modal } from 'react-native-router-flux'
+import { Scene, Router, TabBar, Modal, Actions } from 'react-native-router-flux'
+import * as Keychain from 'react-native-keychain'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import NewsPage from './components/NewsPage'
 import SearchPage from './components/SearchPage'
@@ -44,6 +47,23 @@ class TabIcon extends Component {
 }
 
 class RouterComponent extends Component {
+    constructor(props) {
+        super(props)
+        Keychain
+        .getGenericPassword()
+        .then(function(credentials) {
+            if(credentials) {
+                props.getUserInfo(credentials.password)
+                console.log('Credentials successfully loaded for user ', credentials)
+                Actions.tabbar()
+            }else{
+                console.log(credentials)
+                Actions.first()
+            }
+        }).catch(function(error) {
+            console.log('Keychain couldn\'t be accessed! Maybe no value set?', error)
+        })
+    }
 
     render () {
         return (
@@ -89,4 +109,4 @@ const styles = {
     }
 }
 
-export default RouterComponent
+export default connect(null, { getUserInfo })(RouterComponent)

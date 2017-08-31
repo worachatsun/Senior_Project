@@ -13,7 +13,7 @@ class EventItem extends Component {
     }
 
     render () {
-        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.assets.picture[0]} /> : <ImageCard description={this.props.event.event_name} startDate={this.props.event.regis_date_begin} endDate={this.props.event.regis_date_end} img={this.props.event.assets.picture[0]} />
+        const selectCard = this.props.JoinedEvent == "fetchJoinedEvent" ? <Card description={this.props.event.event_name} img={this.props.event.picture} /> : <ImageCard description={this.props.event.event_name} startDate={this.props.event.regis_date_begin} endDate={this.props.event.regis_date_end} img={this.props.event.picture} />
         
         return (
             <View>

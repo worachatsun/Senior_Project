@@ -14,7 +14,7 @@ class NewsItemOutside extends Component {
     }
 
     render () {
-        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.assets.picture} /> : <Card description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.assets.picture} />
+        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.picture} /> : <Card description={this.props.news.news_title} count_favorite={this.props.news.news_favorite.length} img={this.props.news.picture} />
         return (
             <TouchableOpacity onPress={() => {
                     this.props.selectNews(this.props.news._id)

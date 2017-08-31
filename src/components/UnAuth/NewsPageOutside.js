@@ -56,7 +56,7 @@ class NewsPageOutside extends Component {
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: "#ddd"
+        backgroundColor: "white"
     },
     tabbar: {
         height: 40, 

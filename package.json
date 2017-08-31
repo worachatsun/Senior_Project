@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "eject-native-base": "node node_modules/native-base/ejectTheme.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -17,7 +18,7 @@
     "react-native-easy-grid": "^0.1.8",
     "react-native-gifted-chat": "^0.1.4",
     "react-native-htmlview": "^0.9.0",
-    "react-native-keychain": "^1.2.0",
+    "react-native-keychain": "^1.2.1",
     "react-native-maps": "^0.13.0",
     "react-native-menu": "^0.20.2",
     "react-native-modal-dropdown": "^0.4.2",
@@ -31,6 +32,7 @@
     "redux": "^3.6.0",
     "redux-form": "^5.3.2",
     "redux-thunk": "^2.2.0",
+    "socket.io-client": "^2.0.3",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

@@ -4,11 +4,10 @@ import { ModalHeaderPlain, WebViewRichText } from '../common'
 
 class ModalDonate extends Component {
     render() {
-        console.log(this.props)
         return (
             <View>
                 <ModalHeaderPlain headerText={this.props.project_name} style={{marginBottom: 10}}/>
-                <WebViewRichText webText={this.props.donate.how_to} />
+                <WebViewRichText webText={this.props.ways_to_donate} />
             </View>
         )
     }

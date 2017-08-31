@@ -8,7 +8,8 @@ import {
     Image, 
     StatusBar, 
     Platform, 
-    Linking 
+    Linking,
+    AppState
 } from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
 import PushNotification from 'react-native-push-notification'
@@ -36,6 +37,12 @@ class LoginPage extends Component {
                 console.log('NOTOFICATION:', notification)
             }
         })
+
+        PushNotification.localNotificationSchedule({
+            message: "My Notification Message", // (required)
+            date: new Date(Date.now() + (10 * 1000)), // in 60 secs
+            number: 0
+        })
     }
 
     onSignIn() {
@@ -51,6 +58,8 @@ class LoginPage extends Component {
         })
         this.props.loginLdap(email, password).then(() => {
             this.setState({
+                email: '',
+                password: '',
                 loading: false
             })
         })
@@ -80,10 +89,10 @@ class LoginPage extends Component {
                             <Image source={require('../env/images/kmutt.png')} style={{ height: 160, width: 160 }}/>
                             <Text style={styles.title}>Alumni</Text>
                         </View>
-                        <View style={[styles.field, {height: 55}]}>
-                            <TextInput style={{height: 55}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
+                        <View style={[styles.field, {height: 45}]}>
+                            <TextInput style={{height: 20}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
                         </View>
-                        <View style={[styles.field, {height: 55}]}>
+                        <View style={[styles.field, {height: 45}]}>
                             <TextInput style={{height: 55}} value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>

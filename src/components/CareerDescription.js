@@ -18,7 +18,7 @@ class CareerDescription extends Component {
             <View style={{flex: 1}}>
                 <ModalHeaderPlain headerText={this.props.career.career_name} backSign={'arrow'}/>
                 <ScrollView style={{flex: 1}}>
-                    <ImageModal img={this.props.career.assets.picture} />
+                    <ImageModal img={this.props.career.picture} />
                     <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: 10}}>
                         <View style={{margin: 10}}>
                             <Text style={{textAlign: 'center', fontSize: 25, fontWeight: 'bold'}}>{this.props.career.company}</Text>

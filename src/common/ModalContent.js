@@ -40,7 +40,7 @@ class ModalContent extends Component {
                     {headerFrom}
                 </View>
                 <ScrollView>
-                    <ImageModal img={modalContent.assets.picture} />
+                    <ImageModal img={modalContent.picture} />
                     <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
                         <Text style={headerTextStyle}>{modalContent.news_title}</Text>
                     </View>

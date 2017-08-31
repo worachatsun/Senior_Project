@@ -13,7 +13,7 @@ class DonationItem extends Component {
     }
 
     render () {
-        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.donation.project_name} img={this.props.donation.assets.picture} /> : <Card description={this.props.donation.project_name} img={this.props.donation.picture} />
+        const selectCard = this.props.rowID == 0 ? <BigCard description={this.props.donation.project_name} img={this.props.donation.picture} /> : <Card description={this.props.donation.project_name} img={this.props.donation.picture} />
         return (
              <TouchableOpacity onPress={() => {
                     this.updateContentModal()            

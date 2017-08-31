@@ -12,7 +12,7 @@ class DonationDescription extends Component {
             <View style={{flex: 1}}>
                 <ModalHeaderPlain headerText={this.props.donation.project_name} backSign={'arrow'}/>
                 <ScrollView style={{flex: 1}}>
-                    <ImageModal img={this.props.donation.assets.picture} />
+                    <ImageModal img={this.props.donation.picture} />
                     <View style={styles.HTML_view_style}>
                         <WebViewRichText webText={this.props.donation.project_description} />
                     </View>

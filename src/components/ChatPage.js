@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import { sendMsg, subscribeToChat } from '../api/socketio'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { ModalHeaderPlain } from '../common'
 
@@ -11,7 +12,14 @@ class ChatPage extends Component {
     this.state = {messages: []};
     this.onSend = this.onSend.bind(this);
   }
+
   componentWillMount() {
+    subscribeToChat(this.props.profile._id, (err, users) => {
+        console.log(users)
+        this.setState({ allUsers: users })
+        sendMsg('sun', users[0])
+    })
+
     let now = new Date();
     let now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
     this.setState({
@@ -29,13 +37,15 @@ class ChatPage extends Component {
       ],
     })
     this.props.fetchInboxChat(this.props.profile._id)
-      .then((previousState)=> {
-          this.setState({
-            messages: this.props.chat
-          })
-      })
+    .then((previousState)=> {
+        this.setState({
+          messages: this.props.chat
+        })
+    })
   }
+
   onSend(messages = []) {
+    sendMsg(messages[0], 'sun')
     this.props.sendChat(this.props.profile._id, messages[0])
     this.setState((previousState) => {
       return {
