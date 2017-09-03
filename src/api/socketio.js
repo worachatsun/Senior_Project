@@ -22,8 +22,11 @@ const subscribeToChat = (id, onRecieveMsg, cb) => {
 
     socket.on('getMsg', msg => {
         onRecieveMsg(msg.msg)
-        console.log(msg, 'mssss')
     })
+}
+
+const leaveRoom = room => {
+    socket.emit('leaveRoom', room)
 }
 
 const sendMsg = (msg, room) => {
@@ -33,5 +36,6 @@ const sendMsg = (msg, room) => {
 
 export {
     subscribeToChat,
-    sendMsg
+    sendMsg,
+    leaveRoom
 }

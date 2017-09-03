@@ -2,21 +2,20 @@ import React, { Component } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { sendMsg, subscribeToChat } from '../api/socketio'
+import { sendMsg, subscribeToChat, leaveRoom } from '../api/socketio'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { ModalHeaderPlain } from '../common'
 
 class ChatPage extends Component {
   constructor(props) {
-    super(props);
-    this.state = {messages: [], s:[]};
-    this.onSend = this.onSend.bind(this);
+    super(props)
+    this.state = {messages: []}
+    this.onSend = this.onSend.bind(this)
   }
 
   componentWillMount() {
     subscribeToChat(this.props.profile._id, this.onRecieveMsg, (err, users) => {
         this.setState({ allUsers: users })
-        sendMsg('sun', users[0])
     })
 
     let now = new Date();
@@ -41,6 +40,10 @@ class ChatPage extends Component {
           messages: this.props.chat
         })
     })
+  }
+
+  componentWillUnmount() {
+      leaveRoom()
   }
 
   onRecieveMsg = messages => {
