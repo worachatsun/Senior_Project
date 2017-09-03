@@ -27,6 +27,7 @@
     "react-native-router-flux": "3.38.0",
     "react-native-scrollable-tab-view": "^0.7.3",
     "react-native-selectme": "^1.2.3",
+    "react-native-ui-kitten": "^2.0.1",
     "react-native-vector-icons": "^4.0.1",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",

@@ -65,7 +65,6 @@ export const getUserInfo = (token) => {
         return axios.post(GET_USER_DATA, null, {
             headers: { "Authorization": token }
         }).then(response => {
-            console.log(response)
             dispatch(authUser(response.data))
         })
     }

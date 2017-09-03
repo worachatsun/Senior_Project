@@ -54,7 +54,6 @@ class RouterComponent extends Component {
         .then(function(credentials) {
             if(credentials) {
                 props.getUserInfo(credentials.password)
-                console.log('Credentials successfully loaded for user ', credentials)
                 Actions.tabbar()
             }else{
                 console.log(credentials)

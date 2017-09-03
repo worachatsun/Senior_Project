@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { ImageModal } from './'
 import { Col, Row, Grid } from 'react-native-easy-grid'
 import ProgressiveImage from '../components/ProgressiveImage'
+import { RkCard, rkCardHeader } from 'react-native-ui-kitten'
 
 const ImageCard = props => {
     const imgHeight = props.height || 300
@@ -170,6 +171,30 @@ const HalfScreenCard = (props) => {
     )
 }
 
+const RkBigCard = props => {
+    return (
+        <RkCard rkType='shadowed' style={{marginLeft: 10, marginRight: 10, marginBottom: 6, marginTop: 5}}>
+            <View rkCardHeader>
+                <Text>{props.description}</Text>
+            </View>
+            <ProgressiveImage rkCardImg
+                thumbnailSource={{ uri: 'https://i.imgur.com/O249H4P.png?bust' + Math.random() }}
+                imageSource={{ uri: props.img }}
+                style={{ flex: 1, alignItems: 'stretch' }}
+            />
+            <View rkCardContent>
+                <Text> quick brown fox jumps over the lazy dog</Text>
+            </View>
+            <View rkCardFooter>
+                <View style={{flexDirection: 'row'}}>
+                    <Icon style={{color: "#ff7f11"}} name={"star"} size={17}/>
+                    <Text style={{color: '#ff7f11', marginLeft: 3}}>{props.count_favorite}</Text>
+                </View>
+            </View>
+        </RkCard>
+    )
+}
+
 const EmptyCard = (props) => {
     const { containerStyle, viewStyle, textStyle, EmptyCardStyle } = styles
 
@@ -251,4 +276,4 @@ const styles = {
     }
 }
 
-export { Card, BigCard, HalfScreenCard, EmptyCard, ImageCard }
+export { Card, BigCard, HalfScreenCard, EmptyCard, ImageCard, RkBigCard }

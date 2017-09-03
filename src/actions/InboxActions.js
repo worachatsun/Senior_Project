@@ -9,7 +9,7 @@ export const sendChat = (id, data) => {
         "createdAt": data.createdAt,
         "user": data.user
     }
-    console.log(inbox)
+    
     const promise = axios.post(`${POST_SEND_CHAT}`, {
         "room_id": id,
         "inbox": inbox

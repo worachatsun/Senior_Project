@@ -9,13 +9,12 @@ import { ModalHeaderPlain } from '../common'
 class ChatPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {messages: []};
+    this.state = {messages: [], s:[]};
     this.onSend = this.onSend.bind(this);
   }
 
   componentWillMount() {
-    subscribeToChat(this.props.profile._id, (err, users) => {
-        console.log(users)
+    subscribeToChat(this.props.profile._id, this.onRecieveMsg, (err, users) => {
         this.setState({ allUsers: users })
         sendMsg('sun', users[0])
     })
@@ -44,14 +43,22 @@ class ChatPage extends Component {
     })
   }
 
+  onRecieveMsg = messages => {
+    this.setState((previousState) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, messages),
+      }
+    })
+  }
+
   onSend(messages = []) {
-    sendMsg(messages[0], 'sun')
+    sendMsg(messages[0], this.props.profile._id)
     this.props.sendChat(this.props.profile._id, messages[0])
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
-      };
-    });
+      }
+    })
   }
   render() {
     console.log(this.state.messages)

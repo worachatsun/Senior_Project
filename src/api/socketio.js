@@ -12,7 +12,7 @@ export const socket = io('http://localhost:3000',{
     transports: ['websocket']
 })
 
-const subscribeToChat = (id, cb) => {
+const subscribeToChat = (id, onRecieveMsg, cb) => {
     console.log(id, 'id')
     socket.emit('userInfo', { id })
 
@@ -21,13 +21,14 @@ const subscribeToChat = (id, cb) => {
     })
 
     socket.on('getMsg', msg => {
-        console.log(msg, 'ms')
+        onRecieveMsg(msg.msg)
+        console.log(msg, 'mssss')
     })
 }
 
-const sendMsg = (msg, user) => {
+const sendMsg = (msg, room) => {
     console.log(msg, 'msg')
-    socket.emit('sendMsg', {msg, user})
+    socket.emit('sendMsg', {msg, room})
 }
 
 export {
