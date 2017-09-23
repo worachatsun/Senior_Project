@@ -22,7 +22,7 @@ export const fetchAllDonation = () => {
     const promise = axios.get(GET_DONATION)
     
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: FETCH_ALL_DONATION,
                 payload: data

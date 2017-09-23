@@ -79,7 +79,6 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-    console.log(state.modalContent)
     return { modalContent: state.modalContent }
 }
 

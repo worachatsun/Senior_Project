@@ -24,7 +24,7 @@ export const FavoriteNews = (favorite_news, status, user_id) => {
     })
 
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: ADD_FAVORITE_NEWS,
                 payload: data
@@ -41,7 +41,7 @@ export const checkFavoriteNews = (favorite_news, user_id) => {
     })
 
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: CHECK_FAVORITE_NEWS,
                 payload: data
@@ -54,7 +54,7 @@ export const fetchFavoriteNews = (user_id) => {
     const promise = axios.get(GET_ALL_FAVORITE_NEWS+"/"+user_id)
     
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: FETCH_FAVORITE_NEWS,
                 payload: data
@@ -67,7 +67,7 @@ export const fetchJoinedEvent = (user_id) => {
     const promise = axios.get(GET_JOINED_EVENT+"/"+user_id)
     
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: FETCH_JOINED_EVENT,
                 payload: data

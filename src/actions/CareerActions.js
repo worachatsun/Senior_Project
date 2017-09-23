@@ -26,7 +26,7 @@ export const fetchAllCareer = () => {
     const promise = axios.get(GET_CAREER)
     
     return (dispatch) => {
-        promise.then(({data}) => {
+        return promise.then(({data}) => {
             dispatch({
                 type: FETCH_ALL_CAREER,
                 payload: data

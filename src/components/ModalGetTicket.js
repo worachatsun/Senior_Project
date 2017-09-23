@@ -18,11 +18,6 @@ import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-n
 import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
-// import DropDown, {
-//   Select,
-//   Option,
-//   OptionList,
-// } from 'react-native-selectme'
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
 
 class ModalGetTicket extends Component {
@@ -33,12 +28,13 @@ class ModalGetTicket extends Component {
             dropdownSelection: 1,
             coupon: null,
             ticket: 1,
-            dropdown: 1
+            dropdown: 1,
+            capacity: 1
         }
     }
 
     _getOptionList() {
-        return this.refs['OPTIONLIST'];
+        return this.refs['OPTIONLIST']
     }
 
     componentWillMount() {
@@ -46,10 +42,9 @@ class ModalGetTicket extends Component {
     }
 
     _dropdown(value) {
-
         this.setState({
             dropdown: value
-        });
+        })
     }
 
     onButtonPress(coupon = null) {
@@ -66,9 +61,10 @@ class ModalGetTicket extends Component {
     }
 
     onButtonPressWithoutCoupon() {
-        this.props.getTicket(this.props.profile._id, this.props.modalEvent._id)
-        this.props.fetchJoinedEvent(this.props.profile._id)
-        Actions.EventJoined()
+        this.props.getTicket(this.props.profile._id, this.props.modalEvent._id, null, this.state.capacity)
+        this.props.fetchJoinedEvent(this.props.profile._id).then(() => {
+            Actions.EventJoined()
+        })
         // Alert.alert(
         //     'Event Alert',
         //     'Joined success',
@@ -77,17 +73,32 @@ class ModalGetTicket extends Component {
     }
 
     render() {
+        console.log(this.props.event)
         return (
             <View style={styles.container}>
                 <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
-                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize: 20, fontWeight: 'bold', margin: 10}}>Tickets</Text>
-                        <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
-                        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{ fontWeight: 'bold', marginBottom: 3 }}>Seat</Text>
-                            
-                            <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
-                                <Text>1</Text>
+                    <View style={{alignItems: 'center', flex: 1}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 20}}>Tickets</Text>
+                        <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>                            
+                            <View style={{width: '100%'}}>
+                                <TouchableOpacity onPress={() => this.setState({capacity: 1})}>
+                                    <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
+                                        <Text>1 seat</Text>
+                                        {this.state.capacity==1?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.setState({capacity: 2})}>
+                                    <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
+                                        <Text>2 seats</Text>
+                                        {this.state.capacity==2?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.setState({capacity: 3})}>
+                                    <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
+                                        <Text>3 seats</Text>
+                                        {this.state.capacity==3?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}                                        
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                             <Text style={{marginTop: 10 }}>Price: Free</Text>
                             <View style={{borderBottomColor: '#ddd', borderBottomWidth: 1, margin: 10}} />
