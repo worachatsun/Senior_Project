@@ -20,17 +20,10 @@ export const loginUser = (email, password) => {
         }).then(response => {
             const { user_id, token } = response.data
             Keychain
-            .setGenericPassword(user_id, token)
+            .setGenericPassword(user.uid, token)
             .then(function() {
-              console.log('Credentials saved successfully!')
+                console.log('Credentials saved successfully!')
             })
-            // Keychain.setGenericPassword(user_id, token)
-            //     .then(function() {
-            //         dispatch(addAlert(token))
-            //         dispatch(authUser(user_id))
-            //     }).catch(error => {
-            //         dispatch(addAlert('Could not login credential'))
-            //     })
             console.log(response.data)
             dispatch(addAlert(token))
             dispatch(authUser(user_id))
@@ -81,13 +74,11 @@ export const signupUser = (email, password, name, surname, tel, address) => {
             "address": address
         }).then(response => {
             const { user_id, token } = response.data
-            // Keychain.setGenericPassword(user_id, token)
-            //     .then(function() {
-            //         dispatch(addAlert(token))
-            //         dispatch(authUser(user_id))
-            //     }).catch(error => {
-            //         dispatch(addAlert('Could not login credential'))
-            //     })
+            Keychain
+            .setGenericPassword(user.uid, token)
+            .then(function() {
+                console.log('Credentials saved successfully!')
+            })
             dispatch(addAlert(token))
             dispatch(authUser(user_id))
         }).catch(error => {
