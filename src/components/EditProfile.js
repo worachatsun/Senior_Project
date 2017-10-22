@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, TextInput, PixelRatio } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import ImagePicker from 'react-native-image-picker'
 import { ModalHeaderPlain, EmptyCard, RoundImage, CardSection } from '../common'
 import NewsFavorite from './NewsFavorite'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -11,63 +12,126 @@ class EditProfile extends Component {
 
     constructor(props) {
         super(props)
-
+        const { tel, email, address, name, surname, assets } = this.props.profile.user_detail.user
         this.state = {
-            tel: '080-000-0000',
-            email: 'bie_sukrit@gmail.com',
-            location: 'เชียงใหม่ ประเทศไทย',
+            tel,
+            email,
+            name,
+            surname,
+            location: address,
             faculty: 'KMUTT',
             job: 'นักร้อง',
-            trophy: 'ผลงานศิสเก่า'
+            trophy: 'ผลงานศิสเก่า',
+            avatarSource: assets.picture
         }
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     this.setState({
-    //         tel: '080-000-0000',
-    //         email: 'bie_sukrit@gmail.com',
-    //         location: 'เชียงใหม่ ประเทศไทย',
-    //         faculty: 'KMUTT',
-    //         job: 'นักร้อง',
-    //         trophy: 'ผลงานศิสเก่า'
-    //     })
-    // }
+    onClickImagePicker = () => {
+        const options = {
+            quality: 0.5,
+            maxWidth: 250,
+            maxHeight: 250,
+            storageOptions: {
+              skipBackup: true
+            }
+          }
+      
+          ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response)
+      
+            if (response.didCancel) {
+              console.log('User cancelled photo picker');
+            }
+            else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+              console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+
+                let source = { uri: 'data:image/jpeg;base64,' + response.data }
+      
+              this.setState({
+                avatarSource: source
+              })
+            }
+          })
+    }
+
+    onEditInfo() {
+        this.props.updateUserData(this.state, this.props.profile.user_detail.user._id)
+    }
 
     render () {
         const { assets, name, email, surname } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1}}>
-                <ModalHeaderPlain headerText={'Profile'}/>
+                <ModalHeaderPlain headerText={'Edit profile'}/>
                 <ScrollView>
-                    <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
+                    {/* <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
                         <RoundImage img={assets.picture} />
                         <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
-                    </View>
+                    </View> */}
                     <CardSection />
                     <View style={{margin: 14}}>
+                        <TouchableOpacity onPress={this.onClickImagePicker.bind(this)} style={{marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+                                { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+                                <Image style={styles.avatar} source={this.state.avatarSource} />
+                                }
+                            </View>
+                        </TouchableOpacity>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon style={{color: "#ff7f11"}} name={"information"} size={20}/>
                             <Text style={{marginLeft: 3, color: "#ff7f11"}}>Info</Text>
                         </View>
                         
                         <CardSection />
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
-                            <TextInput value={this.state.tel} onChangeText={(tel) => this.setState({tel})}/>
+                        <View style={styles.field}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Icon style={{color: "#ff7f11"}} name={"rename-box"} size={20}/>
+                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Name</Text>
+                            </View>
+                            <TextInput value={this.state.name} onChangeText={name => this.setState({name})} placeholder={"Name"} style={styles.textInput}/>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <Image style={styles.iconStyle} source={require('../env/images/email.png')} /> 
-                            <TextInput value={email} />
+                        <View style={styles.field}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Icon style={{color: "#ff7f11"}} name={"rename-box"} size={20}/>
+                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Surname</Text>
+                            </View>
+                            <TextInput value={this.state.surname} onChangeText={surname => this.setState({surname})} placeholder={"Surname"} style={styles.textInput}/>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
-                            <TextInput value={this.state.location} onChangeText={(location) => this.setState({location})}/>
+                        <View style={styles.field}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Icon style={{color: "#ff7f11"}} name={"cellphone"} size={20}/>
+                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Tel</Text>
+                            </View>
+                            <TextInput value={this.state.tel} onChangeText={tel => this.setState({tel})} placeholder={"Tel"} style={styles.textInput}/>
+                        </View>
+                        <View style={styles.field}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Icon style={{color: "#ff7f11"}} name={"email"} size={20}/>
+                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Email</Text>
+                            </View>
+                            <TextInput value={this.state.email} onChangeText={email => this.setState({email})} placeholder={"Email"} style={styles.textInput}/>
+                        </View>
+                        <View style={styles.field}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Icon style={{color: "#ff7f11"}} name={"map-marker"} size={20}/>
+                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Address</Text>
+                            </View>
+                            <TextInput value={this.state.location} onChangeText={location => this.setState({location})} placeholder={"Address"} style={styles.textInput}/>
                         </View>
                     </View>
                 
-                
-                    <View style={{margin: 14}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={() => this.onEditInfo()}>
+                            <Text style={{margin: 10, borderColor: '#ddd', borderWidth: 1, padding: 10}}>Edit info</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {/* <View style={{margin: 14}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon style={{color: "#ff7f11"}} name={"school"} size={20}/>
                             <Text style={{marginLeft: 3, color: "#ff7f11"}}>Graduated</Text>
@@ -101,7 +165,7 @@ class EditProfile extends Component {
                             <Image style={styles.iconStyle} source={require('../env/images/trophy.png')} /> 
                             <TextInput value={this.state.trophy} onChangeText={(trophy) => this.setState({trophy})}/>
                         </View>
-                    </View>
+                    </View> */}
                 </ScrollView>
             </View>
         )
@@ -116,6 +180,27 @@ const styles = {
         marginRight: 10,
         marginTop: 5,
         marginBottom: 5
+    },
+    avatarContainer: {
+        borderColor: '#9B9B9B',
+        borderWidth: 1 / PixelRatio.get(),
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    avatar: {
+        borderRadius: 75,
+        width: 150,
+        height: 150
+    },
+    field: {
+        borderRadius: 5,
+        paddingLeft: 8,
+        margin: 7,
+        borderBottomWidth: 1,
+        borderColor: '#ff7f11'
+    },
+    textInput: {
+        height: 26
     }
 }
 

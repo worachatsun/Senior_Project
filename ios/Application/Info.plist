@@ -55,6 +55,10 @@
       <string>SF-UI-Text-Regular.otf</string>
       <string>Skia.ttf</string>
       <string>Times New Roman.ttf</string>
+      <string>EvilIcons.ttf</string>
+      <string>FontAwesome.ttf</string>
+      <string>MaterialIcons.ttf</string>
+      <string>SimpleLineIcons.ttf</string>
     </array>
     <key>UIBackgroundModes</key>
     <array>
@@ -74,5 +78,9 @@
     </array>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>LibraryUsage</string>
+    <key>NSCameraUsageDescription</key>
+    <string>CameraUsage</string>
   </dict>
 </plist>

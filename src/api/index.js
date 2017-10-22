@@ -25,6 +25,7 @@ exports.SIGNIN_URL = `${API_URL}/signin`
 exports.SIGNIN_LDAP_URL = `${API_URL}/signinLdap`
 exports.SIGNUP_URL = `${API_URL}/signup`
 exports.GET_USER_DATA = `${API_URL}/getUserData`
+exports.UPDATE_USER_DATA = `${API_URL}/updateUserData`
 
 exports.POST_SEND_CHAT = `${API_URL}/pushChat`
 exports.POST_FETCH_CHAT = `${API_URL}/fetchChat`

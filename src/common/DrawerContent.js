@@ -30,11 +30,10 @@ class DrawerContent extends Component {
                     <TouchableOpacity onPress={() => Actions.ProfilePage() }>
                         <View style={profileStyle}>
                             <View style={{margin: 15}}>
-                                <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} style={styles.roundImage}/>
+                                <RoundImage img={assets.picture.uri} style={styles.roundImage}/>
                             </View>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>
                                 <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
-                                <Text style={{margin: 5}}>{uid}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>

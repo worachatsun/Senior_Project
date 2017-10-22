@@ -9,20 +9,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ProfilePage extends Component {
 
-    componentWillMount() {
-        
-    }
-
-
     render () {
-        const { assets, name, email, surname, uid } = this.props.profile.user_detail.user
+        const { assets, name, email, surname, uid, tel, address } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1}}>
                 <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
-                        <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} />
+                        <RoundImage img={assets.picture.uri} />
                         <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
                     </View>
                     <CardSection />
@@ -36,7 +31,7 @@ class ProfilePage extends Component {
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
                             <Text>
-                                080-000-0000
+                                {tel}
                             </Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -48,13 +43,12 @@ class ProfilePage extends Component {
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
                             <Text>
-                                เชียงใหม่ ประเทศไทย
+                                {address}
                             </Text>
                         </View>
                     </View>
                 
-                
-                    <View style={{margin: 14}}>
+                    {/* <View style={{margin: 14}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon style={{color: "#ff7f11"}} name={"school"} size={20}/>
                             <Text style={{marginLeft: 3, color: "#ff7f11"}}>Graduated</Text>
@@ -94,8 +88,7 @@ class ProfilePage extends Component {
                                 ผลงานศิสเก่า
                             </Text>
                         </View>
-                    </View>
-                    
+                    </View> */} 
                 </ScrollView>
             </View>
         )

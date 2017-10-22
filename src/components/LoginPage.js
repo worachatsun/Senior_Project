@@ -56,7 +56,7 @@ class LoginPage extends Component {
         this.setState({
             loading: true
         })
-        this.props.loginLdap(email, password).then(() => {
+        this.props.loginUser(email, password).then(() => {
             this.setState({
                 email: '',
                 password: '',
@@ -99,9 +99,9 @@ class LoginPage extends Component {
                             <TouchableOpacity onPress={this.onSignIn}>
                                 <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign in</Text>
                             </TouchableOpacity>
-                            {/*<TouchableOpacity onPress={() => Actions.signup()}>
+                            <TouchableOpacity onPress={() => Actions.signup()}>
                                 <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign up</Text>
-                            </TouchableOpacity>*/}
+                            </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
                             <TouchableOpacity onPress={this.onForgetPassword}>
