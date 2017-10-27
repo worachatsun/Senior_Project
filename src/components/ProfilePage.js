@@ -17,7 +17,11 @@ class ProfilePage extends Component {
                 <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
-                        <RoundImage img={assets.picture.uri} />
+                        {
+                            assets.picture===null?
+                            <Image style={styles.avatar} source={require('../env/images/profile.png')} />:
+                            <RoundImage img={assets.picture.uri}/>
+                        }
                         <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
                     </View>
                     <CardSection />
@@ -103,6 +107,11 @@ const styles = {
         marginRight: 10,
         marginTop: 5,
         marginBottom: 5
+    },
+    avatar: {
+        borderRadius: 70/2,
+        width: 70,
+        height: 70
     }
 }
 

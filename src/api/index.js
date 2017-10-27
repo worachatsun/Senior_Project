@@ -1,4 +1,7 @@
+import { MANAGE_API, APP_ID } from 'react-native-dotenv'
+
 let API_URL = 'http://localhost:3000/v1'
+let APP_API = MANAGE_API
 
 exports.GETNEWS_URL = `${API_URL}/getNews`
 exports.GETNEWS_FACULTY_URL = `${API_URL}/getNewsByFaculty`
@@ -29,3 +32,5 @@ exports.UPDATE_USER_DATA = `${API_URL}/updateUserData`
 
 exports.POST_SEND_CHAT = `${API_URL}/pushChat`
 exports.POST_FETCH_CHAT = `${API_URL}/fetchChat`
+
+exports.GET_APP_DETAIL = `${APP_API}/api/searchAppById/${APP_ID}`

@@ -35,8 +35,8 @@ import NewsPageOutside from './components/UnAuth/NewsPageOutside'
 
 class TabIcon extends Component {
   render() {
-    var color = this.props.selected ? '#FF7F11' : '#301c2a'
-
+    const color = this.props.selected ? '#FF7F11' : '#301c2a'
+    
     return (
       <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
         <Icon style={{color: color}} name={this.props.iconName || "comment-alert-outline"} size={22}/>
@@ -56,7 +56,6 @@ class RouterComponent extends Component {
                 props.getUserInfo(credentials.password)
                 Actions.tabbar()
             }else{
-                console.log(credentials)
                 Actions.first()
             }
         }).catch(function(error) {

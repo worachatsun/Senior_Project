@@ -30,7 +30,11 @@ class DrawerContent extends Component {
                     <TouchableOpacity onPress={() => Actions.ProfilePage() }>
                         <View style={profileStyle}>
                             <View style={{margin: 15}}>
-                                <RoundImage img={assets.picture.uri} style={styles.roundImage}/>
+                                {
+                                    assets.picture===null?
+                                    <Image style={styles.avatar} source={require('../env/images/profile.png')} />:
+                                    <RoundImage img={assets.picture.uri} style={styles.roundImage}/>
+                                }
                             </View>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>
                                 <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
@@ -139,6 +143,11 @@ const styles = {
     },
     statusBar: {
         height: STATUSBAR_HEIGHT,
+    },
+    avatar: {
+        borderRadius: 70/2,
+        width: 70,
+        height: 70
     }
 }
 

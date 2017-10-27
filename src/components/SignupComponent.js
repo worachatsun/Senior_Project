@@ -136,7 +136,7 @@ class SignupComponent extends Component {
                     </View>
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity onPress={this.onSignUp}>
-                            <Text style={{margin: 10, borderColor: '#ddd', borderWidth: 1, padding: 10}}>Sign up</Text>
+                            <Text style={{margin: 10, borderColor: '#ff7f11', borderWidth: 1, padding: 10}}>Sign up</Text>
                         </TouchableOpacity>
                     </View>
                     <AlertContainer />

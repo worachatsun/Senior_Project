@@ -1,4 +1,4 @@
-package com.application;
+package com.kmutt.Alumni;
 
 import android.app.Application;
 
