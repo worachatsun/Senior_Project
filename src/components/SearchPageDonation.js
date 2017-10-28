@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ListView } from 'react-native'
+import { View, Text, TextInput, ListView, AsyncStorage } from 'react-native'
 import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -13,8 +13,13 @@ class SearchPageDonation extends Component {
 
         this.state = {
             searchText: '',
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
+            color: '#FF7F11'
         }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
         
         this.setSearchText = this.setSearchText.bind(this)
         this.filterNotes = this.filterNotes.bind(this)
@@ -50,7 +55,7 @@ class SearchPageDonation extends Component {
         if(this.state.searchText){
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search Donation'} backSign={true}/>
+                    <ModalHeaderPlain color={this.state.color} headerText={'Search Donation'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -71,7 +76,7 @@ class SearchPageDonation extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search Donation'} backSign={true}/>
+                    <ModalHeaderPlain color={this.state.color} headerText={'Search Donation'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}

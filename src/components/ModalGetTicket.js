@@ -9,7 +9,8 @@ import {
     Picker,
     Image,
     Alert,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -29,8 +30,13 @@ class ModalGetTicket extends Component {
             coupon: null,
             ticket: 1,
             dropdown: 1,
-            capacity: 1
+            capacity: 1,
+            color: '#FF7F11'
         }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
     }
 
     _getOptionList() {
@@ -73,10 +79,9 @@ class ModalGetTicket extends Component {
     }
 
     render() {
-        console.log(this.props.event)
         return (
             <View style={styles.container}>
-                <ModalHeaderPlain headerText={this.props.modalEvent.event_name}/>
+                <ModalHeaderPlain color={this.state.color} headerText={this.props.modalEvent.event_name}/>
                     <View style={{alignItems: 'center', flex: 1}}>
                         <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 20}}>Tickets</Text>
                         <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>                            
@@ -84,19 +89,19 @@ class ModalGetTicket extends Component {
                                 <TouchableOpacity onPress={() => this.setState({capacity: 1})}>
                                     <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
                                         <Text>1 seat</Text>
-                                        {this.state.capacity==1?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}
+                                        {this.state.capacity==1?<Icon style={{color: this.state.color||'#ff7f11'}} name={'check'} size={18}/>:<Text />}
                                     </View>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.setState({capacity: 2})}>
                                     <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
                                         <Text>2 seats</Text>
-                                        {this.state.capacity==2?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}
+                                        {this.state.capacity==2?<Icon style={{color: this.state.color||'#ff7f11'}} name={'check'} size={18}/>:<Text />}
                                     </View>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.setState({capacity: 3})}>
                                     <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems:'center', borderBottomWidth: 1, borderBottomColor: '#ddd', marginTop: 20, padding: 8}}>
                                         <Text>3 seats</Text>
-                                        {this.state.capacity==3?<Icon style={{color: "#FF7F11"}} name={'check'} size={18}/>:<Text />}                                        
+                                        {this.state.capacity==3?<Icon style={{color: this.state.color||'#ff7f11'}} name={'check'} size={18}/>:<Text />}                                        
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -106,7 +111,7 @@ class ModalGetTicket extends Component {
 
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                             <TouchableOpacity onPress={() => this.onButtonPressWithoutCoupon()}>
-                                <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white', padding: 10 }]}>Get Tickets</Text>
+                                <Text style={[styles.textButton, { backgroundColor: this.state.color||'#ff7f11', borderColor: 'white', color: 'white', padding: 10 }]}>Get Tickets</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

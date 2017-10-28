@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ScrollView, ListView, Dimensions, RefreshControl } from 'react-native'
+import { View, ScrollView, ListView, Dimensions, RefreshControl, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -21,9 +21,13 @@ class EventPage extends Component {
             limit: 20,
             offset: 0,
             refreshing: false,
-            loading: false
+            loading: false,
+            color: '#FF7F11'
         }
 
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
         this.fetchEndReached = this.fetchEndReached.bind(this)
     }
 
@@ -69,7 +73,7 @@ class EventPage extends Component {
 
         return (
             <View style={styles.containerStyle}>
-                <Header headerText={'Event'} route_to={'event'} />
+                <Header color={this.state.color} headerText={'Event'} route_to={'event'} />
                 <View style={{flex: 1}}>
                     <View style={{ marginBottom: 50 }}>
                         {/*<View style={styles.halfCardContainer}>*/}

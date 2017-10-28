@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, ListView, RefreshControl } from 'react-native'
+import { View, Text, ScrollView, ListView, RefreshControl, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -21,8 +21,12 @@ class CareerPage extends Component {
             limit: 20,
             offset: 0,
             refreshing: false,
-            loading: false
+            loading: false,
+            color: '#FF7F11'
         }
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
 
         this.fetchEndReached = this.fetchEndReached.bind(this)
     }
@@ -69,7 +73,7 @@ class CareerPage extends Component {
         const { limit, dataSource } = this.state
         return (
             <View style={{flex: 1, marginBottom: 50}}>
-                <Header headerText={'Career'} style={{marginBottom: 12}} route_to={'career'}/>
+                <Header color={this.state.color} headerText={'Career'} style={{marginBottom: 12}} route_to={'career'}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
                     initialListSize={limit}

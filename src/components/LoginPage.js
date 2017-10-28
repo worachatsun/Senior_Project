@@ -97,7 +97,7 @@ class LoginPage extends Component {
                     <MyStatusBar backgroundColor={color ||"#FF7F11"} barStyle="light-content" />
                     <View style={styles.container}>
                         <View style={styles.titleContainer}>
-                            <Image source={this.state.logo} style={{ height: 160, width: 160 }}/>
+                            <Image source={this.state.logo.uri?this.state.logo:require('../env/images/big_appaca.png')} style={{ height: 160, width: 160 }}/>
                             <Text style={styles.title}></Text>
                         </View>
                         <View style={[styles.field, {height: 45, borderColor: color||"#FF7F11"}]}>

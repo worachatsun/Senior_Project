@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { getUserInfo } from './actions'
-import { Text, Image, View } from 'react-native'
+import { Text, Image, View, AsyncStorage } from 'react-native'
 import { Scene, Router, TabBar, Modal, Actions } from 'react-native-router-flux'
 import * as Keychain from 'react-native-keychain'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -34,8 +34,20 @@ import AllowAllUserNews from './components/AllowAllUserNews'
 import NewsPageOutside from './components/UnAuth/NewsPageOutside'
 
 class TabIcon extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
+
   render() {
-    const color = this.props.selected ? '#FF7F11' : '#301c2a'
+    const color = this.props.selected ? this.state.color||'#FF7F11' : '#301c2a'
     
     return (
       <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>

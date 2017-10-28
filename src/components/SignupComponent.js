@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-import { View, Text, TextInput, TouchableOpacity, PixelRatio, Image } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, PixelRatio, Image, AsyncStorage } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import AlertContainer from './Alerts/AlertContainer'
 import * as actions from '../actions'
@@ -22,8 +22,13 @@ class SignupComponent extends Component {
             tel: '',
             address: '',
             avatarSource: null,
-            videoSource: null
+            videoSource: null,
+            color: '#FF7F11'
         }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
 
         this.onSignUp = this.onSignUp.bind(this)
     }
@@ -105,7 +110,7 @@ class SignupComponent extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain backSign={true} headerText={'Register'}/>
+                    <ModalHeaderPlain color={this.state.color} backSign={true} headerText={'Register'}/>
                     <TouchableOpacity onPress={this.onClickImagePicker.bind(this)} style={{marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
                         <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
                             { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
@@ -113,30 +118,30 @@ class SignupComponent extends Component {
                             }
                         </View>
                     </TouchableOpacity>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={username} autoCapitalize='none' onChangeText={username => this.setState({username})} placeholder={"Username"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} placeholder={"Password"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={email} autoCapitalize='none' onChangeText={email => this.setState({email})} placeholder={"Email"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={name} onChangeText={name => this.setState({name})} placeholder={"Name"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={surname} onChangeText={surname => this.setState({surname})} placeholder={"Surname"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={tel} autoCapitalize = 'none' onChangeText={tel => this.setState({tel})} placeholder={"Tel"} style={styles.textInput}/>
                     </View>
-                    <View style={styles.field}>
+                    <View style={[styles.field, {borderColor: this.state.color||'#ff7f11'}]}>
                         <TextInput value={address} autoCapitalize = 'none' onChangeText={address => this.setState({address})} placeholder={"Address"} style={styles.textInput}/>
                     </View>
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity onPress={this.onSignUp}>
-                            <Text style={{margin: 10, borderColor: '#ff7f11', borderWidth: 1, padding: 10}}>Sign up</Text>
+                            <Text style={{margin: 10, borderColor: this.state.color||'#ff7f11', borderWidth: 1, padding: 10}}>Sign up</Text>
                         </TouchableOpacity>
                     </View>
                     <AlertContainer />
@@ -163,8 +168,7 @@ const styles = {
         borderRadius: 5,
         paddingLeft: 8,
         margin: 7,
-        borderBottomWidth: 1,
-        borderColor: '#ff7f11'
+        borderBottomWidth: 1
     },
     textInput: {
         height: 26

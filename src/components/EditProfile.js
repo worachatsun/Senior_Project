@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, TextInput, PixelRatio } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, TextInput, PixelRatio, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -22,8 +22,13 @@ class EditProfile extends Component {
             faculty: 'KMUTT',
             job: 'นักร้อง',
             trophy: 'ผลงานศิสเก่า',
-            avatarSource: assets.picture
+            avatarSource: assets.picture,
+            color: '#FF7F11'
         }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
     }
 
     onClickImagePicker = () => {
@@ -68,7 +73,7 @@ class EditProfile extends Component {
 
         return (
             <View style={{flex: 1}}>
-                <ModalHeaderPlain headerText={'Edit profile'}/>
+                <ModalHeaderPlain color={this.state.color} headerText={'Edit profile'}/>
                 <ScrollView>
                     {/* <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
                         <RoundImage img={assets.picture} />
@@ -84,51 +89,51 @@ class EditProfile extends Component {
                             </View>
                         </TouchableOpacity>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Icon style={{color: "#ff7f11"}} name={"information"} size={20}/>
-                            <Text style={{marginLeft: 3, color: "#ff7f11"}}>Info</Text>
+                            <Icon style={{color: this.state.color||"#ff7f11"}} name={"information"} size={20}/>
+                            <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Info</Text>
                         </View>
                         
                         <CardSection />
                         <View style={styles.field}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Icon style={{color: "#ff7f11"}} name={"rename-box"} size={20}/>
-                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Name</Text>
+                                <Icon style={{color: this.state.color||"#ff7f11"}} name={"rename-box"} size={20}/>
+                                <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Name</Text>
                             </View>
-                            <TextInput value={this.state.name} onChangeText={name => this.setState({name})} placeholder={"Name"} style={styles.textInput}/>
+                            <TextInput value={this.state.name} onChangeText={name => this.setState({name})} placeholder={"Name"} style={[styles.textInput, {borderColor: this.state.color||"#ff7f11"}]}/>
                         </View>
                         <View style={styles.field}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Icon style={{color: "#ff7f11"}} name={"rename-box"} size={20}/>
-                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Surname</Text>
+                                <Icon style={{color: this.state.color||"#ff7f11"}} name={"rename-box"} size={20}/>
+                                <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Surname</Text>
                             </View>
-                            <TextInput value={this.state.surname} onChangeText={surname => this.setState({surname})} placeholder={"Surname"} style={styles.textInput}/>
+                            <TextInput value={this.state.surname} onChangeText={surname => this.setState({surname})} placeholder={"Surname"} style={[styles.textInput, {borderColor: this.state.color||"#ff7f11"}]}/>
                         </View>
                         <View style={styles.field}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Icon style={{color: "#ff7f11"}} name={"cellphone"} size={20}/>
-                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Tel</Text>
+                            <Icon style={{color: this.state.color||"#ff7f11"}} name={"cellphone"} size={20}/>
+                                <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Tel</Text>
                             </View>
-                            <TextInput value={this.state.tel} onChangeText={tel => this.setState({tel})} placeholder={"Tel"} style={styles.textInput}/>
+                            <TextInput value={this.state.tel} onChangeText={tel => this.setState({tel})} placeholder={"Tel"} style={[styles.textInput, {borderColor: this.state.color||"#ff7f11"}]}/>
                         </View>
                         <View style={styles.field}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Icon style={{color: "#ff7f11"}} name={"email"} size={20}/>
-                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Email</Text>
+                                <Icon style={{color: this.state.color||"#ff7f11"}} name={"email"} size={20}/>
+                                <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Email</Text>
                             </View>
-                            <TextInput value={this.state.email} onChangeText={email => this.setState({email})} placeholder={"Email"} style={styles.textInput}/>
+                            <TextInput value={this.state.email} onChangeText={email => this.setState({email})} placeholder={"Email"} style={[styles.textInput, {borderColor: this.state.color||"#ff7f11"}]}/>
                         </View>
                         <View style={styles.field}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Icon style={{color: "#ff7f11"}} name={"map-marker"} size={20}/>
-                                <Text style={{marginLeft: 3, color: "#ff7f11"}}>Address</Text>
+                                <Icon style={{color: this.state.color||"#ff7f11"}} name={"map-marker"} size={20}/>
+                                <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Address</Text>
                             </View>
-                            <TextInput value={this.state.location} onChangeText={location => this.setState({location})} placeholder={"Address"} style={styles.textInput}/>
+                            <TextInput value={this.state.location} onChangeText={location => this.setState({location})} placeholder={"Address"} style={[styles.textInput, {borderColor: this.state.color||"#ff7f11"}]}/>
                         </View>
                     </View>
                 
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity onPress={() => this.onEditInfo()}>
-                            <Text style={{margin: 10, borderColor: '#ff7f11', borderWidth: 1, padding: 10}}>Edit info</Text>
+                            <Text style={{margin: 10, borderColor: this.state.color||'#ff7f11', borderWidth: 1, padding: 10}}>Edit info</Text>
                         </TouchableOpacity>
                     </View>
                     {/* <View style={{margin: 14}}>
@@ -196,8 +201,7 @@ const styles = {
         borderRadius: 5,
         paddingLeft: 8,
         margin: 7,
-        borderBottomWidth: 1,
-        borderColor: '#ff7f11'
+        borderBottomWidth: 1,        
     },
     textInput: {
         height: 26

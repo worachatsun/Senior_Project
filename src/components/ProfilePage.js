@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, AsyncStorage } from 'react-native'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
 import { Header, EmptyCard, RoundImage, CardSection } from '../common'
@@ -8,13 +8,24 @@ import NewsFavorite from './NewsFavorite'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ProfilePage extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
 
     render () {
         const { assets, name, email, surname, uid, tel, address } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1}}>
-                <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
+                <Header color={this.state.color} headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
                         {
@@ -27,8 +38,8 @@ class ProfilePage extends Component {
                     <CardSection />
                     <View style={{margin: 14}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Icon style={{color: "#ff7f11"}} name={"information"} size={20}/>
-                            <Text style={{marginLeft: 3, color: "#ff7f11"}}>Info</Text>
+                            <Icon style={{color: this.state.color||"#ff7f11"}} name={"information"} size={20}/>
+                            <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Info</Text>
                         </View>
                         
                         <CardSection />

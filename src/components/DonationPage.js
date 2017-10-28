@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView, TouchableOpacity, ListView, RefreshControl } from 'react-native'
+import { Text, View, Image, ScrollView, TouchableOpacity, ListView, RefreshControl, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
@@ -21,9 +21,12 @@ class DonationPage extends Component{
             limit: 20,
             offset: 0,
             refreshing: false,
-            loading: false
+            loading: false,
+            color: '#FF7F11'
         }
-
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
         this.fetchEndReached = this.fetchEndReached.bind(this)
     }
     
@@ -70,7 +73,7 @@ class DonationPage extends Component{
         const { limit, dataSource } = this.state
         return (
             <View style={{flex: 1}}>
-                <Header headerText={'Donation'} route_to={'donation'}/>
+                <Header color={this.state.color} headerText={'Donation'} route_to={'donation'}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}
                     initialListSize={limit}

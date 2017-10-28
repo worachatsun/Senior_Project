@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, ListView } from 'react-native'
+import { View, Text, ListView, AsyncStorage } from 'react-native'
 import * as actions from '../actions'
 import NewsItem from './NewsItem'
 import { ModalHeaderPlain } from '../common'
 
 class NewsFavorite extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
 
     componentWillMount() {
         this.props.fetchFavoriteNews(this.props.profile._id)
@@ -18,7 +29,7 @@ class NewsFavorite extends Component {
     render () {
         return (
             <View style={{ flex: 1 }}>
-                <ModalHeaderPlain headerText={'Favorite News'} style={{marginBottom: 10}} backSign={'arrow'} />
+                <ModalHeaderPlain color={this.state.color} headerText={'Favorite News'} style={{marginBottom: 10}} backSign={'arrow'} />
                 <ListView
                     dataSource={this.props.favorite_data}
                     renderRow={this.renderRow.bind(this)}
