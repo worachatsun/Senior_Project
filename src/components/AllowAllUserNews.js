@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, AppState, AsyncStorage } from 'react-native'
 import NewsPageOutside from './UnAuth/NewsPageOutside'
-import PushNotification from 'react-native-push-notification'
 import { Actions } from 'react-native-router-flux'
 
 class AllowAllUserNews extends Component {

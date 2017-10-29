@@ -13,7 +13,6 @@ import {
     AsyncStorage
 } from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
-import PushNotification from 'react-native-push-notification'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux' 
@@ -35,18 +34,6 @@ class LoginPage extends Component {
     }
 
     componentDidMount() {
-        PushNotification.configure({
-            onNotification: function(notification) {
-                console.log('NOTOFICATION:', notification)
-            }
-        })
-
-        PushNotification.localNotificationSchedule({
-            message: "My Notification Message", // (required)
-            date: new Date(Date.now() + (10 * 1000)), // in 60 secs
-            number: 0
-        })
-
         AsyncStorage.getItem('logo').then(data => {
             this.setState({logo: {uri: data}})
         })

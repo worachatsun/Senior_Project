@@ -4985,10 +4985,6 @@ react-native-parsed-text@0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/react-native-parsed-text/-/react-native-parsed-text-0.0.16.tgz#788f6a51c3e2c224ad89101cc3d63f5993d37747"
 
-react-native-push-notification@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.0.0.tgz#00282ea656443e89df6057f14b10500e7b89551f"
-
 react-native-router-flux@3.38.0:
   version "3.38.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.38.0.tgz#f5f8ec2875b46f96f61006ff502d0d80268e6ce2"
