@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { getUserInfo } from './actions'
-import { Text, Image, View, AsyncStorage } from 'react-native'
+import { Text, Image, View, AsyncStorage, ActivityIndicator } from 'react-native'
 import { Scene, Router, TabBar, Modal, Actions } from 'react-native-router-flux'
 import * as Keychain from 'react-native-keychain'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -73,17 +73,35 @@ class RouterComponent extends Component {
         }).catch(function(error) {
             console.log('Keychain couldn\'t be accessed! Maybe no value set?', error)
         })
+
+        this.state = {
+            features: null
+        }
+
+        AsyncStorage.getItem('features').then(data => {
+            this.setState({features: JSON.parse(data)})
+        })
     }
 
     render () {
+        if (!this.state.features) {
+            return (
+                <View style={styles.centering}>
+                    <ActivityIndicator
+                    animating={true}
+                    style={{height: 80}}
+                    size="large"
+                /></View>
+            )
+        }
         return (
             <Router hideNavBar={true}>
                     <Scene key="root" >
-                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
-                            <Scene key="News" component={NewsPage} icon={TabIcon} iconName={'newspaper'} title="NEWS"/>
-                            <Scene key="Event" component={EventPage} icon={TabIcon} iconName={'calendar-text'} title="EVENT" />
-                            <Scene key="Donation"  component={DonationPage} icon={TabIcon} iconName={'coin'} title="DONATION"/>
-                            <Scene key="Career" component={CareerPage} icon={TabIcon} iconName={'worker'} title="CAREER"/>
+                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}}>
+                            <Scene key="News" component={NewsPage} icon={this.state.features.news?TabIcon:''} iconName={'newspaper'} title="NEWS"/>
+                            <Scene key="Event" component={EventPage} icon={this.state.features.event?TabIcon:''} iconName={'calendar-text'} title="EVENT" />
+                            <Scene key="Donation"  component={DonationPage} icon={this.state.features.donate?TabIcon:''} iconName={'coin'} title="DONATION"/>
+                            <Scene key="Career" component={CareerPage} icon={this.state.features.career?TabIcon:''} iconName={'worker'} title="CAREER"/>
                             <Scene key="Menu" component={DrawerContent} icon={TabIcon} iconName={'menu'} title="MENU"/>
                         </Scene>
                         <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
@@ -116,6 +134,12 @@ const styles = {
     iconStyle: {
         width: 25, 
         height: 25 
+    },
+    centering: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8,
+        flex: 1
     }
 }
 
