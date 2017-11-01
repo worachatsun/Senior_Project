@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
@@ -15,6 +15,17 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ModalContentEvent extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
 
     dateFormat = date => {
         const arrDate = (new Date(date)).toUTCString().split(" ")
@@ -55,7 +66,7 @@ class ModalContentEvent extends Component {
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={() => Actions.modalTicket({modalEvent: this.props.modalContent})}>
-                    <View style={styles.footerBar}>
+                    <View style={[styles.footerBar, {backgroundColor: this.state.color||'#FF7F11'}]}>
                         <Text style={{ color: 'white', fontWeight: 'bold' }}>JOIN EVENT</Text>
                     </View>
                 </TouchableOpacity>
@@ -70,7 +81,6 @@ const styles = {
     },
     footerBar: {
         justifyContent: 'flex-end', 
-        backgroundColor: '#FF7F11', 
         position: 'relative', 
         height: 50,
         justifyContent: 'center',

@@ -4,7 +4,8 @@ import {
     Text, 
     TouchableOpacity, 
     ListView, 
-    ScrollView
+    ScrollView,
+    AsyncStorage
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, ImageModal, CardSection, ModalHeaderPlain } from './index'
@@ -12,6 +13,18 @@ import ModalHeader from './ModalHeader'
 import { WebViewRichText } from './WebViewRichText'
 
 class ModalContent extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
+
     componentDidMount(){
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
@@ -33,7 +46,7 @@ class ModalContent extends Component {
     render () {
         const { modalContent } = this.props
         const { headerTextStyle, contentTextStyle, viewStyle } = styles
-        const headerFrom = !this.props.outside ? <ModalHeader headerText={modalContent.news_title} favorite_Id={modalContent._id} /> : <ModalHeaderPlain headerText={modalContent.news_title} />
+        const headerFrom = !this.props.outside ? <ModalHeader color={this.state.color} headerText={modalContent.news_title} favorite_Id={modalContent._id} /> : <ModalHeaderPlain color={this.state.color} headerText={modalContent.news_title} />
         return (
             <View style={{flex: 1}}>
                 <View>

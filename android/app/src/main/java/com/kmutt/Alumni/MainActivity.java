@@ -1,4 +1,4 @@
-package com.application;
+package com.kmutt.Alumni;
 
 import com.facebook.react.ReactActivity;
 

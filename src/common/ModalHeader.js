@@ -10,16 +10,16 @@ const ModalHeader = (props) => {
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
     const imageStar = props.user.check_favorite_news ? require('../env/images/star.png') : require('../env/images/star_blank.png')
     const favorite_status = props.user.check_favorite_news ? 'delete' : 'add'
-    console.log(props.profile._id)
+    
     return (
         <View>
-            <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+            <MyStatusBar backgroundColor={props.color||"#FF7F11"} barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 <TouchableOpacity onPress={() => {
                     Actions.pop()
                     }}>
                     <View>
-                        <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={'close'} size={25}/>
+                        <Icon style={[{color: props.color||"#FF7F11"}, styles.vectorIcon]} name={'close'} size={25}/>
                     </View>
                 </TouchableOpacity>
                 <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>
@@ -37,20 +37,20 @@ const ModalHeader = (props) => {
     )
 }
 
-export const ModalHeaderPlain = (props) => {
+export const ModalHeaderPlain = props => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
     const backSign = props.backSign ? 'arrow-left' : 'close'
 
     return (
         <View style={props.style}>
-            <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+            <MyStatusBar backgroundColor={props.color||"#FF7F11"} barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 <TouchableOpacity onPress={() => {
                     Actions.pop()
                     }}>
                     <View>
-                        <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={backSign} size={25}/>
+                        <Icon style={[{color: props.color||"#FF7F11"}, styles.vectorIcon]} name={backSign} size={25}/>
                     </View>
                 </TouchableOpacity>
                 <View style={{width:220, alignItems: 'center', justifyContent: 'center'}}>

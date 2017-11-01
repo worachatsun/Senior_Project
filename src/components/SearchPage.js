@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ListView } from 'react-native'
+import { View, Text, TextInput, ListView, AsyncStorage } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BottomNavBar, ModalHeaderPlain } from '../common'
 import { connect } from 'react-redux'
@@ -14,9 +14,14 @@ class SearchPage extends Component {
 
         this.state = {
             searchText: '',
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
+            color: '#FF7F11'
         }
         
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+
         this.setSearchText = this.setSearchText.bind(this)
         this.filterNotes = this.filterNotes.bind(this)
         this.renderRow = this.renderRow.bind(this)
@@ -51,7 +56,7 @@ class SearchPage extends Component {
         if(this.state.searchText){
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain color={this.state.color} headerText={'Search News'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}
@@ -72,7 +77,7 @@ class SearchPage extends Component {
         }else{
             return (
                 <View style={styles.container}>
-                    <ModalHeaderPlain headerText={'Search News'} backSign={true}/>
+                    <ModalHeaderPlain color={this.state.color} headerText={'Search News'} backSign={true}/>
                     <View>
                         <TextInput
                             style={styles.searchBar}

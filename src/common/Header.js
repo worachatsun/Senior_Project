@@ -3,23 +3,23 @@ import { Text, View, StatusBar, Platform, Image, TouchableOpacity } from 'react-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
 
-const Header = (props) => {
+const Header = props => {
     const { textStyle, viewStyle, statusBar, rowStyle, headerIcon } = styles
     const textBackgroundColor = props.textBackgroundColor || '#FEFEFF'
 
     const rightIcon = () => {
         if (props.rightIcon == 'edit') { return <EditHeader /> }
         else if (props.rightIcon == 'no') {return <View style={headerIcon} />}
-        else { return <SearchHeader route_to={props.route_to}/> }
+        else { return <SearchHeader color={props.color} route_to={props.route_to}/> }
     }
 
     const leftIcon = () => {
-        return props.leftIcon == 'back' ? <BackIcon />: <View style={headerIcon} />
+        return props.leftIcon == 'back' ? <BackIcon color={props.color} />: <View style={headerIcon} />
     }
 
     return (
         <View style={props.style}>
-            <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+            <MyStatusBar backgroundColor={props.color||"#FF7F11"} barStyle="light-content" />
             <View style={[viewStyle, {backgroundColor: textBackgroundColor}, rowStyle]}>
                 {leftIcon()}
                 <View>
@@ -31,11 +31,11 @@ const Header = (props) => {
     )
 }
 
-const BackIcon = () => (
+const BackIcon = props => (
     <TouchableOpacity onPress={() => Actions.pop()}>
         <View>
             {/*<Image style={styles.headerIcon} source={require('../env/images/left-arrow.png')} />*/}
-            <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={"arrow-left"} size={22}/>
+            <Icon style={[{color: props.color||"#FF7F11"}, styles.vectorIcon]} name={"arrow-left"} size={22}/>
         </View>
     </TouchableOpacity>
 )
@@ -53,7 +53,7 @@ const SearchHeader = (props) => (
     <TouchableOpacity onPress={() => searchTo(props.route_to)}>
         <View>
             {/*<Image style={styles.headerIcon} source={require('../env/images/search.png')} />*/}
-            <Icon style={[{color: "#FF7F11"}, styles.vectorIcon]} name={"magnify"} size={24}/>
+            <Icon style={[{color: props.color||"#FF7F11"}, styles.vectorIcon]} name={"magnify"} size={24}/>
         </View>
     </TouchableOpacity>
 )

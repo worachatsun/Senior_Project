@@ -1,5 +1,5 @@
 import React, { Proptype, Component } from 'react'
-import { View, Text, Image, TouchableOpacity, StatusBar, Platform } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StatusBar, Platform, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -9,6 +9,14 @@ import { CardSection, RoundImage } from '../common'
 class DrawerContent extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
 
         this.onLogout = this.onLogout.bind(this)
     }
@@ -26,15 +34,18 @@ class DrawerContent extends Component {
      
             return (
                 <View style={viewStyle}>
-                    <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+                    <MyStatusBar backgroundColor={this.state.color||"#FF7F11"} barStyle="light-content" />
                     <TouchableOpacity onPress={() => Actions.ProfilePage() }>
                         <View style={profileStyle}>
                             <View style={{margin: 15}}>
-                                <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} style={styles.roundImage}/>
+                                {
+                                    assets.picture===null?
+                                    <Image style={styles.avatar} source={require('../env/images/profile.png')} />:
+                                    <RoundImage img={assets.picture.uri} style={styles.roundImage}/>
+                                }
                             </View>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>
                                 <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
-                                <Text style={{margin: 5}}>{uid}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -43,14 +54,14 @@ class DrawerContent extends Component {
                     </View>
                     <TouchableOpacity onPress={() => Actions.NewsFavorite() }>
                         <View style={[menuStyle, {borderTopWidth: 1,borderColor: '#ddd'}]}>
-                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
-                            <Text style={textStyle}>News Favorite</Text>
+                            <Icon style={[{color: this.state.color||"#FF7F11"}, iconStyle]} name={"newspaper"} size={20}/>
+                            <Text style={[textStyle, {color: this.state.color||"#FF7F11"}]}>News Favorite</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => Actions.EventJoined() }>
                         <View style={[menuStyle, {borderBottomWidth: 1,borderColor: '#ddd'}]}>
-                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
-                            <Text style={textStyle}>Event Joined</Text>
+                            <Icon style={[{color: this.state.color||"#FF7F11"}, iconStyle]} name={"calendar-text"} size={20}/>
+                            <Text style={[textStyle, {color: this.state.color||"#FF7F11"}]}>Event Joined</Text>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.sectionMenu}>
@@ -58,8 +69,8 @@ class DrawerContent extends Component {
                     </View>
                     <TouchableOpacity onPress={() => Actions.chat() }>
                         <View style={[menuStyle, {borderTopWidth: 1, borderBottomWidth: 1,borderColor: '#ddd'}]}>
-                            <Icon style={[{color: "#FF7F11"}, iconStyle]} name={"comment-text"} size={20}/>
-                            <Text style={textStyle}>Chat with Admin</Text>
+                            <Icon style={[{color: this.state.color||"#FF7F11"}, iconStyle]} name={"comment-text"} size={20}/>
+                            <Text style={[textStyle, {color: this.state.color||"#FF7F11"}]}>Chat with Admin</Text>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.sectionMenu} />
@@ -112,7 +123,6 @@ const styles = {
         alignItems: 'center',
     },
     textStyle: {
-        color: '#FF7F11',
         margin: 5
     },
     iconStyle: {
@@ -140,6 +150,11 @@ const styles = {
     },
     statusBar: {
         height: STATUSBAR_HEIGHT,
+    },
+    avatar: {
+        borderRadius: 70/2,
+        width: 70,
+        height: 70
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Image, Dimensions, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { ImageModal } from './'
@@ -46,7 +46,7 @@ const dateTime = (start, end) => {
 
 const Card = (props) => {
     const { containerStyle, viewStyle, textStyle } = styles
-    
+
     if(props.capacity) {
         return (
             <View style={styles.containerStyle}>
@@ -62,7 +62,8 @@ const Card = (props) => {
                         {props.description}
                     </Text>
                 </View>
-                <View style={{ height: 22, backgroundColor: '#ff7f11', position: 'absolute', right: 0, bottom: 0, alignItems: 'center'}}>
+                <View style={{ height: 22, backgroundColor: props.color||'#ff7f11', position: 'absolute', right: 0, bottom: 0, alignItems: 'center'}}>
+                    {console.log(props)}
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <Icon style={{color: "white"}} name={"account"} size={20}/>
                         <Text style={{color: "white"}}>{props.capacity}</Text>
@@ -79,7 +80,7 @@ const Card = (props) => {
                         imageSource={{ uri: props.img }}
                         style={{ flex: 1, alignItems: 'stretch', width: 130, height: 90 }}
                     />
-                    { countFavorite(props.count_favorite) }
+                    { countFavorite(props.count_favorite, props.color) }
                 </View>
                 <View style={viewStyle}>
                     <Text style={textStyle} numberOfLines={2}>
@@ -96,10 +97,10 @@ const dateFormat = date => {
     return `${arrDate[1]} ${arrDate[2]} ${arrDate[3]}`
 }
 
-const countFavorite = count => {
+const countFavorite = (count, color) => {
     if(count || count==0){
         return (
-            <View style={{position: 'absolute', backgroundColor: '#ff7f11', bottom: 0, right: 0 , padding: 5, flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{position: 'absolute', backgroundColor: color || '#ff7f11', bottom: 0, right: 0 , padding: 5, flexDirection: 'row', alignItems: 'center'}}>
                 <Icon style={{color: "white"}} name={"star"} size={17}/>
                 <View>
                     <Text style={{color: 'white', marginLeft: 3}}>{count}</Text>
@@ -111,7 +112,7 @@ const countFavorite = count => {
 
 const BigCard = (props) => {
     const { containerStyle, viewStyle, textStyle, rowContainerStyle } = styles
-
+    
     if(props.startDate) {
         return (
             <View style={rowContainerStyle}>
@@ -141,7 +142,7 @@ const BigCard = (props) => {
                         imageSource={{ uri: props.img }}
                         style={{ alignItems: 'stretch', height: 230 }}
                     />
-                    { countFavorite(props.count_favorite) }
+                    { countFavorite(props.count_favorite, props.color) }
                 </View>
                 <View style={viewStyle}>
                     <Text style={textStyle} numberOfLines={2}>
@@ -187,8 +188,8 @@ const RkBigCard = props => {
             </View>
             <View rkCardFooter>
                 <View style={{flexDirection: 'row'}}>
-                    <Icon style={{color: "#ff7f11"}} name={"star"} size={17}/>
-                    <Text style={{color: '#ff7f11', marginLeft: 3}}>{props.count_favorite}</Text>
+                    <Icon style={{color: props.color||"#ff7f11"}} name={"star"} size={17}/>
+                    <Text style={{color: props.color||'#ff7f11', marginLeft: 3}}>{props.count_favorite}</Text>
                 </View>
             </View>
         </RkCard>

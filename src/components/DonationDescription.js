@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
-import { View, WebView, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, WebView, ScrollView, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import HTMLView from 'react-native-htmlview'
 import { ModalHeaderPlain, WebViewRichText, CardSection, ImageModal } from '../common'
 
 class DonationDescription extends Component {
+    constructor(props) {
+        super(props)
 
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
+    }
 
     render() {
         return (
             <View style={{flex: 1}}>
-                <ModalHeaderPlain headerText={this.props.donation.project_name} backSign={'arrow'}/>
+                <ModalHeaderPlain color={this.state.color} headerText={this.props.donation.project_name} backSign={'arrow'}/>
                 <ScrollView style={{flex: 1}}>
                     <ImageModal img={this.props.donation.picture} />
                     <View style={styles.HTML_view_style}>
@@ -22,7 +32,7 @@ class DonationDescription extends Component {
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={() => Actions.modalDonate(this.props.donation)}>
-                    <View style={styles.footerBar}>
+                    <View style={[styles.footerBar, {backgroundColor: this.state.color||'#FF7F11'}]}>
                         <Text style={{ color: 'white', fontWeight: 'bold' }}>DONATE</Text>
                     </View>
                 </TouchableOpacity>
@@ -39,8 +49,7 @@ const styles = {
         margin: 10
     },
     footerBar: {
-        justifyContent: 'flex-end', 
-        backgroundColor: '#FF7F11', 
+        justifyContent: 'flex-end',
         position: 'relative', 
         height: 40,
         justifyContent: 'center',

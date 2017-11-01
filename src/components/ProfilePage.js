@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, ScrollView, AsyncStorage } from 'react-native'
 import * as actions from '../actions'
 import { Actions } from 'react-native-router-flux'
 import { Header, EmptyCard, RoundImage, CardSection } from '../common'
@@ -8,35 +8,45 @@ import NewsFavorite from './NewsFavorite'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ProfilePage extends Component {
+    constructor(props) {
+        super(props)
 
-    componentWillMount() {
-        
+        this.state = {
+            color: '#FF7F11'
+        }
+
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
+        })
     }
 
-
     render () {
-        const { assets, name, email, surname, uid } = this.props.profile.user_detail.user
+        const { assets, name, email, surname, uid, tel, address } = this.props.profile.user_detail.user
 
         return (
             <View style={{flex: 1}}>
-                <Header headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
+                <Header color={this.state.color} headerText={'Profile'} rightIcon={"edit"} leftIcon={'back'}/>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 18}}>
-                        <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} />
+                        {
+                            assets.picture===null?
+                            <Image style={styles.avatar} source={require('../env/images/profile.png')} />:
+                            <RoundImage img={assets.picture.uri}/>
+                        }
                         <Text style={{ margin: 12, fontSize: 18}}>{name} {surname}</Text>
                     </View>
                     <CardSection />
                     <View style={{margin: 14}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Icon style={{color: "#ff7f11"}} name={"information"} size={20}/>
-                            <Text style={{marginLeft: 3, color: "#ff7f11"}}>Info</Text>
+                            <Icon style={{color: this.state.color||"#ff7f11"}} name={"information"} size={20}/>
+                            <Text style={{marginLeft: 3, color: this.state.color||"#ff7f11"}}>Info</Text>
                         </View>
                         
                         <CardSection />
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Image style={styles.iconStyle} source={require('../env/images/tel.png')} /> 
                             <Text>
-                                080-000-0000
+                                {tel}
                             </Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -48,13 +58,12 @@ class ProfilePage extends Component {
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Image style={styles.iconStyle} source={require('../env/images/location.png')} /> 
                             <Text>
-                                เชียงใหม่ ประเทศไทย
+                                {address}
                             </Text>
                         </View>
                     </View>
                 
-                
-                    <View style={{margin: 14}}>
+                    {/* <View style={{margin: 14}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon style={{color: "#ff7f11"}} name={"school"} size={20}/>
                             <Text style={{marginLeft: 3, color: "#ff7f11"}}>Graduated</Text>
@@ -94,8 +103,7 @@ class ProfilePage extends Component {
                                 ผลงานศิสเก่า
                             </Text>
                         </View>
-                    </View>
-                    
+                    </View> */} 
                 </ScrollView>
             </View>
         )
@@ -110,6 +118,11 @@ const styles = {
         marginRight: 10,
         marginTop: 5,
         marginBottom: 5
+    },
+    avatar: {
+        borderRadius: 70/2,
+        width: 70,
+        height: 70
     }
 }
 

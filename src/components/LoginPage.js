@@ -9,10 +9,10 @@ import {
     StatusBar, 
     Platform, 
     Linking,
-    AppState
+    AppState,
+    AsyncStorage
 } from 'react-native'
 import AlertContainer from './Alerts/AlertContainer'
-import PushNotification from 'react-native-push-notification'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux' 
@@ -25,23 +25,21 @@ class LoginPage extends Component {
             email: '',
             password: '',
             errors: {},
-            loading: false
+            loading: false,
+            logo: '',
+            color: '#ff7f11'
         }
 
         this.onSignIn = this.onSignIn.bind(this)
     }
 
     componentDidMount() {
-        PushNotification.configure({
-            onNotification: function(notification) {
-                console.log('NOTOFICATION:', notification)
-            }
+        AsyncStorage.getItem('logo').then(data => {
+            this.setState({logo: {uri: data}})
         })
 
-        PushNotification.localNotificationSchedule({
-            message: "My Notification Message", // (required)
-            date: new Date(Date.now() + (10 * 1000)), // in 60 secs
-            number: 0
+        AsyncStorage.getItem('color').then(data => {
+            this.setState({color: data})
         })
     }
 
@@ -56,7 +54,7 @@ class LoginPage extends Component {
         this.setState({
             loading: true
         })
-        this.props.loginLdap(email, password).then(() => {
+        this.props.loginUser(email, password).then(() => {
             this.setState({
                 email: '',
                 password: '',
@@ -70,7 +68,7 @@ class LoginPage extends Component {
     }
 
     render() {
-        let { email, password, errors } = this.state
+        let { email, password, errors, color } = this.state
 
         if (this.state.loading) {
             return (
@@ -83,31 +81,31 @@ class LoginPage extends Component {
         }else{
             return (
                 <View style={{flex: 1}}>
-                    <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
+                    <MyStatusBar backgroundColor={color ||"#FF7F11"} barStyle="light-content" />
                     <View style={styles.container}>
                         <View style={styles.titleContainer}>
-                            <Image source={require('../env/images/kmutt.png')} style={{ height: 160, width: 160 }}/>
-                            <Text style={styles.title}>Alumni</Text>
+                            <Image source={this.state.logo.uri?this.state.logo:require('../env/images/big_appaca.png')} style={{ height: 160, width: 160 }}/>
+                            <Text style={styles.title}></Text>
                         </View>
-                        <View style={[styles.field, {height: 45}]}>
+                        <View style={[styles.field, {height: 45, borderColor: color||"#FF7F11"}]}>
                             <TextInput style={{height: 20}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
                         </View>
-                        <View style={[styles.field, {height: 45}]}>
+                        <View style={[styles.field, {height: 45, borderColor: color||"#FF7F11"}]}>
                             <TextInput style={{height: 55}} value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                             <TouchableOpacity onPress={this.onSignIn}>
-                                <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign in</Text>
+                                <Text style={[styles.textButton, { backgroundColor: color||"#FF7F11", borderColor: 'white', color: 'white' }]}>Sign in</Text>
                             </TouchableOpacity>
-                            {/*<TouchableOpacity onPress={() => Actions.signup()}>
-                                <Text style={[styles.textButton, { backgroundColor: '#ff7f11', borderColor: 'white', color: 'white' }]}>Sign up</Text>
-                            </TouchableOpacity>*/}
+                            <TouchableOpacity onPress={() => Actions.signup()}>
+                                <Text style={[styles.textButton, { backgroundColor: color||"#FF7F11", borderColor: 'white', color: 'white' }]}>Sign up</Text>
+                            </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
+                        {/* <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
                             <TouchableOpacity onPress={this.onForgetPassword}>
                                 <Text style={{ color: '#ff7f11' }}>Forget password ?</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                         <AlertContainer />
                     </View>
                 </View>
@@ -149,8 +147,7 @@ const styles = {
         // padding: 5,
         paddingLeft: 8,
         margin: 7,
-        borderBottomWidth: 1,
-        borderColor: '#ff7f11'
+        borderBottomWidth: 1
     },
     textInput: {
         height: 55

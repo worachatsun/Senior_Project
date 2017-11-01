@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar } from 'react-native'
+import { View, Text, StatusBar, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { sendMsg, subscribeToChat, leaveRoom } from '../api/socketio'
@@ -9,7 +9,14 @@ import { ModalHeaderPlain } from '../common'
 class ChatPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {messages: []}
+    this.state = {
+      messages: [],
+      color: '#FF7F11'
+    }
+
+    AsyncStorage.getItem('color').then(data => {
+        this.setState({color: data})
+    })
     this.onSend = this.onSend.bind(this)
   }
 
@@ -67,7 +74,7 @@ class ChatPage extends Component {
     console.log(this.state.messages)
     return (
         <View style={{flex: 1}}>
-            <ModalHeaderPlain headerText={'Chat'} backSign={true} />
+            <ModalHeaderPlain color={this.state.color} headerText={'Chat'} backSign={true} />
             <GiftedChat
               messages={this.state.messages}
               onSend={this.onSend}
