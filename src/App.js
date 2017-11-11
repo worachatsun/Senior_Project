@@ -6,6 +6,7 @@ import axios from 'axios'
 import * as Keychain from 'react-native-keychain'
 import Router from './Router'
 import { GET_APP_DETAIL } from './api'
+console.disableYellowBox = true
 
 class App extends Component {
 
@@ -14,7 +15,7 @@ class App extends Component {
             AsyncStorage.setItem('logo', data.apps[0].logo)
             AsyncStorage.setItem('color', data.apps[0].color)
             AsyncStorage.setItem('uni_abb', data.apps[0].uni_abb)
-            AsyncStorage.setItem('news', JSON.stringify(data.apps[0].features))
+            AsyncStorage.setItem('features', JSON.stringify(data.apps[0].features))
         }).catch(error => {
             console.log('get app data error')
         })
