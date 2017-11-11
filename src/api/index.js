@@ -1,7 +1,6 @@
-import { MANAGE_API, APP_ID } from 'react-native-dotenv'
+import { APP_ID, MANAGE_API, API_URL } from '../../env.js'
 
-let API_URL = 'http://localhost:3000/v1'
-let APP_API = MANAGE_API
+const APP_API = MANAGE_API
 
 exports.GETNEWS_URL = `${API_URL}/getNews`
 exports.GETNEWS_FACULTY_URL = `${API_URL}/getNewsByFaculty`
