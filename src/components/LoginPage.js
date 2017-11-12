@@ -87,10 +87,10 @@ class LoginPage extends Component {
                             <Image source={this.state.logo.uri?this.state.logo:require('../env/images/big_appaca.png')} style={{ height: 160, width: 160 }}/>
                             <Text style={styles.title}></Text>
                         </View>
-                        <View style={[styles.field, {height: 45, borderColor: color||"#FF7F11"}]}>
+                        <View style={[styles.field, {height: 47, borderColor: color||"#FF7F11"}]}>
                             <TextInput style={{height: 20}} value={email} autoCapitalize = 'none' onChangeText={email => this.setState({email})} autoCorrect={false} autoFocus={true} placeholder={"Username"} style={styles.textInput}/>
                         </View>
-                        <View style={[styles.field, {height: 45, borderColor: color||"#FF7F11"}]}>
+                        <View style={[styles.field, {height: 47, borderColor: color||"#FF7F11"}]}>
                             <TextInput style={{height: 55}} value={password} secureTextEntry={true} autoCapitalize = 'none' onChangeText={password => this.setState({password})} autoCorrect={false} placeholder={"Password"} style={styles.textInput}/>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
