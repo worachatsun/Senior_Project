@@ -32,6 +32,7 @@ import SearchPageDonation from './components/SearchPageDonation'
 import SearchPageCareer from './components/SearchPageCareer'
 import AllowAllUserNews from './components/AllowAllUserNews'
 import NewsPageOutside from './components/UnAuth/NewsPageOutside'
+import { APP_ID, MANAGE_API, API_URL } from '../env.js'
 
 class TabIcon extends Component {
     constructor(props) {
@@ -77,7 +78,6 @@ class RouterComponent extends Component {
         this.state = {
             features: null
         }
-
         AsyncStorage.getItem('features').then(data => {
             this.setState({features: JSON.parse(data)})
         })
@@ -88,10 +88,14 @@ class RouterComponent extends Component {
             return (
                 <View style={styles.centering}>
                     <ActivityIndicator
-                    animating={true}
-                    style={{height: 80}}
-                    size="large"
-                /></View>
+                        animating={true}
+                        style={{height: 80}}
+                        size="large"
+                    />
+                    <Text>{APP_ID}</Text>
+                    <Text>{MANAGE_API}</Text>
+                    <Text>{API_URL}</Text>
+                </View>
             )
         }
         return (
