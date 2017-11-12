@@ -2,12 +2,13 @@ import './UserAgent'
 import {
     AppState,
 } from 'react-native'
+import { BASE_URL } from '../../env.js'
 
 window.navigator.userAgent = 'react-native'
 
 import io from 'socket.io-client/dist/socket.io'
 
-export const socket = io('http://localhost:3000',{
+export const socket = io(BASE_URL,{
     jsonp: false,
     transports: ['websocket']
 })
