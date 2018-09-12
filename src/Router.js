@@ -66,45 +66,38 @@ class RouterComponent extends Component {
 
     render () {
         return (
-            <Router hideNavBar={true}>
+            <Router hideNavBar>
                     <Scene key="root" >
-                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFFFFF'}} >
+                        <Scene key="tabbar" hideNavBar tabs wrap={false} showLabel={false} tabBarStyle={{backgroundColor: '#FFFFFF'}} >
                             <Scene key="News" component={NewsPage} icon={TabIcon} iconName={'newspaper'} title="NEWS"/>
                             <Scene key="Event" component={EventPage} icon={TabIcon} iconName={'calendar-text'} title="EVENT" />
                             <Scene key="Donation"  component={DonationPage} icon={TabIcon} iconName={'coin'} title="DONATION"/>
                             <Scene key="Career" component={CareerPage} icon={TabIcon} iconName={'worker'} title="CAREER"/>
                             <Scene key="Menu" component={DrawerContent} icon={TabIcon} iconName={'menu'} title="MENU"/>
                         </Scene>
-                        <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" hideNavBar />                  
-                        <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" hideNavBar hideNavBar />                  
-                        <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" hideNavBar />                  
+                        <Scene key="modal" schema="modal" component={ModalContent} title="Modal" direction="vertical" panHandlers={null} hideNavBar />                  
+                        <Scene key="modalEvent" component={ModalContentEvent} direction="vertical" panHandlers={null} hideNavBar />                  
+                        <Scene key="modalTicket" schema="modal" component={ModalGetTicket} title="Modal" direction="vertical" panHandlers={null} hideNavBar />                  
                         <Scene key="donationDes" component={DonationDescription} direction="horizontal" hideNavBar />
-                        <Scene key="modalDonate" component={ModalDonate} direction="vertical" hideNavBar />
-                        <Scene key="modalCareer" component={ModalCareer} direction="vertical" hideNavBar />
+                        <Scene key="modalDonate" component={ModalDonate} direction="vertical" panHandlers={null} hideNavBar />
+                        <Scene key="modalCareer" component={ModalCareer} direction="vertical" panHandlers={null} hideNavBar />
                         <Scene key="EventJoined" component={EventJoined} direction="horizontal" hideNavBar />
                         <Scene key="NewsFavorite" component={NewsFavorite} direction="horizontal" hideNavBar />
                         <Scene key="careerDes" component={CareerDescription} direction="horizontal" hideNavBar />
-                        <Scene key="editProfile" component={EditProfile} direction="vertical" hideNavBar />
-                        <Scene key="login" component={LoginPage}/>
+                        <Scene key="editProfile" component={EditProfile} direction="vertical" panHandlers={null} hideNavBar />
+                        <Scene key="login" hideNavBar component={LoginPage}/>
                         <Scene key="pro" component={Test} />
-                        <Scene key="signup" component={SignupComponent}/>
-                        <Scene key="SearchPage" component={SearchPage} />
-                        <Scene key="SearchPageEvent" component={SearchPageEvent} />
-                        <Scene key="SearchPageDonation" component={SearchPageDonation}/>
-                        <Scene key="SearchPageCareer" component={SearchPageCareer} />
-                        <Scene key="ProfilePage" component={ProfilePage} direction="horizontal" />
+                        <Scene key="signup" hideNavBar component={SignupComponent}/>
+                        <Scene key="SearchPage" hideNavBar component={SearchPage} />
+                        <Scene key="SearchPageEvent" hideNavBar component={SearchPageEvent} />
+                        <Scene key="SearchPageDonation" hideNavBar component={SearchPageDonation}/>
+                        <Scene key="SearchPageCareer" hideNavBar component={SearchPageCareer} />
+                        <Scene key="ProfilePage" hideNavBar component={ProfilePage} direction="horizontal" />
                         <Scene key="chat" component={ChatPage} />
-                        <Scene key="first" component={AllowAllUserNews} initial/>
+                        <Scene key="first" hideNavBar component={AllowAllUserNews} initial/>
                     </Scene>
             </Router>
         )
-    }
-}
-
-const styles = {
-    iconStyle: {
-        width: 25, 
-        height: 25 
     }
 }
 

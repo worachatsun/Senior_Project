@@ -68,7 +68,7 @@ class CareerPage extends Component {
     render() {
         const { limit, dataSource } = this.state
         return (
-            <View style={{flex: 1, marginBottom: 50}}>
+            <View style={{flex: 1}}>
                 <Header headerText={'Career'} style={{marginBottom: 12}} route_to={'career'}/>
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', flexWrap: 'wrap' }}

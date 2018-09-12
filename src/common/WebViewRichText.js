@@ -38,10 +38,8 @@ function renderNode(node, index, siblings, parent, defaultRenderer) {
 
 const styles = {
     webView: {
-        margin: 12,
     },
     webViewText: {
-        textAlign: 'center',
     }
 }
 

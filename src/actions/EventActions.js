@@ -45,7 +45,7 @@ export const fetchEvent = (offset=0, limit=15) => {
     }
 }
 
-export const getTicket = (user_id, event_id, coupon = null, capacity) => (dispatch) => {
+export const getTicket = (user_id, event_id, coupon = null, capacity) => {
     let url = null
     let promise = null
     console.log(capacity)

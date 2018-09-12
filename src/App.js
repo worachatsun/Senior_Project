@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { Provider } from 'react-redux'
 import { configureStore } from './store'
 import Router from './Router'
+console.disableYellowBox = true
 
 class App extends Component {
     render () {

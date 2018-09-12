@@ -34,7 +34,6 @@ export const FavoriteNews = (favorite_news, status, user_id) => {
 }
 
 export const checkFavoriteNews = (favorite_news, user_id) => {
-    console.log(user_id)
     const promise = axios.post(POST_CHECK_FAVORITE_NEWS, {
         "user_id" : user_id,
         "favorite_news": favorite_news

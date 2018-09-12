@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import * as actions from '../../actions'

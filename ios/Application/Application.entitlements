@@ -5,6 +5,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)org.reactjs.native.example.Application</string>
+		<string>$(AppIdentifierPrefix)com.kmutt.kmuttalumni</string>
 	</array>
 </dict>
 </plist>

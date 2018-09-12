@@ -7,7 +7,7 @@ window.navigator.userAgent = 'react-native'
 
 import io from 'socket.io-client/dist/socket.io'
 
-export const socket = io('http://localhost:3000',{
+export const socket = io('https://alumni-mobile.kmutt.ac.th/',{
     jsonp: false,
     transports: ['websocket']
 })

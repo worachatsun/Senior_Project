@@ -2,11 +2,6 @@ import React, { Component } from 'react'
 import { View, Animated, TouchableOpacity, Text, ListView } from 'react-native'
 import { Header } from '../common'
 import AllNewsComponent from './AllNewsComponent'
-import DropDown, {
-  Select,
-  Option,
-  OptionList,
-} from 'react-native-selectme'
 import { ImageCard } from '../common'
 
 export default class Test extends Component {
