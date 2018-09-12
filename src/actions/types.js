@@ -30,3 +30,6 @@ export const ADD_ALERT = 'add_alert'
 export const REMOVE_ALERT = 'remove_alert'
 
 export const FETCH_CHAT = 'fetch_chat'
+
+export const USER_PROFLE = 'user_profile_api'
+export const USER_WORKPLACE = 'user_workplace'

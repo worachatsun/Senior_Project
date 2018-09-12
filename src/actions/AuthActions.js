@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as Keychain from 'react-native-keychain'
-import { AUTH_USER, UNAUTH_USER } from './types'
-import { SIGNIN_URL, SIGNUP_URL, SIGNIN_LDAP_URL, GET_USER_DATA } from '../api'
+import { AUTH_USER, UNAUTH_USER, USER_PROFLE, USER_WORKPLACE } from './types'
+import { SIGNIN_URL, SIGNUP_URL, SIGNIN_LDAP_URL, GET_USER_DATA, PROFILE_API, GET_PROFILE_DETAIL, GET_PROFILE_WORKPLACE } from '../api'
 import { addAlert } from './AlertActions'
 import { Actions } from 'react-native-router-flux'
 
@@ -24,7 +24,6 @@ export const loginUser = (email, password) => {
             .then(function() {
                 console.log('Credentials saved successfully!')
             })
-            console.log(response.data)
             dispatch(addAlert(token))
             dispatch(authUser(user_id))
         }).catch(error => {
@@ -61,6 +60,69 @@ export const getUserInfo = (token) => {
             dispatch(authUser(response.data))
         })
     }
+}
+
+export const getProfileUser = id => {
+    return function(dispatch) {
+        Keychain
+        .getGenericPassword()
+        .then(function(credentials) {
+            if(credentials) {
+                return axios.post(GET_PROFILE_DETAIL, null, {
+                    headers: { "Authorization": credentials.password }
+                }).then(response => {
+                    console.log(response)
+                    dispatch({
+                        type: USER_PROFLE,
+                        payload: response.data
+                    })
+                })
+            }
+        }).catch(function(error) {
+            console.log('Keychain couldn\'t be accessed! Maybe no value set?', error)
+        })
+    }
+    // const promise = axios.get(`${PROFILE_API}${id}`)
+    
+    // return (dispatch) => {
+    //     return promise.then(response => {
+    //         dispatch({
+    //             type: USER_PROFLE,
+    //             payload: response.data
+    //         })
+    //     })  
+    // }
+}
+
+export const getProfileWorkplace = token => {
+    return function(dispatch) {
+        Keychain
+        .getGenericPassword()
+        .then(function(credentials) {
+            if(credentials) {
+                return axios.post(GET_PROFILE_WORKPLACE, null, {
+                    headers: { "Authorization": credentials.password }
+                }).then(response => {
+                    dispatch({
+                        type: USER_WORKPLACE,
+                        payload: response.data
+                    })
+                })
+            }
+        }).catch(function(error) {
+            console.log('Keychain couldn\'t be accessed! Maybe no value set?', error)
+        })
+    }
+    // const promise = axios.get(`${PROFILE_API}${id}/workplace`)
+    
+    // return (dispatch) => {
+    //     return promise.then(response => {
+    //         dispatch({
+    //             type: USER_WORKPLACE,
+    //             payload: response.data
+    //         })
+    //     })  
+    // }
 }
 
 export const signupUser = (email, password, name, surname, tel, address) => {

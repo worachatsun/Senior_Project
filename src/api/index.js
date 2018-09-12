@@ -1,4 +1,5 @@
-let API_URL = 'http://localhost:3000/v1'
+let API_URL = 'https://alumni-mobile.kmutt.ac.th/v1'
+// https://alumni-mobile.kmutt.ac.th/v1
 
 exports.GETNEWS_URL = `${API_URL}/getNews`
 exports.GETNEWS_FACULTY_URL = `${API_URL}/getNewsByFaculty`
@@ -25,6 +26,8 @@ exports.SIGNIN_URL = `${API_URL}/signin`
 exports.SIGNIN_LDAP_URL = `${API_URL}/signinLdap`
 exports.SIGNUP_URL = `${API_URL}/signup`
 exports.GET_USER_DATA = `${API_URL}/getUserData`
+exports.GET_PROFILE_DETAIL = `${API_URL}/getProfileDetail`
+exports.GET_PROFILE_WORKPLACE = `${API_URL}/getProfileWorkplace`
 
 exports.POST_SEND_CHAT = `${API_URL}/pushChat`
 exports.POST_FETCH_CHAT = `${API_URL}/fetchChat`

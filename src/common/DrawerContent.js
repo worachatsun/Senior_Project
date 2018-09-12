@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Actions } from 'react-native-router-flux'
-import { CardSection, RoundImage } from '../common'
+import { CardSection, RoundImage, Spinner } from '../common'
 
 class DrawerContent extends Component {
     constructor(props) {
@@ -18,23 +18,30 @@ class DrawerContent extends Component {
         await Actions.popTo('first')
     }
 
+    componentWillMount() {
+        console.log(this.props.profile.user_detail.user.username)
+        this.props.getProfileUser(54213628)
+        this.props.getProfileWorkplace(54213628)
+    }
+
     render() {
         const { viewStyle, profileStyle, menuStyle, textStyle, iconStyle, footerBar } = styles
-
-        if(this.props.profile.user_detail.user) {
+        
+        if(this.props.profile.user_detail.user&&this.props.profile.profile_user) {
             const { assets, name, surname, uid } = this.props.profile.user_detail.user
-     
+            const profile_user = this.props.profile.profile_user
+
             return (
                 <View style={viewStyle}>
                     <MyStatusBar backgroundColor="#FF7F11" barStyle="light-content" />
                     <TouchableOpacity onPress={() => Actions.ProfilePage() }>
                         <View style={profileStyle}>
                             <View style={{margin: 15}}>
-                                <RoundImage img={'http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode='+uid} style={styles.roundImage}/>
+                                <RoundImage img={`http://apollo.kmutt.ac.th/kmuttstdpic/default.aspx?&stdcode=${this.props.profile.user_detail.user.username}`} style={styles.roundImage}/>
                             </View>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{name} {surname}</Text>
-                                <Text style={{margin: 5}}>{uid}</Text>
+                                <Text style={{margin: 5, fontSize: 15, fontWeight: 'bold'}}>{profile_user.StdPrefix}{profile_user.StdFirstName} {profile_user.StdLastName}</Text>
+                                <Text style={{margin: 5}}>{profile_user.StdCode}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -74,7 +81,7 @@ class DrawerContent extends Component {
         } else {
             return(
                 <View>
-                    <Text>Unauthen</Text>
+                    <Spinner/>
                 </View>
             )
         }

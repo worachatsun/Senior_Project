@@ -41,12 +41,12 @@ class ModalContent extends Component {
                 </View>
                 <ScrollView>
                     <ImageModal img={modalContent.picture} />
-                    <View style={{borderBottomWidth: 1, borderColor: '#ddd',}}>
+                    <View style={{borderBottomWidth: 1, borderColor: '#ddd', marginBottom: 20}}>
                         <Text style={headerTextStyle}>{modalContent.news_title}</Text>
                     </View>
                     <WebViewRichText webText={modalContent.news_text} />
-                    <CardSection />
-                    <Text style={{ color: '#ddd', marginTop: 10}}>Category: {modalContent.category}</Text>
+                    {/* <CardSection />
+                    <Text style={{ color: '#ddd', marginTop: 10}}>Category: {modalContent.category}</Text> */}
                 </ScrollView>
             </View>
         )

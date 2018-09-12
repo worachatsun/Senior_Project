@@ -22,17 +22,6 @@ class EditProfile extends Component {
         }
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     this.setState({
-    //         tel: '080-000-0000',
-    //         email: 'bie_sukrit@gmail.com',
-    //         location: 'เชียงใหม่ ประเทศไทย',
-    //         faculty: 'KMUTT',
-    //         job: 'นักร้อง',
-    //         trophy: 'ผลงานศิสเก่า'
-    //     })
-    // }
-
     render () {
         const { assets, name, email, surname } = this.props.profile.user_detail.user
 

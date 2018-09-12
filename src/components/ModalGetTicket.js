@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
+// import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 import { Actions } from 'react-native-router-flux'
 import { ModalHeaderPlain } from '../common/ModalHeader'
 import { ImageModal, EmptyCard, CardSection, Map } from '../common'
@@ -38,7 +38,14 @@ class ModalGetTicket extends Component {
     }
 
     componentWillMount() {
-        this.props.checkEventAvailable(this.props.modalEvent._id)
+        this.props.checkEventAvailable(this.props.modalEvent._id).then(() => {
+            if(!this.props.event.eventAvailable)
+                Alert.alert(
+                    'Event Alert',
+                    'Out of stock',
+                    {text: 'OK', onPress: Actions.pop()}
+                )
+        })
     }
 
     _dropdown(value) {
