@@ -20,8 +20,8 @@ class DrawerContent extends Component {
 
     componentWillMount() {
         console.log(this.props.profile.user_detail.user.username)
-        this.props.getProfileUser(54213628)
-        this.props.getProfileWorkplace(54213628)
+        this.props.getProfileUser()
+        this.props.getProfileWorkplace()
     }
 
     render() {
